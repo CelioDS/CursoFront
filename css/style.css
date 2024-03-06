@@ -1,0 +1,54 @@
+* {
+  border: 1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  margin: 15px;
+  padding: 15px;
+}
+form {
+  margin-bottom: 50px;
+}
+#list-tarefa > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+#list-tarefa > div > h3::first-letter {
+  text-transform: uppercase;
+}
+#list-tarefa > div > button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: none;
+  text-align: center;
+  padding: 5px 5px;
+  cursor: pointer;
+  background-color: rgb(250, 179, 179);
+  color: red;
+}
+#list-tarefa > div > button:hover {
+  opacity: 0.5;
+}
