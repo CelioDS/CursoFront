@@ -71,7 +71,16 @@ main > form > button:hover {
 #list-tarefa > div > h5::first-letter {
   text-transform: uppercase;
 }
-#list-tarefa > div > button {
+#list-tarefa > div > .divButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: none;
+  text-align: center;
+  padding: 5px 5px;
+  background-color: #fab3b386;
+}
+#list-tarefa > div > .divButton > button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -82,6 +91,6 @@ main > form > button:hover {
   background-color: #fab3b386;
   color: #ff0000;
 }
-#list-tarefa > div > button:hover {
+#list-tarefa > div > .divButton > button:hover {
   background-color: #fab3b3;
 }

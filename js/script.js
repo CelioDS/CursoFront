@@ -21,18 +21,29 @@ FormTarefa.addEventListener("submit", (e) => {
 function listarTarefas() {
   for (var i = 0; i < localStorage.length; i++) {
     const div = document.createElement("div");
+    const divButton = document.createElement("div");
     const button = document.createElement("button");
+    const buttonConcluido = document.createElement("button");
     const h3 = document.createElement("h5");
+
+    div.className = "divList"; /* excluir se não usar */
+    divButton.classList.add("divButton");
+
+    /** adcionar um class para o item quando concluido e deixa ele apgado */
 
     var chave = localStorage.key(i); // Obtém a chave atual
     var valor = localStorage.getItem(chave); // Obtém o valor associado à chave
 
     h3.innerText = valor;
     button.innerHTML = "&#120;";
+    buttonConcluido.innerHTML = "&#10003;";
 
     div.appendChild(h3);
-    div.appendChild(button);
-    div.className = "divList"; /* excluir se não usar */
+    divButton.appendChild(button);
+    divButton.appendChild(buttonConcluido);
+
+    div.appendChild(divButton);
+
     listTarefa.appendChild(div);
   }
 }
