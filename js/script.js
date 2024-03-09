@@ -17,8 +17,8 @@ function listarTarefas() {
   for (var i = 0; i < localStorage.length; i++) {
     const h3 = document.createElement("h5");
     const div = document.createElement("div");
-    const button = document.createElement("button");
     const divButton = document.createElement("div");
+    const buttonExcluir = document.createElement("button");
     const buttonConcluido = document.createElement("button");
 
     div.className = "divList"; /* excluir se não usar */
@@ -26,15 +26,26 @@ function listarTarefas() {
 
     /** adcionar um class para o item quando concluido e deixa ele apgado */
 
-    var chave = localStorage.key(i); // Obtém a chave atual
-    var valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
+    let chave = localStorage.key(i); // Obtém a chave atual
+    let valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
 
     h3.innerText = valor.tarefa;
-    button.innerHTML = "&#120;";
+    buttonExcluir.innerHTML = "&#120;";
     buttonConcluido.innerHTML = "&#10003;";
 
     buttonConcluido.onclick = () => {
-      console.log(JSON.parse(localStorage.getItem(chave)));
+      const obj = JSON.parse(localStorage.getItem(chave));
+      obj.concluido = !obj.concluido;
+      localStorage.setItem(obj.tarefa, JSON.stringify(obj));
+    };
+    buttonConcluido.onclick = () => {
+      const obj = JSON.parse(localStorage.getItem(chave));
+      obj.concluido = !obj.concluido;
+      localStorage.setItem(obj.tarefa, JSON.stringify(obj));
+    };
+
+    buttonExcluir.onclick = () => {
+      localStorage.removeItem(chave);
     };
 
     if (valor.concluido) {
@@ -42,7 +53,7 @@ function listarTarefas() {
     }
 
     div.appendChild(h3);
-    divButton.appendChild(button);
+    divButton.appendChild(buttonExcluir);
     divButton.appendChild(buttonConcluido);
 
     div.appendChild(divButton);
