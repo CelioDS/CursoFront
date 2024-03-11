@@ -95,7 +95,7 @@ main > form > button:hover {
 }
 
 #list-tarefa > div > .divButton > button:nth-child(1):hover {
-  background-color: #fab3b3;
+  background-color: #fd6969;
 }
 
 #list-tarefa > div > .divButton > button:nth-child(2) {
@@ -114,8 +114,9 @@ main > form > button:hover {
   background-color: #b3fab68e;
 }
 .concluido {
-  background-color: #ccc !important;
+  background-color: #e2dfdf !important;
   font-style: oblique;
+  color: #8b8989;
 }
 .concluido h5 {
   text-decoration: line-through;

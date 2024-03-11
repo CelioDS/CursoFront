@@ -21,6 +21,51 @@
       </form>
 
       <section id="list-tarefa">Lista de tarefas</section>
+      <span id="loading">
+        <br /><br />
+
+        <h6 style="color: #ccc">Sem tarefas....</h6>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="50"
+          viewBox="0 0 100 100"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="#ccc"
+            stroke-width="10"
+            fill="none"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="#95b8dd"
+            stroke-width="10"
+            fill="none"
+          >
+            <animate
+              attributeName="stroke-dasharray"
+              attributeType="XML"
+              from="0, 250"
+              to="250, 0"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="stroke-dashoffset"
+              attributeType="XML"
+              from="0"
+              to="500"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+      </span>
     </main>
   </body>
 </html>
