@@ -3,13 +3,27 @@ const listTarefa = document.getElementById("list-tarefa");
 const tarefa = document.getElementById("tarefa");
 const Loading = document.getElementById("loading");
 
-AddTarefa.addEventListener("submit", (e) => {
-  const obj = {
-    tarefa: tarefa.value,
-    concluido: false,
-  };
+const arrayTarefas = [];
 
-  localStorage.setItem(tarefa.value, JSON.stringify(obj));
+AddTarefa.addEventListener("submit", (e) => {
+  if (arrayTarefas.includes(tarefa.value) || tarefa.value === "") {
+    e.preventDefault();
+    AddTarefa.classList.add("Error");
+
+    tarefa.value = "";
+    tarefa.placeholder = "Tarefa ja inserida";
+    setTimeout(() => {
+      AddTarefa.classList.remove("Error");
+      tarefa.placeholder = "Digite sua tarefa aqui";
+    }, 1000);
+  } else {
+    const obj = {
+      tarefa: tarefa.value,
+      concluido: false,
+    };
+
+    localStorage.setItem(tarefa.value.toLowerCase(), JSON.stringify(obj));
+  }
 });
 
 //localStorage.clear()
@@ -42,8 +56,10 @@ function listarTarefas() {
     listTarefa.appendChild(div);
     divButton.appendChild(buttonExcluir);
     divButton.appendChild(buttonConcluido);
-    
+
     Loading.style.display = "none";
+
+    arrayTarefas.push(valor.tarefa);
   }
 }
 listarTarefas();

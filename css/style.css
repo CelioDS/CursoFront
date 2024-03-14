@@ -21,6 +21,7 @@ header {
   text-align: center;
   margin: 15px;
   padding: 15px;
+  color: #aeb8af;
 }
 main > form {
   margin-bottom: 50px;
@@ -46,10 +47,48 @@ main > form > button {
   transition: background 0.8s;
   background-color: #6b99567c;
 }
-main > form > button:hover {
-  background-color: #6b9956;
+
+main > .Error {
+  animation: shake 0.8s infinite;
 }
 
+@keyframes shake {
+  from {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(2px);
+    border: 1px solid #ff0000;
+  }
+  75% {
+    transform: translateX(-2px) rotate(1deg);
+  }
+  to {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+main > .Error input {
+  color: #ff0000 !important;
+  border-radius: 5px;
+  border: 1px solid #995656 !important;
+  transition: background 0.8s;
+  background-color: #e4a8a87c;
+}
+
+main > .Error button {
+  border: 1px solid #995656 !important;
+  cursor: default;
+  transition: background 0.8s;
+  background-color: #e4a8a87c;
+}
+
+#list-tarefa > h4 {
+  color: #9e9595;
+}
 #list-tarefa > div {
   width: 100%;
   height: 100%;
