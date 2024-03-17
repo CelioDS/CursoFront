@@ -6,7 +6,7 @@ const Loading = document.getElementById("loading");
 const arrayTarefas = [];
 
 AddTarefa.addEventListener("submit", (e) => {
-  if (arrayTarefas.includes(tarefa.value) || tarefa.value === "") {
+  if (arrayTarefas.includes(tarefa.value) || tarefa.value.trim() == "") {
     e.preventDefault();
     AddTarefa.classList.add("Error");
 
@@ -30,18 +30,18 @@ AddTarefa.addEventListener("submit", (e) => {
 
 function listarTarefas() {
   for (let i = 0; i < localStorage.length; i++) {
-    const h3 = document.createElement("h5");
-    const div = document.createElement("div");
-    const divButton = document.createElement("div");
-    const buttonExcluir = document.createElement("button");
-    const buttonConcluido = document.createElement("button");
+    const h5 = criarElemento("h5");
+    const div = criarElemento("div");
+    const divButton = criarElemento("div");
+    const buttonExcluir = criarElemento("button");
+    const buttonConcluido = criarElemento("button");
 
     divButton.classList.add("divButton");
 
     let chave = localStorage.key(i); // Obtém a chave atual
     let valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
 
-    h3.innerText = valor.tarefa;
+    h5.innerText = valor.tarefa;
     buttonExcluir.innerHTML = "&#120;";
     buttonConcluido.innerHTML = "&#10003;";
 
@@ -51,7 +51,7 @@ function listarTarefas() {
 
     CRUD(buttonConcluido, buttonExcluir, chave);
 
-    div.appendChild(h3);
+    div.appendChild(h5);
     div.appendChild(divButton);
     listTarefa.appendChild(div);
     divButton.appendChild(buttonExcluir);
@@ -63,6 +63,11 @@ function listarTarefas() {
   }
 }
 listarTarefas();
+
+function criarElemento(elemento) {
+  const celemento = document.createElement(elemento);
+  return celemento;
+}
 
 function CRUD(buttonConcluido, buttonExcluir, chave) {
   buttonConcluido.onclick = () => {
