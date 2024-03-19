@@ -2,8 +2,20 @@ const AddTarefa = document.getElementById("formulario");
 const listTarefa = document.getElementById("list-tarefa");
 const tarefa = document.getElementById("tarefa");
 const Loading = document.getElementById("loading");
+const Tema = document.getElementById("tema");
 
 const arrayTarefas = [];
+
+if (JSON.parse(localStorage.getItem("TemaSite%")) === "tema dark") {
+  document.body.classList.add("dark-theme");
+}
+
+Tema.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+  Tema.innerHTML = Tema.innerHTML === "tema dark" ? "tema light" : "tema dark";
+
+  localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
+});
 
 AddTarefa.addEventListener("submit", (e) => {
   if (arrayTarefas.includes(tarefa.value) || tarefa.value.trim() == "") {
@@ -41,32 +53,35 @@ function listarTarefas() {
     let chave = localStorage.key(i); // Obtém a chave atual
     let valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
 
-    h5.innerText = valor.tarefa;
-    buttonExcluir.innerHTML = "&#120;";
-    buttonConcluido.innerHTML = "&#10003;";
+    Tema.innerHTML = JSON.parse(localStorage.getItem("TemaSite%"));
 
-    if (valor.concluido) {
-      div.classList.add("concluido");
+    if (chave != "TemaSite%") {
+      h5.innerText = valor.tarefa;
+      buttonExcluir.innerHTML = "&#120;";
+      buttonConcluido.innerHTML = "&#10003;";
+
+      if (valor.concluido) {
+        div.classList.add("concluido");
+      }
+
+      CRUD(buttonConcluido, buttonExcluir, chave);
+
+      div.appendChild(h5);
+      div.appendChild(divButton);
+      listTarefa.appendChild(div);
+      divButton.appendChild(buttonExcluir);
+      divButton.appendChild(buttonConcluido);
+
+      Loading.style.display = "none";
+
+      arrayTarefas.push(valor.tarefa);
     }
-
-    CRUD(buttonConcluido, buttonExcluir, chave);
-
-    div.appendChild(h5);
-    div.appendChild(divButton);
-    listTarefa.appendChild(div);
-    divButton.appendChild(buttonExcluir);
-    divButton.appendChild(buttonConcluido);
-
-    Loading.style.display = "none";
-
-    arrayTarefas.push(valor.tarefa);
   }
 }
-listarTarefas();
 
 function criarElemento(elemento) {
-  const celemento = document.createElement(elemento);
-  return celemento;
+  const ElementoCriado = document.createElement(elemento);
+  return ElementoCriado;
 }
 
 function CRUD(buttonConcluido, buttonExcluir, chave) {
@@ -82,3 +97,4 @@ function CRUD(buttonConcluido, buttonExcluir, chave) {
     window.location.reload();
   };
 }
+listarTarefas();
