@@ -1,10 +1,13 @@
 const AddTarefa = document.getElementById("formulario");
 const listTarefa = document.getElementById("list-tarefa");
+const listTarefaFeitas = document.getElementById("list-tarefa-feitas");
 const tarefa = document.getElementById("tarefa");
 const Loading = document.getElementById("loading");
+const LoadingFeitos = document.getElementById("loading-feitos");
 const Tema = document.getElementById("tema");
 
 const arrayTarefas = [];
+console.log(arrayTarefas);
 
 if (JSON.parse(localStorage.getItem("TemaSite%")) === "tema dark") {
   document.body.classList.add("dark-theme");
@@ -44,6 +47,7 @@ function listarTarefas() {
   for (let i = 0; i < localStorage.length; i++) {
     const h5 = criarElemento("h5");
     const div = criarElemento("div");
+    const div2 = criarElemento("div");
     const divButton = criarElemento("div");
     const buttonExcluir = criarElemento("button");
     const buttonConcluido = criarElemento("button");
@@ -61,18 +65,26 @@ function listarTarefas() {
       buttonConcluido.innerHTML = "&#10003;";
 
       if (valor.concluido) {
-        div.classList.add("concluido");
+        div2.classList.add("concluido");
+      }
+
+      if (valor.concluido) {
+        div2.appendChild(h5);
+        div2.appendChild(divButton);
+        listTarefaFeitas.appendChild(div2);
+        divButton.appendChild(buttonExcluir);
+
+        LoadingFeitos.style.display = "none";
+      } else {
+        div.appendChild(h5);
+        div.appendChild(divButton);
+        listTarefa.appendChild(div);
+        divButton.appendChild(buttonExcluir);
+        divButton.appendChild(buttonConcluido);
+        Loading.style.display = "none";
       }
 
       CRUD(buttonConcluido, buttonExcluir, chave);
-
-      div.appendChild(h5);
-      div.appendChild(divButton);
-      listTarefa.appendChild(div);
-      divButton.appendChild(buttonExcluir);
-      divButton.appendChild(buttonConcluido);
-
-      Loading.style.display = "none";
 
       arrayTarefas.push(valor.tarefa);
     }

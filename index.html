@@ -22,52 +22,102 @@
         <button>Salvar</button>
       </form>
 
-      <section id="list-tarefa"><h4>Lista de tarefas</h4></section>
-      <span id="loading">
-        <br /><br />
+      <section id="list-tarefa">
+        <h4>Lista de tarefas para fazer</h4>
+        <span id="loading">
+          <br /><br />
 
-        <h6 style="color: #ccc">Sem tarefas....</h6>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="50"
-          viewBox="0 0 100 100"
-        >
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            stroke="#ccc"
-            stroke-width="10"
-            fill="none"
-          />
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            stroke="#95b8dd"
-            stroke-width="10"
-            fill="none"
+          <h6 style="color: #ccc">Sem tarefas....</h6>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="50"
+            viewBox="0 0 100 100"
           >
-            <animate
-              attributeName="stroke-dasharray"
-              attributeType="XML"
-              from="0, 250"
-              to="250, 0"
-              dur="2s"
-              repeatCount="indefinite"
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="#ccc"
+              stroke-width="10"
+              fill="none"
             />
-            <animate
-              attributeName="stroke-dashoffset"
-              attributeType="XML"
-              from="0"
-              to="500"
-              dur="2s"
-              repeatCount="indefinite"
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="#95b8dd"
+              stroke-width="10"
+              fill="none"
+            >
+              <animate
+                attributeName="stroke-dasharray"
+                attributeType="XML"
+                from="0, 250"
+                to="250, 0"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="stroke-dashoffset"
+                attributeType="XML"
+                from="0"
+                to="500"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+          </svg>
+        </span>
+      </section>
+      <section id="list-tarefa-feitas">
+        <h4>Lista de tarefas feitas</h4>
+        <span id="loading-feitos">
+          <br /><br />
+
+          <h6 style="color: #ccc">Sem tarefas....</h6>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="50"
+            viewBox="0 0 100 100"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="#ccc"
+              stroke-width="10"
+              fill="none"
             />
-          </circle>
-        </svg>
-      </span>
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="#95b8dd"
+              stroke-width="10"
+              fill="none"
+            >
+              <animate
+                attributeName="stroke-dasharray"
+                attributeType="XML"
+                from="0, 250"
+                to="250, 0"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="stroke-dashoffset"
+                attributeType="XML"
+                from="0"
+                to="500"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+          </svg>
+        </span>
+      </section>
     </main>
   </body>
 </html>
