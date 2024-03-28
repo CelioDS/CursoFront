@@ -7,7 +7,6 @@ const LoadingFeitos = document.getElementById("loading-feitos");
 const Tema = document.getElementById("tema");
 
 const arrayTarefas = [];
-console.log(arrayTarefas);
 
 if (JSON.parse(localStorage.getItem("TemaSite%")) === "tema dark") {
   document.body.classList.add("dark-theme");
@@ -15,7 +14,10 @@ if (JSON.parse(localStorage.getItem("TemaSite%")) === "tema dark") {
 
 Tema.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
-  Tema.innerHTML = Tema.innerHTML === "tema dark" ? "tema light" : "tema dark";
+
+  document.body.classList.contains("dark-theme")
+    ? (Tema.innerHTML = "Light")
+    : (Tema.innerHTML = "Dark");
 
   localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
 });
@@ -26,7 +28,7 @@ AddTarefa.addEventListener("submit", (e) => {
     AddTarefa.classList.add("Error");
 
     tarefa.value = "";
-    tarefa.placeholder = "Tarefa ja inserida";
+    tarefa.placeholder = "valor inserido inválido";
     setTimeout(() => {
       AddTarefa.classList.remove("Error");
       tarefa.placeholder = "Digite sua tarefa aqui";

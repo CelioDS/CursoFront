@@ -16,20 +16,28 @@ body {
 }
 
 .dark-theme {
-  background-color: #424242;
+  transition: all 0.8s;
+  background-color: #000000;
 }
 
 #tema {
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
+  width: 50px;
+  height: 40px;
   margin-top: 30px;
   padding: 5px;
-  background-color: #7e9992;
-  width: 80px;
+  background-color: #ccc;
   text-align: center;
   position: absolute;
   right: 10px;
   top: 0;
+  transition: all 0.8s;
+  font-weight: bolder;
+  cursor: pointer;
+}
+#tema:hover {
+  background-color: #ccc;
 }
 
 header {
@@ -39,6 +47,9 @@ header {
   margin: 15px;
   padding: 15px;
   color: #aeb8af;
+  font-family: "Roboto";
+  font-size: 25px;
+  margin-bottom: 30px;
 }
 main {
   display: grid;
@@ -51,9 +62,18 @@ main > form {
   text-align: center;
   justify-content: center;
 }
+main section {
+  min-width: 300px;
+  position: relative;
+}
+
 main section:nth-child(3) {
   grid-column: 3 / 4;
+
   justify-content: center;
+}
+main section:nth-child(2) {
+  grid-column: 1 / 2;
 }
 
 @media (max-width: 900px) {
@@ -68,9 +88,32 @@ main section:nth-child(3) {
     grid-column: 1;
   }
 }
-main section:nth-child(2) {
-  grid-column: 1 / 2;
+
+main section div::after {
+  content: "";
+  left: 5px;
+  top: 5px;
+  position: absolute;
+  bottom: 10px solid red;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Transforma o elemento em um círculo */
+  background-color: #e3e6e9;
+  box-shadow: inset 2px 2px 2px #585858;
 }
+main section div::before {
+  content: "";
+  left: 5px;
+  bottom: 5px;
+  position: absolute;
+  bottom: 10px solid red;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Transforma o elemento em um círculo */
+  background-color: #e3e6e9;
+  box-shadow: inset 2px 2px 2px #585858;
+}
+
 main > form {
   margin-bottom: 50px;
 }
@@ -78,7 +121,7 @@ main > form > input {
   padding: 10px;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid #6b9956;
+  border: 1px solid #007bffa1;
   outline: none;
 }
 main > form > input::placeholder {
@@ -89,13 +132,19 @@ main > form > button {
   text-align: center;
   color: #fff;
   border-radius: 5px;
-  border: 1px solid #6b9956;
-  outline: none;
+  border: 1px solid #007bffa1;
   cursor: pointer;
   transition: background 0.8s;
-  background-color: #6b99567c;
+  background-color: #007bffa1;
 }
-
+main > form > button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+main > form > button:active {
+  background-color: #004080;
+  border-color: #004080;
+}
 main > .Error {
   animation: shake 0.8s infinite;
 }
@@ -109,7 +158,6 @@ main > .Error {
   }
   50% {
     transform: translateX(2px);
-    border: 1px solid #ff0000;
   }
   75% {
     transform: translateX(-2px) rotate(1deg);
@@ -149,14 +197,21 @@ main > .Error button {
   background-color: #ffffff;
   border-bottom: 1px solid #ccc;
   padding-left: 15px;
-  margin: 5px;
+  margin: 20px 0;
   filter: drop-shadow(2px 2px 2px #585858);
+  padding: 10px;
+  border-radius: 5px;
 }
 #list-tarefa-feitas > div:hover,
 #list-tarefa > div:hover {
   transform: scale(1.05);
   border: 1px solid #ccc;
   filter: drop-shadow(2px 2px 2px #585858);
+}
+#list-tarefa-feitas > div > h5,
+#list-tarefa > div > h5 {
+  width: 100%;
+  text-align: center !important;
 }
 #list-tarefa-feitas > div > h5::first-letter,
 #list-tarefa > div > h5::first-letter {
@@ -171,7 +226,7 @@ main > .Error button {
   border: none;
   text-align: center;
   padding: 5px 5px;
-  background-color: #d3cece86;
+  gap: 5px;
 }
 #list-tarefa-feitas > div > .divButton > button:nth-child(1),
 #list-tarefa > div > .divButton > button:nth-child(1) {
@@ -183,12 +238,13 @@ main > .Error button {
   text-align: center;
   padding: 5px 5px;
   cursor: pointer;
-  background-color: #ff000042;
+  background-color: transparent;
   color: #ff0000;
+  border-radius: 5px;
 }
 #list-tarefa-feitas > div > .divButton > button:nth-child(1):hover,
 #list-tarefa > div > .divButton > button:nth-child(1):hover {
-  background-color: #fd6969;
+  background-color: #fab3b38e;
 }
 #list-tarefa-feitas > div > .divButton > button:nth-child(2),
 #list-tarefa > div > .divButton > button:nth-child(2) {
@@ -200,8 +256,9 @@ main > .Error button {
   align-items: center;
   padding: 5px 5px;
   cursor: pointer;
-  background-color: #09380249;
-  color: #093802;
+  background-color: transparent;
+  color: #1c8003;
+  border-radius: 5px;
 }
 #list-tarefa-feitas > div > .divButton > button:nth-child(2):hover,
 #list-tarefa > div > .divButton > button:nth-child(2):hover {
@@ -209,10 +266,21 @@ main > .Error button {
 }
 
 .concluido {
-  background-color: #e2dfdf !important;
+  background-color: #f7f7f7 !important;
   font-style: oblique;
   color: #8b8989;
 }
 .concluido h5 {
+  position: relative;
+  width: 100%;
+  text-decoration: line-through;
+}
+.concluido h5::after {
+  content: "";
+  left: 0;
+  top: 7px;
+  position: absolute;
+  border-bottom: 1px solid #8b8989;
+  width: 100%;
   text-decoration: line-through;
 }
