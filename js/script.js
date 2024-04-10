@@ -54,6 +54,9 @@ function listarTarefas() {
     const buttonExcluir = criarElemento("button");
     const buttonConcluido = criarElemento("button");
 
+    buttonExcluir.title  = "Excluir"
+    buttonConcluido.title  = "Concluir"
+
     divButton.classList.add("divButton");
 
     let chave = localStorage.key(i); // Obtém a chave atual
