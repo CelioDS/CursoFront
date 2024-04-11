@@ -1,15 +1,11 @@
 :root {
-  --DARK: #000000;
+  --DARK: #0e121a;
   --LIGHT: #fff;
   --CorTitulo: #ccc;
   --CorPrincipal: #007bffa1;
   --CorPrincipalHover: #0056b3;
-  --TamanhoDoFuro: 6px;
-  --CorConcluido: #008000;
-  --CorConcluidoLight: #d9f0cf;
-  --CorPendente: #806d00;
-  --CorPendenteLight: #f0efcf;
 }
+
 * {
   border: 1;
   margin: 0;
@@ -26,7 +22,6 @@ body {
   align-items: center;
   text-align: center;
   background-color: var(--LIGHT);
-  margin: auto;
 }
 
 .dark-theme {
@@ -34,6 +29,11 @@ body {
 }
 .dark-theme > header {
   color: #fff;
+}
+
+.dark-theme main section div::after,
+.dark-theme main section div::before {
+  background-color: var(--DARK);
 }
 
 .dark-theme #list-tarefa-feitas > h4,
@@ -51,7 +51,7 @@ body {
   text-align: center;
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: -10px;
   transition: all 0.8s;
   font-weight: bolder;
   cursor: pointer;
@@ -62,7 +62,6 @@ body {
 
     var(--LIGHT) 99%
   );
-  z-index: 100;
 }
 #tema:hover {
   background-color: #ccc;
@@ -71,19 +70,31 @@ body {
 header {
   display: flex;
   position: relative;
+  height: 50px;
   text-align: center;
   align-items: center;
   justify-content: center;
-  color: #5a5151;
+  margin: 15px;
+  padding: 15px;
+  color: #ffffff;
   font-family: "Roboto";
-  font-size: 45px;
-  padding: 30px 0;
+  font-size: 25px;
+  margin-bottom: 30px;
+  background-color: rgb(32, 31, 31);
+  border: 1px solid #00e1ff;
+  border-radius: 30px 0 30px 0;
+  filter: drop-shadow(3px 3px 3px #000000);
+}
+header::before {
+  content: "";
+  position: absolute;
+  left: -100;
+  top: 22px;
   width: 100%;
-  margin: auto;
+  border: 1px solid #00e1ff;
 }
 
 main {
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
@@ -93,8 +104,6 @@ main > form {
   grid-column: 1 / 4;
   text-align: center;
   justify-content: center;
-  width: 100%;
-  margin: 30px 0;
 }
 main section {
   min-width: 300px;
@@ -123,6 +132,34 @@ main section:nth-child(2) {
   }
 }
 
+main section div::after {
+  content: "";
+  left: 5px;
+  top: 5px;
+  position: absolute;
+  bottom: 10px solid #ff0000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Transforma o elemento em um círculo */
+  background-color: var(--LIGHT);
+  box-shadow: inset 2px 2px 2px #000000;
+}
+main section div::before {
+  content: "";
+  left: 5px;
+  bottom: 5px;
+  position: absolute;
+  bottom: 10px solid #ff0000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /* Transforma o elemento em um círculo */
+  background-color: var(--LIGHT);
+  box-shadow: inset 2px 2px 2px #000000;
+}
+
+main > form {
+  margin-bottom: 50px;
+}
 main > form > input {
   padding: 10px;
   text-align: center;
@@ -194,29 +231,29 @@ main > .Error button {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  margin: 0px 50px;
 }
 #list-tarefa-feitas > h4,
 #list-tarefa > h4 {
-  color: #222020;
+  color: #9e9595;
   width: 100%;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #9e9595;
+  background-color: #3f3636;
 }
 #list-tarefa-feitas > div,
 #list-tarefa > div {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: 100px 100px 30px;
-  position: relative;
-  width: 300px;
+  width: 90%;
   height: 80px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
   justify-content: space-between;
-  background-color: #ffffff;
-  border: 1px solid #cccccc4b;
+  background-color: #e2d409;
+  border: 1px solid #000000;
+  padding-left: 15px;
   margin: 20px 0px;
   padding: 10px;
+  cursor: grab;
   border-radius: 5px;
 }
 #list-tarefa-feitas > div:hover,
@@ -224,47 +261,28 @@ main > .Error button {
   transform: scale(1.01);
   filter: drop-shadow(2px 2px 2px #000000);
 }
-#list-tarefa-feitas > div > h4,
-#list-tarefa > div > h4 {
-  width: 259px;
-  grid-column: 1/3;
-  text-align: start;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  color: #868282;
-  font-size: 15px;
-}
-#list-tarefa-feitas > div > h4::first-letter,
-#list-tarefa > div > h4::first-letter {
-  text-transform: uppercase;
-  padding-left: 5px;
-}
-#list-tarefa > div > h5,
-#list-tarefa-feitas div h5 {
-  grid-column: 1/2;
-  grid-row: 3;
-  align-content: space-around;
-  background-color: var(--CorPendenteLight);
-  color: var(--CorPendente);
-  border: none;
+#list-tarefa-feitas > div > h5,
+#list-tarefa > div > h5 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100% !important;
+  text-align: center !important;
 }
 
-#list-tarefa-feitas > div > h6,
-#list-tarefa > div > h6 {
-  grid-column: 2;
-  grid-row: 3;
-  color: #ccc;
-  align-content: space-around;
+#list-tarefa-feitas > div > h5::first-letter,
+#list-tarefa > div > h5::first-letter {
+  text-transform: uppercase;
 }
 
 #list-tarefa-feitas > div > .divButton,
 #list-tarefa > div > .divButton {
-  grid-column: 3/4;
-  grid-row: 1/4;
-  justify-self: right; /* Y */
-  align-self: center; /* X */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: none;
+  text-align: center;
+  gap: 5px;
 }
 #list-tarefa-feitas > div > .divButton > button,
 #list-tarefa > div > .divButton > button {
@@ -289,7 +307,7 @@ main > .Error button {
 #list-tarefa-feitas > div > .divButton > button:nth-child(1):hover,
 #list-tarefa > div > .divButton > button:nth-child(1):hover {
   background-color: #ffffff8e;
-  border: 1px solid #ff0000;
+  border: 1px solid #000000;
 }
 #list-tarefa-feitas > div > .divButton > button:nth-child(2),
 #list-tarefa > div > .divButton > button:nth-child(2) {
@@ -308,15 +326,15 @@ main > .Error button {
 #list-tarefa-feitas > div > .divButton > button:nth-child(2):hover,
 #list-tarefa > div > .divButton > button:nth-child(2):hover {
   background-color: #ffffff8e;
-  border: 1px solid #1c8003;
+  border: 1px solid #000000;
   color: #000000;
 }
 
-.concluido h5 {
-  background-color: var(--CorConcluidoLight) !important;
-  color: var(--CorConcluido) !important;
+.concluido {
+  background-color: #2d501f !important;
+  font-style: oblique;
+  color: #000000;
 }
-
-.concluido h4 {
+.concluido h5 {
   text-decoration: line-through 1px;
 }
