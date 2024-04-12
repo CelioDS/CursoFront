@@ -45,7 +45,7 @@ AddTarefa.addEventListener("submit", (e) => {
     }, 1000);
   } else {
     const obj = {
-      tarefa: tarefa.value,
+      tarefa: tarefa.value.toLowerCase(),
       data: horaAtualPT + " " + dataAtualPT,
       concluido: false,
     };
@@ -54,7 +54,7 @@ AddTarefa.addEventListener("submit", (e) => {
   }
 });
 
-//localStorage.clear()
+localStorage.clear()
 
 // função para criar elementos e categorizar os mesmos
 function listarTarefas() {
