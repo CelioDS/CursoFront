@@ -54,7 +54,7 @@ AddTarefa.addEventListener("submit", (e) => {
   }
 });
 
-localStorage.clear()
+//localStorage.clear()
 
 // função para criar elementos e categorizar os mesmos
 function listarTarefas() {
