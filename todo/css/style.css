@@ -41,6 +41,10 @@ body {
   color: #ffffff !important;
 }
 
+.dark-theme > #tema {
+  padding-left: 37px;
+}
+
 #tema {
   border: none;
   color: #fff;
@@ -48,7 +52,7 @@ body {
   height: 30px;
   margin-top: 30px;
   padding: 5px;
-  text-align: center;
+  text-align: start;
   position: absolute;
   right: 10px;
   top: 10px;
@@ -129,10 +133,15 @@ main > form > input {
   border-radius: 5px;
   border: 1px solid var(--CorPrincipal);
   outline: none;
+  width: 300px;
 }
 main > form > input::placeholder {
   color: #ccc;
 }
+main > form > input::placeholder {
+  color: #ccc;
+}
+
 main > form > button {
   padding: 10px;
   text-align: center;
@@ -172,7 +181,10 @@ main > .Error {
     transform: translateX(0) translateY(0) rotate(0deg);
   }
 }
-
+main >  .Error > input::placeholder {
+  color: #000000;
+  font-weight: bold;
+}
 main > .Error input {
   color: #ff0000 !important;
   border-radius: 5px;
@@ -198,11 +210,12 @@ main > .Error button {
 }
 #list-tarefa-feitas > h4,
 #list-tarefa > h4 {
-  color: #222020;
+  color: #686464;
   width: 100%;
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid #9e9595;
+  font-size: 16px;
 }
 #list-tarefa-feitas > div,
 #list-tarefa > div {
@@ -234,7 +247,7 @@ main > .Error button {
   white-space: nowrap;
   overflow: hidden;
   color: #868282;
-  font-size: 15px;
+  font-size: 14px;
 }
 #list-tarefa-feitas > div > h4::first-letter,
 #list-tarefa > div > h4::first-letter {
@@ -249,6 +262,7 @@ main > .Error button {
   background-color: var(--CorPendenteLight);
   color: var(--CorPendente);
   border: none;
+  font-size: 12px;
 }
 
 #list-tarefa-feitas > div > h6,
@@ -257,6 +271,7 @@ main > .Error button {
   grid-row: 3;
   color: #ccc;
   align-content: space-around;
+  font-size: 10px;
 }
 
 #list-tarefa-feitas > div > .divButton,

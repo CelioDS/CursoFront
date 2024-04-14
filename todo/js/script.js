@@ -25,8 +25,8 @@ Tema.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
 
   document.body.classList.contains("dark-theme")
-    ? (Tema.innerHTML = "Light")
-    : (Tema.innerHTML = "Dark");
+    ? (Tema.innerHTML = "🌕")
+    : (Tema.innerHTML = "🌑");
 
   localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
 });
