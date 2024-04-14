@@ -6,34 +6,20 @@ const Loading = document.getElementById("loading");
 const LoadingFeitos = document.getElementById("loading-feitos");
 const Tema = document.getElementById("tema");
 
-const dataAtual = new Date();
-const dataAtualPT = dataAtual.toLocaleDateString("pt-BR");
-const horaAtualPT = dataAtual.toLocaleTimeString("pt-BR", {
-  hour: "2-digit",
-  minute: "2-digit",
-});
-
-const arrayTarefas = [];
-
-// Verifica o tema é dark e aplica o mesmo
-if (JSON.parse(localStorage.getItem("TemaSite%")) === "tema dark") {
-  document.body.classList.add("dark-theme");
-}
-
-// Evento para a troca do tema
-Tema.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
-
-  document.body.classList.contains("dark-theme")
-    ? (Tema.innerHTML = "🌕")
-    : (Tema.innerHTML = "🌑");
-
-  localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
-});
+const OBJTarefas = [];
 
 // Evento para adicionar as tarefas ao localstorage
 AddTarefa.addEventListener("submit", (e) => {
-  if (arrayTarefas.includes(tarefa.value) || tarefa.value.trim() == "") {
+  const tarefaUpdate = OBJTarefas.find(
+    (searchTarefa) =>
+      searchTarefa.tarefa === tarefa.value && searchTarefa.concluido === true
+  );
+
+  if (
+    OBJTarefas.includes(tarefa.value) ||
+    tarefa.value.trim() == "" ||
+    OBJTarefas.find((searchTarefa) => searchTarefa.concluido === false)
+  ) {
     e.preventDefault();
     AddTarefa.classList.add("Error");
 
@@ -43,12 +29,12 @@ AddTarefa.addEventListener("submit", (e) => {
       AddTarefa.classList.remove("Error");
       tarefa.placeholder = "Digite sua tarefa aqui";
     }, 1000);
+  } else if (tarefaUpdate) {
+    const obj = CriarOBJ(tarefa.value.toLowerCase(), (tarefaUpdate.qtd += 1));
+
+    localStorage.setItem(tarefaUpdate.tarefa, JSON.stringify(obj));
   } else {
-    const obj = {
-      tarefa: tarefa.value.toLowerCase(),
-      data: horaAtualPT + " " + dataAtualPT,
-      concluido: false,
-    };
+    const obj = CriarOBJ(tarefa.value.toLowerCase(), 1);
 
     localStorage.setItem(tarefa.value.toLowerCase(), JSON.stringify(obj));
   }
@@ -79,15 +65,15 @@ function listarTarefas() {
     Tema.innerHTML = JSON.parse(localStorage.getItem("TemaSite%"));
 
     if (chave != "TemaSite%") {
-      h5.innerText = valor.tarefa;
+      const qtdTarega = valor.qtd >= 2 ? valor.qtd : "";
+
+      h5.innerText = valor.tarefa + " " + qtdTarega;
       textoData.innerText = valor.data;
 
       buttonExcluir.innerHTML = "&#120;";
       buttonConcluido.innerHTML = "&#10003;";
 
-      if (valor.concluido) {
-        div2.classList.add("concluido");
-      }
+      valor.concluido ? div2.classList.add("concluido") : "";
 
       if (valor.concluido) {
         div2.appendChild(h5);
@@ -113,9 +99,44 @@ function listarTarefas() {
 
       CRUD(buttonConcluido, buttonExcluir, chave);
 
-      arrayTarefas.push(valor.tarefa);
+      OBJTarefas.push(valor);
     }
   }
+}
+
+// Verifica o tema
+function MudarTema(Tema) {
+  // Verifica se o tema é dark e aplica o mesmo
+  if (JSON.parse(localStorage.getItem("TemaSite%")) === "🌕") {
+    document.body.classList.add("dark-theme");
+  }
+
+  // Evento para a troca do tema
+  Tema.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+
+    document.body.classList.contains("dark-theme")
+      ? (Tema.innerHTML = "🌕")
+      : (Tema.innerHTML = "🌑");
+
+    localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
+  });
+}
+
+//Criar obj
+function CriarOBJ(tarefa, qtd) {
+  const dataAtual = new Date();
+  const dataAtualPT = dataAtual.toLocaleDateString("pt-BR");
+  const horaAtualPT = dataAtual.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return {
+    tarefa,
+    data: horaAtualPT + " " + dataAtualPT,
+    qtd,
+    concluido: false,
+  };
 }
 
 // função criar elementos html
@@ -139,5 +160,6 @@ function CRUD(buttonConcluido, buttonExcluir, chave) {
   };
 }
 
-// chama a função
+// chama as funções
 listarTarefas();
+MudarTema(Tema);
