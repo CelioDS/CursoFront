@@ -22,20 +22,18 @@ AddTarefa.addEventListener("submit", (e) => {
   ) {
     e.preventDefault();
     AddTarefa.classList.add("Error");
-
     tarefa.value = "";
     tarefa.placeholder = "Valor inserido inválido";
+
     setTimeout(() => {
       AddTarefa.classList.remove("Error");
       tarefa.placeholder = "Digite sua tarefa aqui";
     }, 1000);
   } else if (tarefaUpdate) {
     const obj = CriarOBJ(tarefa.value.toLowerCase(), (tarefaUpdate.qtd += 1));
-
     localStorage.setItem(tarefaUpdate.tarefa, JSON.stringify(obj));
   } else {
     const obj = CriarOBJ(tarefa.value.toLowerCase(), 1);
-
     localStorage.setItem(tarefa.value.toLowerCase(), JSON.stringify(obj));
   }
 });
@@ -45,6 +43,8 @@ AddTarefa.addEventListener("submit", (e) => {
 // função para criar elementos e categorizar os mesmos
 function listarTarefas() {
   for (let i = 0; i < localStorage.length; i++) {
+    let chave = localStorage.key(i); // Obtém a chave atual
+    let valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
     const h5 = criarElemento("h4");
     const Textoh6 = criarElemento("h5");
     const div = criarElemento("div");
@@ -56,37 +56,26 @@ function listarTarefas() {
 
     buttonExcluir.title = "Excluir";
     buttonConcluido.title = "Concluir";
-
     divButton.classList.add("divButton");
-
-    let chave = localStorage.key(i); // Obtém a chave atual
-    let valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
-
     Tema.innerHTML = JSON.parse(localStorage.getItem("TemaSite%"));
 
     if (chave != "TemaSite%") {
-      const qtdTarega = valor.qtd >= 2 ? valor.qtd : "";
-
-      h5.innerText = valor.tarefa + " " + qtdTarega;
+      const qtdTarefa = valor.qtd >= 2 ? valor.qtd : "";
+      h5.innerText = valor.tarefa + " " + qtdTarefa;
       textoData.innerText = valor.data;
-
       buttonExcluir.innerHTML = "&#120;";
       buttonConcluido.innerHTML = "&#10003;";
-
       valor.concluido ? div2.classList.add("concluido") : "";
-
       if (valor.concluido) {
         div2.appendChild(h5);
-        Textoh6.innerText = "Finalizado";
         div2.appendChild(Textoh6);
         div2.appendChild(textoData);
         div2.appendChild(divButton);
         listTarefaFeitas.appendChild(div2);
         divButton.appendChild(buttonExcluir);
-
+        Textoh6.innerText = "Finalizado";
         LoadingFeitos.style.display = "none";
       } else {
-        Textoh6.innerText = "Pendente";
         div.appendChild(h5);
         div.appendChild(Textoh6);
         div.appendChild(textoData);
@@ -94,11 +83,10 @@ function listarTarefas() {
         listTarefa.appendChild(div);
         divButton.appendChild(buttonExcluir);
         divButton.appendChild(buttonConcluido);
+        Textoh6.innerText = "Pendente";
         Loading.style.display = "none";
       }
-
       CRUD(buttonConcluido, buttonExcluir, chave);
-
       OBJTarefas.push(valor);
     }
   }
