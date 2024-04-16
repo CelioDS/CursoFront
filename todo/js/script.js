@@ -1,10 +1,11 @@
 const AddTarefa = document.getElementById("formulario");
-const listTarefa = document.getElementById("list-tarefa");
-const listTarefaFeitas = document.getElementById("list-tarefa-feitas");
-const tarefa = document.getElementById("tarefa");
+const ListTarefa = document.getElementById("list-tarefa");
+const ListTarefaFeitas = document.getElementById("list-tarefa-feitas");
+const Tarefa = document.getElementById("tarefa");
 const Loading = document.getElementById("loading");
 const LoadingFeitos = document.getElementById("loading-feitos");
-const Tema = document.getElementById("tema");
+const Tema = document.getElementById("btnTema");
+const IconeTema = document.getElementById("IconeTema");
 
 const OBJTarefas = [];
 
@@ -12,81 +13,82 @@ const OBJTarefas = [];
 AddTarefa.addEventListener("submit", (e) => {
   const tarefaUpdate = OBJTarefas.find(
     (searchTarefa) =>
-      searchTarefa.tarefa === tarefa.value && searchTarefa.concluido === true
+      searchTarefa.tarefa === Tarefa.value && searchTarefa.concluido === true
   );
 
   if (
-    OBJTarefas.includes(tarefa.value) ||
-    tarefa.value.trim() == "" ||
+    OBJTarefas.includes(Tarefa.value) ||
+    Tarefa.value.trim() == "" ||
     OBJTarefas.find((searchTarefa) => searchTarefa.concluido === false)
   ) {
     e.preventDefault();
     AddTarefa.classList.add("Error");
-    tarefa.value = "";
-    tarefa.placeholder = "Valor inserido inválido";
+    Tarefa.value = "";
+
+    Tarefa.placeholder = "Valor inserido inválido";
 
     setTimeout(() => {
       AddTarefa.classList.remove("Error");
-      tarefa.placeholder = "Digite sua tarefa aqui";
+      Tarefa.placeholder = "Digite sua tarefa aqui";
     }, 1000);
   } else if (tarefaUpdate) {
-    const obj = CriarOBJ(tarefa.value.toLowerCase(), (tarefaUpdate.qtd += 1));
+    const obj = CriarOBJ(Tarefa.value.toLowerCase(), (tarefaUpdate.qtd += 1));
     localStorage.setItem(tarefaUpdate.tarefa, JSON.stringify(obj));
   } else {
-    const obj = CriarOBJ(tarefa.value.toLowerCase(), 1);
-    localStorage.setItem(tarefa.value.toLowerCase(), JSON.stringify(obj));
+    const obj = CriarOBJ(Tarefa.value.toLowerCase(), 1);
+    localStorage.setItem(Tarefa.value.toLowerCase(), JSON.stringify(obj));
   }
 });
 
 //localStorage.clear()
 
 // função para criar elementos e categorizar os mesmos
-function listarTarefas() {
+function ListarTarefas() {
   for (let i = 0; i < localStorage.length; i++) {
     let chave = localStorage.key(i); // Obtém a chave atual
     let valor = JSON.parse(localStorage.getItem(chave)); // Obtém o valor associado à chave
-    const h5 = criarElemento("h4");
+    const H5 = criarElemento("h4");
     const Textoh6 = criarElemento("h5");
-    const div = criarElemento("div");
-    const div2 = criarElemento("div");
-    const textoData = criarElemento("h6");
-    const divButton = criarElemento("div");
-    const buttonExcluir = criarElemento("button");
-    const buttonConcluido = criarElemento("button");
+    const Div = criarElemento("div");
+    const Div2 = criarElemento("div");
+    const TextoData = criarElemento("h6");
+    const DivButton = criarElemento("div");
+    const ButtonExcluir = criarElemento("button");
+    const ButtonConcluido = criarElemento("button");
 
-    buttonExcluir.title = "Excluir";
-    buttonConcluido.title = "Concluir";
-    divButton.classList.add("divButton");
+    ButtonExcluir.title = "Excluir";
+    ButtonConcluido.title = "Concluir";
+    DivButton.classList.add("divButton");
     Tema.innerHTML = JSON.parse(localStorage.getItem("TemaSite%"));
 
     if (chave != "TemaSite%") {
       const qtdTarefa = valor.qtd >= 2 ? valor.qtd : "";
-      h5.innerText = valor.tarefa + " " + qtdTarefa;
-      textoData.innerText = valor.data;
-      buttonExcluir.innerHTML = "&#120;";
-      buttonConcluido.innerHTML = "&#10003;";
-      valor.concluido ? div2.classList.add("concluido") : "";
+      H5.innerText = valor.tarefa + " " + qtdTarefa;
+      TextoData.innerText = valor.data;
+      ButtonExcluir.innerHTML = "&#120;";
+      ButtonConcluido.innerHTML = "&#10003;";
+      valor.concluido ? Div2.classList.add("concluido") : "";
       if (valor.concluido) {
-        div2.appendChild(h5);
-        div2.appendChild(Textoh6);
-        div2.appendChild(textoData);
-        div2.appendChild(divButton);
-        listTarefaFeitas.appendChild(div2);
-        divButton.appendChild(buttonExcluir);
+        Div2.appendChild(H5);
+        Div2.appendChild(Textoh6);
+        Div2.appendChild(TextoData);
+        Div2.appendChild(DivButton);
+        ListTarefaFeitas.appendChild(Div2);
+        DivButton.appendChild(ButtonExcluir);
         Textoh6.innerText = "Finalizado";
         LoadingFeitos.style.display = "none";
       } else {
-        div.appendChild(h5);
-        div.appendChild(Textoh6);
-        div.appendChild(textoData);
-        div.appendChild(divButton);
-        listTarefa.appendChild(div);
-        divButton.appendChild(buttonExcluir);
-        divButton.appendChild(buttonConcluido);
+        Div.appendChild(H5);
+        Div.appendChild(Textoh6);
+        Div.appendChild(TextoData);
+        Div.appendChild(DivButton);
+        ListTarefa.appendChild(Div);
+        DivButton.appendChild(ButtonExcluir);
+        DivButton.appendChild(ButtonConcluido);
         Textoh6.innerText = "Pendente";
         Loading.style.display = "none";
       }
-      CRUD(buttonConcluido, buttonExcluir, chave);
+      CRUD(ButtonConcluido, ButtonExcluir, chave);
       OBJTarefas.push(valor);
     }
   }
@@ -104,8 +106,8 @@ function MudarTema(Tema) {
     document.body.classList.toggle("dark-theme");
 
     document.body.classList.contains("dark-theme")
-      ? (Tema.innerHTML = "🌕")
-      : (Tema.innerHTML = "🌑");
+      ? (IconeTema.innerHTML = "🌕")
+      : (IconeTema.innerHTML = "🌑");
 
     localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
   });
@@ -134,20 +136,20 @@ function criarElemento(elemento) {
 }
 
 // Função CRUD na verdade so U e D
-function CRUD(buttonConcluido, buttonExcluir, chave) {
-  buttonConcluido.onclick = () => {
+function CRUD(ButtonConcluido, ButtonExcluir, chave) {
+  ButtonConcluido.onclick = () => {
     const obj = JSON.parse(localStorage.getItem(chave));
     obj.concluido = !obj.concluido;
     localStorage.setItem(obj.tarefa, JSON.stringify(obj));
     window.location.reload();
   };
 
-  buttonExcluir.onclick = () => {
+  ButtonExcluir.onclick = () => {
     localStorage.removeItem(chave);
     window.location.reload();
   };
 }
 
 // chama as funções
-listarTarefas();
+ListarTarefas();
 MudarTema(Tema);
