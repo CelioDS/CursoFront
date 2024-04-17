@@ -95,7 +95,7 @@ function ListarTarefas() {
 }
 
 // Verifica o tema
-function MudarTema(Tema) {
+function MudarTema(Tema, IconeTema) {
   // Verifica se o tema é dark e aplica o mesmo
   if (JSON.parse(localStorage.getItem("TemaSite%")) === "🌕") {
     document.body.classList.add("dark-theme");
@@ -109,21 +109,21 @@ function MudarTema(Tema) {
       ? (IconeTema.innerHTML = "🌕")
       : (IconeTema.innerHTML = "🌑");
 
-    localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
+    localStorage.setItem("TemaSite%", JSON.stringify(IconeTema.innerHTML));
   });
 }
 
 //Criar obj
 function CriarOBJ(tarefa, qtd) {
-  const dataAtual = new Date();
-  const dataAtualPT = dataAtual.toLocaleDateString("pt-BR");
-  const horaAtualPT = dataAtual.toLocaleTimeString("pt-BR", {
+  const DataAtual = new Date();
+  const DataAtualPT = DataAtual.toLocaleDateString("pt-BR");
+  const HoraAtualPT = DataAtual.toLocaleTimeString("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
   });
   return {
     tarefa,
-    data: horaAtualPT + " " + dataAtualPT,
+    data: HoraAtualPT + " " + DataAtualPT,
     qtd,
     concluido: false,
   };
@@ -152,4 +152,4 @@ function CRUD(ButtonConcluido, ButtonExcluir, chave) {
 
 // chama as funções
 ListarTarefas();
-MudarTema(Tema);
+MudarTema(Tema, IconeTema);
