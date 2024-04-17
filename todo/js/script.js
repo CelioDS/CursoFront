@@ -5,9 +5,25 @@ const Tarefa = document.getElementById("tarefa");
 const Loading = document.getElementById("loading");
 const LoadingFeitos = document.getElementById("loading-feitos");
 const Tema = document.getElementById("btnTema");
-const IconeTema = document.getElementById("IconeTema");
 
 const OBJTarefas = [];
+
+// Verifica o tema
+// Verifica se o tema é dark e aplica o mesmo
+if (JSON.parse(localStorage.getItem("TemaSite%")) === "🌕") {
+  document.body.classList.add("dark-theme");
+}
+
+// Evento para a troca do tema
+Tema.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  document.body.classList.contains("dark-theme")
+    ? (Tema.innerHTML = "🌕")
+    : (Tema.innerHTML = "🌑");
+
+  localStorage.setItem("TemaSite%", JSON.stringify(Tema.innerHTML));
+});
 
 // Evento para adicionar as tarefas ao localstorage
 AddTarefa.addEventListener("submit", (e) => {
@@ -94,25 +110,6 @@ function ListarTarefas() {
   }
 }
 
-// Verifica o tema
-function MudarTema(Tema, IconeTema) {
-  // Verifica se o tema é dark e aplica o mesmo
-  if (JSON.parse(localStorage.getItem("TemaSite%")) === "🌕") {
-    document.body.classList.add("dark-theme");
-  }
-
-  // Evento para a troca do tema
-  Tema.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-
-    document.body.classList.contains("dark-theme")
-      ? (IconeTema.innerHTML = "🌕")
-      : (IconeTema.innerHTML = "🌑");
-
-    localStorage.setItem("TemaSite%", JSON.stringify(IconeTema.innerHTML));
-  });
-}
-
 //Criar obj
 function CriarOBJ(tarefa, qtd) {
   const DataAtual = new Date();
@@ -152,4 +149,3 @@ function CRUD(ButtonConcluido, ButtonExcluir, chave) {
 
 // chama as funções
 ListarTarefas();
-MudarTema(Tema, IconeTema);
