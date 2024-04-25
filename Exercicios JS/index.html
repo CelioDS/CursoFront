@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br
+"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercicios de JS</title>
+  </head>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <body>
+    <main id="main">
+      <h1>Lista de exercicios do curso FrontEnd avançado JS</h1>
+
+      <h1>Acesse aqui nos links a baixo os exercicios</h1>
+      <br />
+      <br />
+      <hr />
+    </main>
+
+    <script>
+      const arrayExercicios = [
+        "numeroMaior",
+        "triangulo",
+        "helloworld",
+        "calcularCubo",
+        "converterTemperatura",
+        "areaTriangulo",
+        "circuloPerimetro",
+        "numeroInvertido",
+        "contarVogais",
+        "retornoInvestimento",
+      ];
+
+      const ListaExercicios = document.getElementById("main");
+
+      arrayExercicios.forEach((exercicio) => {
+        const LinkExercicio = document.createElement("a");
+        LinkExercicio.href = `exercicios/${exercicio}.html`;
+        LinkExercicio.innerHTML = exercicio;
+        ListaExercicios.appendChild(LinkExercicio);
+      });
+    </script>
+  </body>
+</html>

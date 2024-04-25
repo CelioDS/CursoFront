@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br
+"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Comparação de três números: Escreva um programa que solicite ao usuário
+        três números e determine o maior entre eles. <br />
+        Exiba o número maior
+      </h1>
+      <!--1. Comparação de três números: Escreva um programa que solicite ao usuário três números e determine o maior entre eles. Exiba o número maior.-->
+
+      <form id="form">
+        <legend><b></b></legend>
+        <label for="numero1">numero1</label>
+        <input type="number" name="numero1" id="numero1" />
+        <br />
+        <label for="numero2">numero2</label>
+        <input type="number" name="numero2" id="numero2" />
+        <br />
+        <label for="numero3">numero3</label>
+        <input type="number" name="numero3" id="numero3" />
+        <br />
+        <button type="submit">salvar</button>
+      </form>
+
+      <h2 id="texto"></h2>
+    </main>
+
+    <script>
+      const Form = document.getElementById("form");
+
+      Form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const numero1 = parseFloat(document.getElementById("numero1").value);
+        const numero2 = parseFloat(document.getElementById("numero2").value);
+        const numero3 = parseFloat(document.getElementById("numero3").value);
+
+        const texto = document.getElementById("texto");
+        let maior = numero1 || 0;
+
+        if (numero2 > maior) {
+          maior = numero2;
+          texto.innerHTML = numero2;
+        }
+        if (numero3 > maior) {
+          maior = numero3;
+        }
+
+        texto.innerHTML = `Maior é ${maior}`;
+      });
+    </script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

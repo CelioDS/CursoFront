@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Conversão de Temperatura: Implemente uma função que converta uma
+        temperatura fornecida em graus Fahrenheit (F) para Celsius (C).
+      </h1>
+
+      <form id="form">
+        <legend><b></b></legend>
+        <h1></h1>
+        <label for="GrauFahrenheit">Grau Fahrenheit</label>
+        <input type="number" name="GrauFahrenheit" id="GrauFahrenheit" />
+
+        <button type="submit">salvar</button>
+      </form>
+
+      <h2 id="texto"></h2>
+
+      <script>
+        const Form = document.getElementById("form");
+
+        Form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const GrauFahrenheit = parseFloat(
+            document.getElementById("GrauFahrenheit").value
+          );
+
+          const texto = document.getElementById("texto");
+          const Celsius = (GrauFahrenheit - 32) * (5 / 9) || 0;
+
+          texto.innerHTML = `A temperatura ${
+            GrauFahrenheit || 0
+          }°F em Celsius ${Celsius.toFixed(2)}`;
+        });
+      </script>
+       <script src="../js/script.js"></script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script>
+      // Obter o nome do HTML (excluindo a extensão .html)
+      let nomeHTML = document.title.split(".html")[0];
+
+      // Colocar o nome do HTML no título da página
+      document.title = nomeHTML;
+    </script>
+  </head>
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Número Invertido: Implemente uma função que mostre na tela um número
+        fornecido pelo usuário, mas invertido.
+      </h1>
+      <form action="">
+        <legend><b></b></legend>
+        <label for="numero">numero</label>
+        <input type="text" name="numero" id="numero" />
+
+        <button type="submit">calcular</button>
+      </form>
+      <h2 id="texto"></h2>
+    </main>
+
+    <script>
+      const Form = document.querySelector("form");
+
+      Form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const numero = document.getElementById("numero").value;
+        const textoArea = document.getElementById("texto");
+
+        //transforma em array inverte e depois juntas
+        const arrayNumero = numero.split("").reverse().join("");
+
+        texto.innerHTML = `o numero ${numero} invertido ficar  ${arrayNumero}`;
+      });
+    </script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br
+"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Área de um Triângulo: Escreva uma função que calcule e retorne a área de
+        um triângulo com base nos valores de base e altura fornecidos.
+      </h1>
+      <form action="" name="fa">
+        <legend><b></b></legend>
+        <label for="altura">altura</label>
+        <input type="text" name="altura" id="altura" />
+        <label for="base">base</label>
+        <input type="text" id="base" name="base" />
+
+        <button type="submit">calcular</button>
+      </form>
+      <h2 id="area">0</h2>
+    </main>
+
+    <script>
+      const Form = document.querySelector("form");
+
+      Form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const base = document.getElementById("base").value;
+        const altura = document.getElementById("altura").value;
+        const textarea = document.getElementById("area");
+
+        const area = (altura * base) / 2;
+
+        textarea.innerHTML = `A area do triangulo é ${area}  unidades quadradas`;
+      });
+    </script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br
+"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Cálculo do Cubo: Crie uma função que retorne o cubo de um número
+        fornecido pelo usuário.
+      </h1>
+
+      <form action="">
+        <legend><b></b></legend>
+        <label for="">digite aqui</label>
+        <input type="text" name="numero1" id="numero1" />
+
+        <button type="submit">calcular</button>
+      </form>
+      <h2 id="cubo"></h2>
+    </main>
+
+    <script>
+      const Form = document.querySelector("form");
+
+      Form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const numero = document.getElementById("numero1").value;
+        const textcubo = document.getElementById("cubo");
+
+        const cubo = Math.pow(numero, 3);
+
+        textcubo.innerHTML = `O cubo de ${numero}³ é ${cubo}`;
+      });
+    </script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

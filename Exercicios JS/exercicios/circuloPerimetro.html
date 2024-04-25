@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br
+"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Área e Perímetro de um Círculo: Crie uma função que encontre a área e o
+        perímetro de um círculo, com base no raio fornecido
+      </h1>
+      <form action="">
+        <legend><b></b></legend>
+        <label for="raio">raio</label>
+        <input type="text" name="raio" id="raio" />
+
+        <button type="submit">calcular</button>
+      </form>
+      <h2 id="textoArea"></h2>
+    </main>
+
+    <script>
+      const Form = document.querySelector("form");
+
+      Form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const raio = document.getElementById("raio").value;
+        const textoArea = document.getElementById("textoArea");
+
+        const area = Math.PI * Math.pow(raio, 2);
+        const perimetro = 2 * Math.PI * raio;
+
+        textoArea.innerHTML = `A area do circulo é ${area.toFixed(2)} e seu perimetro e ${perimetro.toFixed(2)}`;
+      });
+    </script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

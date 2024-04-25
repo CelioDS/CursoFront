@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>triangulo</title>
+  </head>
+
+  <body>
+    <main>
+      <br />
+      <br />
+      <a href="../index.html">lista de exercicios</a>
+      <br />
+      <hr />
+      <h1>
+        Verificação de triângulo: Escreva um programa que solicite ao usuário
+        três valores representando os lados de um triângulo e determine se esses
+        valores podem formar um triângulo válido. Se sim, classifique o
+        triângulo como equilátero, isósceles ou escaleno, dependendo da
+        igualdade dos lados
+      </h1>
+      <!--1. Verificação de triângulo: Escreva um programa que solicite ao usuário três valores representando os lados de um triângulo e determine se esses valores podem formar um triângulo válido. Se sim, classifique o triângulo como equilátero, isósceles ou escaleno, dependendo da igualdade dos lados.-->
+
+      <form id="form">
+        <legend><b></b></legend>
+
+        <label for="ladoA">Lado 1</label>
+        <input type="number" name="ladoA" id="ladoA" required />
+
+        <label for="ladoB">Lado 2</label>
+        <input type="number" name="ladoB" id="ladoB" required />
+
+        <label for="ladoC">Lado 3</label>
+        <input type="number" name="ladoC" id="ladoC" required />
+
+        <button>Submit</button>
+      </form>
+
+      <h3>Resposta:</h3>
+      <span id="Mensagem">aguarde</span>
+    </main>
+
+    <script>
+      const form = document.getElementById("form");
+      const Mensagem = document.getElementById("Mensagem");
+
+      form.addEventListener("submit", (e) => {
+        let ladoA = document.getElementById("ladoA").value;
+        let ladoB = document.getElementById("ladoB").value;
+        let ladoC = document.getElementById("ladoC").value;
+        e.preventDefault();
+
+        /*
+  Triângulo equilátero: Todos os três lados são iguais.
+  Triângulo isósceles: Dois lados são iguais.
+  Triângulo escaleno: Todos os três lados são diferentes
+ */
+        console.log(ladoA, ladoB, ladoC);
+        if (
+          ladoA + ladoB > ladoC ||
+          ladoB + ladoC > ladoA ||
+          ladoA + ladoC > ladoB
+        ) {
+          if (ladoA === ladoB && ladoC === ladoA) {
+            console.log("");
+            Mensagem.innerHTML =
+              "Triângulo equilátero: Todos os três lados são iguais.";
+          } else if (
+            (ladoA === ladoB && ladoB != ladoC) ||
+            (ladoA === ladoC && ladoB != ladoA) ||
+            (ladoB === ladoC && ladoB != ladoA)
+          ) {
+            Mensagem.innerText =
+              "  Triângulo isósceles: Dois lados são iguais.";
+          } else if (ladoA != ladoB && ladoB != ladoC) {
+            Mensagem.innerHTML =
+              "   Triângulo escaleno: Todos os três lados são diferentes";
+          }
+        } else {
+          Mensagem.innerHTML = "Não forma tringulo";
+        }
+      });
+    </script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
