@@ -25,6 +25,8 @@
         <legend><b></b></legend>
         <label for="nome">nome</label>
         <input type="text" name="nome" id="nome" />
+        <label for="idade">idade</label>
+        <input type="text" name="idade" id="idade" />
 
         <button type="submit">calcular</button>
       </form>
@@ -37,9 +39,23 @@
       Form.addEventListener("submit", (e) => {
         e.preventDefault();
         const nome = document.getElementById("nome").value;
+        const idade = document.getElementById("idade").value;
         const texto = document.getElementById("texto");
 
-        texto.innerHTML = `${numero}`;
+        class Pessoa {
+          constructor(nome, idade, texto) {
+            this.nome = nome;
+            this.idade = idade;
+            this.texto = texto;
+          }
+
+          apresentar() {
+            this.texto.innerHTML = `Olá, Meu nome é ${this.nome} e eu tenho ${this.idade} anos`;
+          }
+        }
+
+        const pessoa = new Pessoa(nome, idade);
+        pessoa.apresentar();
       });
     </script>
     <script src="../js/script.js"></script>

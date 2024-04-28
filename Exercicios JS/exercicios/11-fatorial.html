@@ -20,11 +20,14 @@
       <a href="../index.html">lista de exercicios</a>
       <br />
       <hr />
-      <h1>Digite o exercicio aqui</h1>
+      <h1>
+        Implemente uma função que calcule e retorne o fatorial de um número
+        inteiro fornecido pelo usuário.
+      </h1>
       <form action="">
         <legend><b></b></legend>
-        <label for="nome">nome</label>
-        <input type="text" name="nome" id="nome" />
+        <label for="numero">numero</label>
+        <input type="number" name="numero" id="numero" />
 
         <button type="submit">calcular</button>
       </form>
@@ -36,10 +39,15 @@
 
       Form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const nome = document.getElementById("nome").value;
+        let numero = parseInt(document.getElementById("numero").value);
+        let Fatorial = 1;
         const texto = document.getElementById("texto");
 
-        texto.innerHTML = `${numero}`;
+        for (i = numero; i >= 2; i--) {
+          Fatorial *= i;
+        }
+
+        texto.innerHTML = `O fatorial de ${numero} é ${Fatorial} `;
       });
     </script>
     <script src="../js/script.js"></script>

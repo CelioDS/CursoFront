@@ -20,11 +20,17 @@
       <a href="../index.html">lista de exercicios</a>
       <br />
       <hr />
-      <h1>Digite o exercicio aqui</h1>
+      <h1>
+        Contagem de Caractere: Crie uma função que conte quantas vezes um
+        caractere específico aparece em uma string. Tanto o caractere quanto a
+        string devem ser fornecidos pelo usuário.
+      </h1>
       <form action="">
         <legend><b></b></legend>
-        <label for="nome">nome</label>
-        <input type="text" name="nome" id="nome" />
+        <label for="frase">frase</label>
+        <input type="text" name="frase" id="frase" />
+        <label for="caractere">Caractere para buscar</label>
+        <input type="text" name="caractere" id="caractere" />
 
         <button type="submit">calcular</button>
       </form>
@@ -36,10 +42,24 @@
 
       Form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const nome = document.getElementById("nome").value;
         const texto = document.getElementById("texto");
 
-        texto.innerHTML = `${numero}`;
+        const frase = document.getElementById("frase").value.toLowerCase();
+        const caractere = document
+          .getElementById("caractere")
+          .value.toLowerCase();
+
+        ArrayFrase = frase.split("");
+
+        let contador = 0;
+
+        ArrayFrase.forEach((letra) => {
+          if (letra === caractere) {
+            contador += 1;
+          }
+        });
+
+        texto.innerHTML = `A quantidade que o caractere (${caractere.toUpperCase()}) aparece na frase é de ${contador}`;
       });
     </script>
     <script src="../js/script.js"></script>

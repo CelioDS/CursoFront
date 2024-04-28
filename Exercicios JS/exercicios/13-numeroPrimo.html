@@ -20,11 +20,14 @@
       <a href="../index.html">lista de exercicios</a>
       <br />
       <hr />
-      <h1>Digite o exercicio aqui</h1>
+      <h1>
+        Verificação de Número Primo: Escreva uma função que verifique se um
+        número fornecido pelo usuário é primo ou não.
+      </h1>
       <form action="">
         <legend><b></b></legend>
-        <label for="nome">nome</label>
-        <input type="text" name="nome" id="nome" />
+        <label for="numero">numero</label>
+        <input type="text" name="numero" id="numero" />
 
         <button type="submit">calcular</button>
       </form>
@@ -36,10 +39,23 @@
 
       Form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const nome = document.getElementById("nome").value;
+        const numero = parseInt(document.getElementById("numero").value);
         const texto = document.getElementById("texto");
+        let contador = 0;
 
-        texto.innerHTML = `${numero}`;
+        if (numero > 0) {
+          for (i = 1; i <= numero; i++) {
+            if (numero % i === 0) {
+              contador += 1;
+            }
+          }
+
+          texto.innerHTML = ` O Numero ${numero}  ${
+            contador > 2 ? "não é primo " : "é primo"
+          }`;
+        } else {
+          texto.innerHTML = ` O Numero ${numero}  é negativo`;
+        }
       });
     </script>
     <script src="../js/script.js"></script>
