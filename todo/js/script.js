@@ -31,11 +31,14 @@ AddTarefa.addEventListener("submit", (e) => {
     (searchTarefa) =>
       searchTarefa.tarefa === Tarefa.value && searchTarefa.concluido === true
   );
-
+  console.log();
   if (
     OBJTarefas.includes(Tarefa.value) ||
     Tarefa.value.trim() == "" ||
-    OBJTarefas.find((searchTarefa) => searchTarefa.concluido === false)
+    OBJTarefas.find(
+      (searchTarefa) =>
+        searchTarefa.tarefa === Tarefa.value && searchTarefa.concluido === false
+    )
   ) {
     e.preventDefault();
     AddTarefa.classList.add("Error");
