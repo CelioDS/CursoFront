@@ -1,0 +1,18 @@
+@keyframes Efeito {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+.titles {
+  animation: Efeito 1s linear infinite;
+}
