@@ -1,6 +1,5 @@
 import "./Table.module.css";
 
-
 export default function Table({ arrayDB }) {
   return (
     <section>
@@ -14,15 +13,16 @@ export default function Table({ arrayDB }) {
           </tr>
         </thead>
         <body>
-          {arrayDB.map((tarefa, key) => (
-            <tr key={key}>
-              <td>{tarefa.tarefa}</td>
-              <td>{tarefa.data}</td>
-              <td>{tarefa.concluido}</td>
-              <td>{tarefa.quantidade}</td>
-            </tr>
-          ))}
-          <tr></tr>
+          {arrayDB &&
+            arrayDB.map((tarefa, key) => (
+              <tr key={key}>
+                <td>{tarefa.tarefa}</td>
+                <td>{tarefa.data}</td>
+                <td>{tarefa.concluido}</td>
+                <td>{tarefa.quantidade}</td>
+                <h4>5</h4>
+              </tr>
+            ))}
         </body>
       </table>
     </section>
