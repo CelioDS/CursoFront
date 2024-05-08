@@ -1,7 +1,7 @@
 import { db } from "../DB/db.js";
 
 export const getDB = (_, res) => {
-  const query = "SELECT * FROM todoReact";
+  const query = "SELECT * FROM todoReact ";
 
   db.query(query, (err, data) => {
     if (err) return res.json(err);

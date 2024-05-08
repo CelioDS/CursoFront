@@ -12,7 +12,7 @@ export default function Table({ arrayDB }) {
             <th>quantidade</th>
           </tr>
         </thead>
-        <body>
+        <tbody>
           {arrayDB &&
             arrayDB.map((tarefa, key) => (
               <tr key={key}>
@@ -23,7 +23,7 @@ export default function Table({ arrayDB }) {
                 <h4>5</h4>
               </tr>
             ))}
-        </body>
+        </tbody>
       </table>
     </section>
   );

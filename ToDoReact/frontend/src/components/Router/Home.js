@@ -14,16 +14,17 @@ export default function Home() {
   async function GetDB() {
     try {
       const res = await axios.get(process.env.REACT_APP_DB_API);
-      setArrayDB(res);
+      setArrayDB(res.data);
     } catch (error) {
       toast.error(error);
     }
   }
 
-useEffect(() =>{
-  GetDB()
+  console.log(arrayDB);
 
-}, [setArrayDB])
+  useEffect(() => {
+    GetDB();
+  }, [setArrayDB]);
 
   return (
     <Container>
