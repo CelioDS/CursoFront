@@ -15,7 +15,7 @@ status = 200
 
 [[redirects]]
   from = "/*"
-  to = "https://finan01ceiro.netlify.app//:splat"
+  to = "https://todoreacthitss.netlify.app/:splat"
   status = 301
   force = true
 
