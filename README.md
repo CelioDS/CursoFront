@@ -1,2 +1,3 @@
-https://todohitss.netlify.app/ link do projeto JS <br>
-https://exerciciosjs.netlify.app/ site dos exercicios Js
+ToDo em JS : https://todohitss.netlify.app/  <br>
+ToDo em React : https://todoreacthitss.netlify.app/ <br>
+Exercicios Js : https://exerciciosjs.netlify.app/ <br>
