@@ -1,10 +1,30 @@
 import { useState, useRef, useEffect } from "react";
 
+import { toast } from "react-toastify";
+import axios from "axios";
+
 import Container from "../Layout/Container";
 import Input from "../Item-Layout/Input";
+import Table from "../Layout/Table";
 
 export default function Home() {
   const ref = useRef();
+  const [arrayDB, setArrayDB] = useState([]);
+
+  async function GetDB() {
+    try {
+      const res = await axios.get(process.env.REACT_APP_DB_API);
+      setArrayDB(res);
+    } catch (error) {
+      toast.error(error);
+    }
+  }
+
+useEffect(() =>{
+  GetDB()
+
+}, [setArrayDB])
+
   return (
     <Container>
       <h1>Digite suas tarefas aqui</h1>
@@ -17,6 +37,7 @@ export default function Home() {
           name="tarefa"
         />
       </form>
+      <Table arrayDB={arrayDB} />
     </Container>
   );
 }
