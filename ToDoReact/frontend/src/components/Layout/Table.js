@@ -12,18 +12,22 @@ export default function Table({ arrayDB }) {
             <th>quantidade</th>
           </tr>
         </thead>
-        <tbody>
-          {arrayDB &&
+        <body>
+          {arrayDB && arrayDB.lenght === 0 ? (
+            <td>
+              <span>Sem tarefas</span>
+            </td>
+          ) : (
             arrayDB.map((tarefa, key) => (
               <tr key={key}>
                 <td>{tarefa.tarefa}</td>
                 <td>{tarefa.data}</td>
                 <td>{tarefa.concluido}</td>
                 <td>{tarefa.quantidade}</td>
-                <h4>5</h4>
               </tr>
-            ))}
-        </tbody>
+            ))
+          )}
+        </body>
       </table>
     </section>
   );

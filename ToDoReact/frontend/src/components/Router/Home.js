@@ -14,6 +14,7 @@ export default function Home() {
   async function GetDB() {
     try {
       const res = await axios.get(process.env.REACT_APP_DB_API);
+      toast.success('data');
       setArrayDB(res.data);
     } catch (error) {
       toast.error(error);
@@ -28,7 +29,7 @@ export default function Home() {
 
   return (
     <Container>
-      <h1>Digite suas tarefas aqui</h1>
+      <h1>to do list react</h1>
       <form ref={ref}>
         <Input
           text="Tarefa"
