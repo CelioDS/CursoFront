@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <Container>
-      <h1>to do list react</h1>
+      <h1>To Do List React</h1>
       <form ref={ref}>
         <Input
           text="Tarefa"
