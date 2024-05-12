@@ -1,34 +1,73 @@
-import "./Table.module.css";
+import styleExt from "./Table.module.css";
+import { useEffect } from "react";
+import Loading from "../Item-Layout/Loading";
+import { MdDelete, MdCheck } from "react-icons/md";
 
 export default function Table({ arrayDB }) {
+  useEffect(() => {}, []);
+
   return (
     <section>
-      <table>
-        <thead>
-          <tr>
-            <th>tarefa</th>
-            <th>data</th>
-            <th>concluido</th>
-            <th>quantidade</th>
-          </tr>
-        </thead>
-        <body>
-          {arrayDB && arrayDB.lenght === 0 ? (
-            <td>
-              <span>Sem tarefas</span>
-            </td>
-          ) : (
-            arrayDB.map((tarefa, key) => (
-              <tr key={key}>
-                <td>{tarefa.tarefa}</td>
-                <td>{tarefa.data}</td>
-                <td>{tarefa.concluido}</td>
-                <td>{tarefa.quantidade}</td>
-              </tr>
+      <div className={styleExt.Pendentes}>
+        <h2>Pendente(s)</h2>
+
+        {arrayDB && arrayDB.length === 0 ? (
+          <span>{<Loading />}</span>
+        ) : (
+          arrayDB
+            .filter(({ concluido }) => {
+              return concluido === 0;
+            })
+            .map((tarefa, key) => (
+              <div>
+                <aside>
+                  <h3 key={key}>{tarefa.tarefa} </h3>
+                  <p>{tarefa.data}</p>
+                </aside>
+
+                <aside>
+                  <span>Aguardando</span>
+
+                  <button className={styleExt.BtnCheck} title="Concluir">
+                    <MdCheck />
+                  </button>
+
+                  <button className={styleExt.BtnExcluir} title="Excluir">
+                    <MdDelete />
+                  </button>
+                </aside>
+              </div>
             ))
-          )}
-        </body>
-      </table>
+        )}
+      </div>
+      <div className={styleExt.Concluidos}>
+        <h2>Concluido(s)</h2>
+
+        {arrayDB && arrayDB.length === 0 ? (
+          <span>{<Loading />}</span>
+        ) : (
+          arrayDB
+            .filter(({ concluido }) => {
+              return concluido === 1;
+            })
+            .map((tarefa, key) => (
+              <div>
+                <aside>
+                  <h3 key={key}>{tarefa.tarefa} </h3>
+                  <p>{tarefa.data}</p>
+                </aside>
+
+                <aside>
+                  <span>Finalizado</span>
+                
+                  <button className={styleExt.BtnExcluir} title="Excluir">
+                    <MdDelete />
+                  </button>
+                </aside>
+              </div>
+            ))
+        )}
+      </div>
     </section>
   );
 }

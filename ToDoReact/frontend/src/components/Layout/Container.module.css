@@ -1,5 +1,9 @@
 .container {
-  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 90%;
   margin: 0 auto;
   border-radius: 8px;
   background-color: #ffffff;

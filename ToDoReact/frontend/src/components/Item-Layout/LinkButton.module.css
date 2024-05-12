@@ -1,0 +1,14 @@
+a {
+  background-color: #007bff;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.8s;
+  padding: 8px 0px;
+  text-align: center;
+  width: 100px;
+}
+
+a:hover {
+  background-color: #0056b3;
+}
