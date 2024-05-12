@@ -26,6 +26,7 @@ export const updateDB = (req, res) => {
     "UPDATE todoReact SET `tarefa` = ?, `concluido` = ? , `data` = ?  WHERE `id` = ? ";
 
   const values = [req.body.tarefa, req.body.concluido, req.body.data];
+
   db.query(query, [...values, req.params.id], (err) => {
     if (err) return res.json(err);
 

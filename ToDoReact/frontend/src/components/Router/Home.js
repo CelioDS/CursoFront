@@ -13,7 +13,6 @@ export default function Home() {
   async function GetDB() {
     try {
       const res = await axios.get(process.env.REACT_APP_DB_API);
-      toast.success("ApiRest funcionando");
       setArrayDB(res.data);
     } catch (error) {
       toast.error(error);

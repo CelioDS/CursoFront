@@ -30,15 +30,22 @@ section div p {
   font-size: 11px;
 }
 
-section .Pendentes span {
+section .Pendentes span:nth-child(1) {
   font-size: 11px;
   color: #806d00;
   background-color: #f0efcf;
+  display: inline-block; /* Adicione display inline-block para o span */
+}
+section .Pendentes span:nth-child(2),
+section .Concluidos span:nth-child(2) {
+  text-align: center;
+  font-size: 11px;
+  color: #806d00;
 
   display: inline-block; /* Adicione display inline-block para o span */
 }
 
-section .Concluidos span {
+section .Concluidos span:nth-child(1) {
   font-size: 11px;
   color: #008000;
   background-color: #d9f0cf;

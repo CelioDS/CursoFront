@@ -34,7 +34,7 @@ export default function Form({ GetDB }) {
         .post(process.env.REACT_APP_DB_API, {
           tarefa: DadosForm.tarefa.value,
           data: currentDate,
-          concluido: false,
+          concluido: true,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
@@ -52,8 +52,9 @@ export default function Form({ GetDB }) {
         placeholder="Digite a tarefa aqui..."
       />
       <Button
-        text={IsSubmit ? "Adcionando..." : "Adicionar"}
+        text={IsSubmit ? "Adicionando..." : "Adicionar"}
         type={"submit"}
+        title={IsSubmit ? "Adicionando..." : "Adicionar"}
         disabled={IsSubmit}
       />
     </form>
