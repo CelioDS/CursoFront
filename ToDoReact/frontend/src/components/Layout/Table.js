@@ -2,9 +2,22 @@ import styleExt from "./Table.module.css";
 import { useEffect } from "react";
 import Loading from "../Item-Layout/Loading";
 import { MdDelete, MdCheck } from "react-icons/md";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-export default function Table({ arrayDB }) {
+export default function Table({ arrayDB, setArrayDB }) {
   useEffect(() => {}, []);
+
+  async function handleExcluir(id) {
+    await axios
+      .delete(process.env.REACT_APP_DB_API + id)
+      .then(({ data }) => {
+        const newDB = arrayDB.filter((tarefa) => tarefa.id !== id);
+        setArrayDB(newDB);
+        toast.success(data);
+      })
+      .catch(({ data }) => toast.error(data));
+  }
 
   return (
     <section>
@@ -32,7 +45,13 @@ export default function Table({ arrayDB }) {
                     <MdCheck />
                   </button>
 
-                  <button className={styleExt.BtnExcluir} title="Excluir">
+                  <button
+                    className={styleExt.BtnExcluir}
+                    title="Excluir"
+                    onClick={() => {
+                      handleExcluir(tarefa.id);
+                    }}
+                  >
                     <MdDelete />
                   </button>
                 </aside>
@@ -60,7 +79,13 @@ export default function Table({ arrayDB }) {
                 <aside>
                   <span>Finalizado</span>
 
-                  <button className={styleExt.BtnExcluir} title="Excluir">
+                  <button
+                    className={styleExt.BtnExcluir}
+                    title="Excluir"
+                    onClick={() => {
+                      handleExcluir(tarefa.id);
+                    }}
+                  >
                     <MdDelete />
                   </button>
                 </aside>

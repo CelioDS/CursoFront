@@ -34,10 +34,10 @@ export const updateDB = (req, res) => {
 };
 
 export const deleteDB = (req, res) => {
-  const query = "DELETE FROM dados WHERE `id` = ?";
+  const query = "DELETE FROM todoReact WHERE `id` = ?";
 
   db.query(query, [req.params.id], (err) => {
     if (err) return res.json(err);
-    return res.status(200).json("Tarefa deletada");
+    return res.status(200).json("Tarefa deletada...");
   });
 };
