@@ -19,9 +19,9 @@ export default function Table({ arrayDB }) {
               return concluido === 0;
             })
             .map((tarefa, key) => (
-              <div>
+              <div key={key}>
                 <aside>
-                  <h3 key={key}>{tarefa.tarefa} </h3>
+                  <h3>{tarefa.tarefa} </h3>
                   <p>{tarefa.data}</p>
                 </aside>
 
@@ -51,15 +51,15 @@ export default function Table({ arrayDB }) {
               return concluido === 1;
             })
             .map((tarefa, key) => (
-              <div>
+              <div key={key}>
                 <aside>
-                  <h3 key={key}>{tarefa.tarefa} </h3>
+                  <h3>{tarefa.tarefa} </h3>
                   <p>{tarefa.data}</p>
                 </aside>
 
                 <aside>
                   <span>Finalizado</span>
-                
+
                   <button className={styleExt.BtnExcluir} title="Excluir">
                     <MdDelete />
                   </button>

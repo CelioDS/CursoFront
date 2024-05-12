@@ -11,12 +11,13 @@ export const getDB = (_, res) => {
 };
 
 export const setDB = (req, res) => {
-  const query = "INSERT INTO todoReact";
+  const query =
+    "INSERT INTO todoReact (`tarefa`, `concluido`,`data`) VALUES(?)";
 
   const values = [req.body.tarefa, req.body.concluido, req.body.data];
   db.query(query, [values], (err) => {
     if (err) return res.json(err);
-    return res.status(200).json("Cadastrado a tarefa");
+    return res.status(200).json("Tarefa adcionada...");
   });
 };
 
