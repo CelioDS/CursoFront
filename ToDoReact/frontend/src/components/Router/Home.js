@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <Container>
       <h1>To Do List React</h1>
-      <Form />
+      <Form GetDB={GetDB} />
       <Table arrayDB={arrayDB} setArrayDB={setArrayDB} />
     </Container>
   );
