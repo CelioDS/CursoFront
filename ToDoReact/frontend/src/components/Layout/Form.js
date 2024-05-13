@@ -24,8 +24,7 @@ export default function Form({ GetDB }) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
     setIsSubmit(true);
     const DadosForm = ref.current;
-    console.log("clicou" + DadosForm.tarefa.value);
-
+   
     if (!DadosForm.tarefa.value) {
       setIsSubmit(false); // Reabilita o botão após o envio do formulário
       return toast.warn("Tarefa não foi informada...");
@@ -34,7 +33,7 @@ export default function Form({ GetDB }) {
         .post(process.env.REACT_APP_DB_API, {
           tarefa: DadosForm.tarefa.value,
           data: currentDate,
-          concluido: true,
+          concluido: false,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
@@ -49,7 +48,7 @@ export default function Form({ GetDB }) {
         id="terefa"
         type="text"
         name="tarefa"
-        placeholder="Digite a tarefa aqui..."
+        placeholder="Digite sua tarefa aqui..."
       />
       <Button
         text={IsSubmit ? "Adicionando..." : "Adicionar"}

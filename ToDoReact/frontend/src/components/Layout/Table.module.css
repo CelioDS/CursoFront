@@ -5,6 +5,9 @@ section {
   flex-direction: row;
   gap: 10px;
   width: 100%;
+  border-top: 1px solid #ccc;
+  padding-top: 30px;
+  min-height: 50vh;
 }
 section div {
   width: 390px;
@@ -116,11 +119,18 @@ section div div aside .BtnExcluir {
 }
 section div div aside button:hover {
   opacity: 0.6;
-  background-color: #ffff;
+  background-color: #e7e6e6;
 }
 
 @media (max-width: 900px) {
   section {
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+  }
+  section div {
+    width: 300px;
+    text-align: center;
+    align-items: center;
   }
 }

@@ -5,7 +5,7 @@ import { MdDelete, MdCheck } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export default function Table({ arrayDB, setArrayDB }) {
+export default function Table({ arrayDB, setArrayDB, GetDB }) {
   const [completedTaks, setCompletedTasks] = useState([]);
   const [pedingTesks, setPedingTesks] = useState([]);
 
@@ -35,6 +35,8 @@ export default function Table({ arrayDB, setArrayDB }) {
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));
+
+    GetDB();
   }
 
   return (
@@ -42,8 +44,11 @@ export default function Table({ arrayDB, setArrayDB }) {
       <div className={styleExt.Pendentes}>
         <h2>Pendente(s)</h2>
 
-        {arrayDB && arrayDB.length === 0 ? (
-          <span>{<Loading />}</span>
+        {pedingTesks && pedingTesks.length === 0 ? (
+          <>
+            <span>{<Loading />}</span>
+            <p>Aguardando dados...</p>
+          </>
         ) : (
           pedingTesks.map((tarefa, key) => (
             <div key={key}>
@@ -59,7 +64,7 @@ export default function Table({ arrayDB, setArrayDB }) {
                   className={styleExt.BtnCheck}
                   title="Concluir"
                   onClick={() => {
-                    handleUpdate(tarefa.id);
+                    handleUpdate(tarefa);
                   }}
                 >
                   <MdCheck />
@@ -69,7 +74,7 @@ export default function Table({ arrayDB, setArrayDB }) {
                   className={styleExt.BtnExcluir}
                   title="Excluir"
                   onClick={() => {
-                    handleExcluir(tarefa);
+                    handleExcluir(tarefa.id);
                   }}
                 >
                   <MdDelete />
@@ -83,7 +88,10 @@ export default function Table({ arrayDB, setArrayDB }) {
         <h2>Concluido(s)</h2>
 
         {completedTaks && completedTaks.length === 0 ? (
-          <span>{<Loading />}</span>
+          <>
+            <span>{<Loading />}</span>
+            <p>Aguardando dados...</p>
+          </>
         ) : (
           completedTaks.map((tarefa, key) => (
             <div key={key}>

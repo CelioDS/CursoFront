@@ -8,3 +8,8 @@
   border-radius: 8px;
   background-color: #ffffff;
 }
+@media (max-width: 900px) {
+  .container { 
+    max-width: 100%;
+  }
+}

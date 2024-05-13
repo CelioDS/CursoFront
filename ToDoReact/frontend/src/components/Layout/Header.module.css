@@ -1,0 +1,15 @@
+.main {
+  padding: 30px;
+}
+.main h1 {
+  text-align: center;
+}
+.main p {
+  text-align: center;
+  color: #afadad;
+  margin-bottom: 15px;
+}
+.main h2 {
+  text-align: start;
+  color: #444444;
+}
