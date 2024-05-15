@@ -8,6 +8,7 @@ section {
   border-top: 1px solid #ccc;
   padding-top: 30px;
   min-height: 50vh;
+  margin-bottom: 150px;
 }
 section div {
   width: 390px;
@@ -18,10 +19,10 @@ section div p::first-letter {
   padding-left: 0px !important;
 }
 section div h2 {
-  color: #646464;
+  color: #a89e9e;
   font-size: 20px;
   font-weight: bolder;
-  background-color: #73927300;
+  margin-bottom: 15px;
 }
 section div h3 {
   color: #363636;
@@ -129,7 +130,7 @@ section div div aside button:hover {
     flex-direction: column;
   }
   section div {
-    width: 300px;
+    width: 98%;
     text-align: center;
     align-items: center;
   }

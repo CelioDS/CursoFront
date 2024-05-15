@@ -10,7 +10,7 @@ export default function Table({ arrayDB, setArrayDB, GetDB }) {
   const [pedingTesks, setPedingTesks] = useState([]);
 
   useEffect(() => {
-    if (arrayDB) {
+    if (arrayDB.length !== 0) {
       setCompletedTasks(arrayDB.filter(({ concluido }) => concluido === 1));
       setPedingTesks(arrayDB.filter(({ concluido }) => concluido === 0));
     }
