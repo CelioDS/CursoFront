@@ -3,11 +3,11 @@
 
 }
 .main h1 {
-  color: #ffffff;
+  color: var(--corSecundaria);
   text-align: center;
 }
 .main p {
   text-align: center;
-  color: #dadbdb;
+  color: #ffffff;
   margin-bottom: 15px;
 }

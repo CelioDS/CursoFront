@@ -28,5 +28,5 @@
 }
 .footer span,
 .footer svg {
-  color: #ff4a03;
+  color: var(--corSecundaria);
 }
