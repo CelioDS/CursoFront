@@ -1,0 +1,32 @@
+.footer {
+  color: #ffff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+.footer section {
+  display: inline-flex;
+}
+.footer section:nth-child(2) {
+  flex-direction: column;
+}
+.footer section {
+  margin-top: 15px;
+  gap: 15px;
+}
+.footer section a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+.footer span,
+.footer svg {
+  color: #ff4a03;
+}

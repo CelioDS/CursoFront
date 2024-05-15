@@ -1,8 +1,9 @@
-import "./Input.module.css";
+import styleExt from "./Input.module.css";
 
 export default function Input({ type, name, placeholder }) {
   return (
     <input
+      className={styleExt.input}
       id={name}
       type={type}
       name={name}

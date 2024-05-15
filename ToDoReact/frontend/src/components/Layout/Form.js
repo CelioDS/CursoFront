@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { format } from "date-fns";
 
-import "./Form.module.css";
+import styleExt from "./Form.module.css";
 
 import Button from "../Item-Layout/Button";
 import Input from "../Item-Layout/Input";
@@ -43,7 +43,7 @@ export default function Form({ GetDB }) {
     setIsSubmit(false);
   }
   return (
-    <form ref={ref} onSubmit={handleSubmit}>
+    <form ref={ref} onSubmit={handleSubmit} className={styleExt.form}>
       <Input
         id="terefa"
         type="text"

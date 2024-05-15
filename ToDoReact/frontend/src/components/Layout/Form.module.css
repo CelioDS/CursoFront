@@ -1,4 +1,4 @@
-form {
+.form {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -8,12 +8,12 @@ form {
   height: 50px;
   margin: 30px;
 }
-form input {
+.form input {
   position: absolute;
   left: 0;
 }
 
-form button {
+.form button {
   position: absolute;
   right: 0;
 }

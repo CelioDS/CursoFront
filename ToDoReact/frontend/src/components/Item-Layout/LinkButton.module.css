@@ -1,4 +1,4 @@
-a {
+.a {
   background-color: #007bff;
   border-radius: 25px;
   text-decoration: none;
@@ -9,6 +9,6 @@ a {
   width: 100px;
 }
 
-a:hover {
+.a:hover {
   background-color: #0056b3;
 }

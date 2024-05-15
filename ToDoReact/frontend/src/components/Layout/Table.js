@@ -40,7 +40,7 @@ export default function Table({ arrayDB, setArrayDB, GetDB }) {
   }
 
   return (
-    <section>
+    <section className={styleExt.section}>
       <div className={styleExt.Pendentes}>
         <h2>Pendente(s)</h2>
 

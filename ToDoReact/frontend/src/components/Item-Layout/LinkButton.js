@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import "./LinkButton.module.css";
+import styleExt from "./LinkButton.module.css";
 
 export default function LinkButton({ to, text, className, onClick }) {
   return (
-    <Link to={to} className={className} onClick={onClick}>
+    <Link to={to} className={styleExt.a} onClick={onClick}>
       {text}
     </Link>
   );
