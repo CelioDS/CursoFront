@@ -9,7 +9,7 @@ export default function Input({ type, name, placeholder }) {
       name={name}
       placeholder={placeholder}
       minLength={3}
-      maxLength={28}
+      maxLength={46}
       required
     />
   );

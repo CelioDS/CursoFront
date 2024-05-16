@@ -10,25 +10,34 @@
   min-height: 50vh;
   margin-bottom: 150px;
 }
-.section div {
+.section .Pendentes,
+.section .Concluidos {
   width: 390px;
+
   text-align: center;
 }
-.section div p::first-letter {
+.section .Pendentes p::first-letter,
+.section .Concluidos p::first-letter {
   text-transform: uppercase;
   padding-left: 0px !important;
 }
-.section div h2 {
+.section .Pendentes h2,
+.section .Concluidos h2 {
   color: #a89e9e;
   font-size: 20px;
   font-weight: bolder;
   margin-bottom: 15px;
 }
-.section div h3 {
+.section .Pendentes h3,
+.section .Concluidos h3 {
   color: #363636;
   font-size: 14px;
   font-weight: normal;
-}.section div p {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.section .Pendentes p,
+.section .Concluidos p {
   color: #ccc;
   font-size: 11px;
 }
@@ -37,7 +46,9 @@
   color: #806d00;
   background-color: #f0efcf;
   display: inline-block; /* Adicione display inline-block para o span */
-}.section .Pendentes span:nth-child(2),.section .Concluidos span:nth-child(2) {
+}
+.section .Pendentes span:nth-child(2),
+.section .Concluidos span:nth-child(2) {
   text-align: center;
   font-size: 11px;
   color: #806d00;
@@ -49,18 +60,24 @@
   background-color: #d9f0cf;
   display: inline-block; /* Adicione display inline-block para o span */
 }
-.section .Concluidos div,.section .Pendentes div {
+.section .Concluidos div,
+.section .Pendentes div {
   display: inline-flex;
   justify-content: space-between;
   gap: 10px;
   padding: 15px;
-  height: 50px;
+  height: 70px;
+  width: 100%;
 }
-.section .Pendentes div:hover,.section .Concluidos div:hover {
+.section .Pendentes div:hover,
+.section .Concluidos div:hover {
   transform: scaleX(1.02);
   border: 1px solid #ccc;
   background-color: #fff;
-}.section .Pendentes div:hover .BtnCheck,.section .Pendentes div:hover .BtnExcluir,.section .Concluidos div:hover .BtnExcluir {
+}
+.section .Pendentes div:hover .BtnCheck,
+.section .Pendentes div:hover .BtnExcluir,
+.section .Concluidos div:hover .BtnExcluir {
   opacity: 1;
 }
 .section div div aside:nth-child(1) {
@@ -69,13 +86,15 @@
   gap: 5px;
   justify-content: center;
   align-items: start;
-}.section div div aside {
+}
+.section div div aside {
   display: flex;
   flex-direction: row;
   gap: 5px;
   justify-content: center;
   align-items: center;
-}.section div div aside button {
+}
+.section div div aside button {
   display: flex;
   justify-content: center;
   width: 20px;
@@ -84,7 +103,8 @@
   cursor: pointer;
   border-radius: 25px;
   background-color: #f8f8f8;
-}.section .Concluidos div aside h3 {
+}
+.section .Concluidos div aside h3 {
   font-style: italic;
   background-color: #ece9e9;
   text-decoration: line-through 1px;
@@ -93,22 +113,24 @@
   color: #28a745;
   border: none;
   opacity: 0;
-}.section div div aside .BtnExcluir {
+}
+.section div div aside .BtnExcluir {
   color: #ff0000;
   border: none;
   opacity: 0;
-}.section div div aside button:hover {
+}
+.section div div aside button:hover {
   opacity: 0.6;
   background-color: #e7e6e6;
 }
 
 @media (max-width: 900px) {
-.section {
+  .section {
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-.section div {
+  .section div {
     width: 98%;
     text-align: center;
     align-items: center;

@@ -25,6 +25,7 @@ export default function Table({ arrayDB, setArrayDB, GetDB }) {
         toast.success(data);
       })
       .catch(({ data }) => toast.error(data));
+    GetDB();
   }
   async function handleUpdate(tarefa) {
     await axios
