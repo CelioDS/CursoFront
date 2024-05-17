@@ -98,7 +98,9 @@ export default function Table({ arrayDB, setArrayDB, GetDB }) {
             <div key={key}>
               <aside>
                 <h3>{tarefa.tarefa} </h3>
-                <p>{tarefa.data}</p>
+                <p>
+                  {tarefa.data} - {tarefa.data}
+                </p>
               </aside>
 
               <aside>

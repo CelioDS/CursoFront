@@ -1,13 +1,14 @@
 .main {
   padding: 30px;
-
 }
 .main h1 {
   color: var(--corSecundaria);
   text-align: center;
+  font-weight: normal;
 }
 .main p {
   text-align: center;
   color: #ffffff;
   margin-bottom: 15px;
+  
 }
