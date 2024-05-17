@@ -6,17 +6,16 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
+  margin: 15px 0;
 }
-.footer section {
+.footer section:nth-child(1) {
   display: inline-flex;
+  gap: 15px;
 }
 .footer section:nth-child(2) {
   flex-direction: column;
 }
-.footer section {
-  margin-top: 15px;
-  gap: 15px;
-}
+
 .footer section a {
   display: flex;
   flex-direction: row;

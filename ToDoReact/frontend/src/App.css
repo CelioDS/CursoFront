@@ -1,6 +1,7 @@
 :root {
   --corPrincipal: #111246;
   --corSecundaria: #ff4a03;
+  --corTerceira: #ffffff;
 }
 * {
   margin: 0;

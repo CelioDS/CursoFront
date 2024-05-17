@@ -9,6 +9,7 @@
   padding-top: 30px;
   min-height: 50vh;
   margin-bottom: 150px;
+  background-color: var(--corTerceira);
 }
 .section .Pendentes,
 .section .Concluidos {

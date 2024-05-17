@@ -1,0 +1,46 @@
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.main section {
+  width: 300px;
+  height: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: aliceblue;
+  padding: 5px;
+  border-radius: 5px;
+  color: #2b2b2b;
+}
+.main section span {
+  grid-column: 1/4;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+}
+.main section button {
+  grid-row: 2;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+}
+.main section button:nth-child(3) {
+  background-color: #4caf50;
+
+  grid-column: 1/2;
+}
+.main section button:nth-child(2) {
+  background-color: #f44336;
+
+  grid-column: 3/4;
+}
