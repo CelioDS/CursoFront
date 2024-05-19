@@ -9,6 +9,7 @@ import axios from "axios";
 
 export default function Home() {
   const [arrayDB, setArrayDB] = useState([]);
+  const [editTasks, setEditTasks] = useState();
 
   async function GetDB() {
     try {
@@ -25,8 +26,13 @@ export default function Home() {
 
   return (
     <Container>
-      <Form GetDB={GetDB} />
-      <Table arrayDB={arrayDB} setArrayDB={setArrayDB} GetDB={GetDB} />
+      <Form GetDB={GetDB} editTasks={editTasks} setEditTasks={setEditTasks} />
+      <Table
+        arrayDB={arrayDB}
+        setArrayDB={setArrayDB}
+        GetDB={GetDB}
+        setEditTasks={setEditTasks}
+      />
     </Container>
   );
 }

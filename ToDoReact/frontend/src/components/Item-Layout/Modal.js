@@ -1,10 +1,6 @@
 import styleExt from "./Modal.module.css";
 
-export default function Modal({ openModal, setOpenModal }) {
-  function handleNo() {
-    setOpenModal(false);
-  }
-
+export default function Modal({ openModal, setOpenModal, handleFunction }) {
   return (
     <>
       {openModal && (
@@ -13,12 +9,19 @@ export default function Modal({ openModal, setOpenModal }) {
             <span>Você tem certeza que deseja excluir?</span>
             <button
               onClick={() => {
-                handleNo();
+                setOpenModal(false);
               }}
             >
               Não
             </button>
-            <button>Sim</button>
+            <button
+              onClick={() => {
+                handleFunction();
+                setOpenModal(false);
+              }}
+            >
+              Sim
+            </button>
           </section>
         </main>
       )}

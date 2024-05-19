@@ -81,6 +81,11 @@
 .section .Concluidos div:hover .BtnExcluir {
   opacity: 1;
 }
+.section .Pendentes div .BtnCheck:active,
+.section .Pendentes div .BtnExcluir:active,
+.section .Concluidos div .BtnExcluir:active {
+  font-size: 12px;
+}
 .section div div aside:nth-child(1) {
   display: flex;
   flex-direction: column;
