@@ -134,7 +134,7 @@ export default function Table({
         </>
       ) : (
         <>
-          <input
+          <Input
             id={"searchText"}
             onChange={(e) => setSearchText(e.target.value)}
             className={styleExt.searchText}
