@@ -1,6 +1,6 @@
 .main {
   background-color: aliceblue;
-  height: calc(---heightNavBar);
+  height: var(---heightNavBar);
   display: flex;
   flex-direction: row;
   align-items: center;
