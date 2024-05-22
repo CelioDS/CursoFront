@@ -21,12 +21,21 @@
   position: absolute;
   top: 10px;
   color: #b4b3b3;
+  right: 0;
+
 }
 .section .searchText {
   position: absolute !important;
   top: 10px;
   left: 0 !important;
   color: #b4b3b3;
+  height: 21px;
+  padding-left: 5px;
+  outline-color: #acacac;
+}
+.section .searchText::placeholder {
+  color: #ccc;
+  padding-left: 5px;
 }
 
 .section .Pendentes,
