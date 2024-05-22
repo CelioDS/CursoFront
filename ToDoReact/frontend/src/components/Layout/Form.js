@@ -32,7 +32,7 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
-    setIsSubmit(true);
+    setIsSubmit((prevState) => !prevState);
 
     if (!DadosForm.tarefa.value) {
       setIsSubmit(false); // Reabilita o botão após o envio do formulário
@@ -61,7 +61,7 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
     }
     GetDB();
     DadosForm.tarefa.value = "";
-    setIsSubmit(false);
+    setIsSubmit((prevState) => !prevState);
   }
   return (
     <form ref={ref} onSubmit={handleSubmit} className={styleExt.form}>
@@ -76,7 +76,7 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
         text={
           IsSubmit
             ? editTasks
-              ? "Salvando..."
+              ? "Atualizando..."
               : "Adicionando..."
             : editTasks
             ? "Editando..."

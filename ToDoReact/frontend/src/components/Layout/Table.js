@@ -5,20 +5,82 @@ import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Modal from "../Item-Layout/Modal";
+import { format } from "date-fns";
+import Input from "../Item-Layout/Input";
 
-export default function Table({ arrayDB, setArrayDB, GetDB, setEditTasks }) {
+export default function Table({
+  arrayDB,
+  setArrayDB,
+  GetDB,
+  setEditTasks,
+  today,
+  months,
+  handleMonthChange,
+  searchMonth,
+}) {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [pedingTesks, setPedingTesks] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [IsSubmit, setIsSubmit] = useState(false);
   const [tarefaId, setTarefaId] = useState();
+  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); // Estado para controlar o valor do campo de data
+  const [searchText, setSearchText] = useState();
 
   useEffect(() => {
-    if (Array.isArray(arrayDB) && arrayDB.length > 0) {
-      setCompletedTasks(arrayDB.filter(({ concluido }) => concluido === 1));
-      setPedingTesks(arrayDB.filter(({ concluido }) => concluido === 0));
+    const today = new Date();
+
+    setCurrentDate(format(today, "dd-MM-yyyy"));
+  }, []);
+
+  useEffect(() => {
+    function checkMonth(data) {
+      if (!searchMonth) return true;
+      const partMonth = data.split("-");
+      const month = partMonth[1];
+
+      return month === searchMonth;
     }
-  }, [arrayDB]);
+
+    if (Array.isArray(arrayDB) && arrayDB.length > 0) {
+      let completedTasksFilter = [];
+      if (today) {
+        completedTasksFilter = arrayDB.filter(
+          ({ concluido, data }) => concluido === 1 && data === currentDate
+        );
+      } else if (searchText) {
+        completedTasksFilter = arrayDB.filter(
+          ({ concluido, tarefa, data }) =>
+            concluido === 1 &&
+            (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
+              data.toLowerCase().includes(searchText.toLowerCase()))
+        );
+      } else {
+        completedTasksFilter = arrayDB.filter(
+          ({ concluido, data }) => concluido === 1 && checkMonth(data)
+        );
+      }
+      setCompletedTasks(completedTasksFilter);
+
+      let pedingTasksFilter = [];
+      if (today) {
+        pedingTasksFilter = arrayDB.filter(
+          ({ concluido, data }) => concluido === 0 && data === currentDate
+        );
+      } else if (searchText) {
+        pedingTasksFilter = arrayDB.filter(
+          ({ concluido, tarefa, data }) =>
+            concluido === 0 &&
+            (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
+              data.toLowerCase().includes(searchText.toLowerCase()))
+        );
+      } else {
+        pedingTasksFilter = arrayDB.filter(
+          ({ concluido, data }) => concluido === 0 && checkMonth(data)
+        );
+      }
+      setPedingTesks(pedingTasksFilter);
+    }
+  }, [arrayDB, currentDate, today, searchMonth, searchText]);
 
   async function handleExcluir(id) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
@@ -33,11 +95,11 @@ export default function Table({ arrayDB, setArrayDB, GetDB, setEditTasks }) {
       .catch(({ data }) => toast.error(data));
     GetDB();
 
-    setIsSubmit(false);
+    setIsSubmit((prevState) => !prevState);
   }
 
   function handleModal() {
-    setOpenModal(true);
+    setOpenModal((prevState) => !prevState);
   }
   function handleEdit(tarefa) {
     setEditTasks(tarefa);
@@ -45,7 +107,8 @@ export default function Table({ arrayDB, setArrayDB, GetDB, setEditTasks }) {
 
   async function handleUpdate(tarefa) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
-    setIsSubmit(true);
+    // Inverte o valor
+    setIsSubmit((prevState) => !prevState);
     await axios
       .put(process.env.REACT_APP_DB_API + tarefa.id, {
         tarefa: tarefa.tarefa,
@@ -57,11 +120,43 @@ export default function Table({ arrayDB, setArrayDB, GetDB, setEditTasks }) {
 
     GetDB();
 
-    setIsSubmit(false);
+    // Inverte o valor
+    setIsSubmit((prevState) => !prevState);
   }
 
   return (
     <section className={styleExt.section}>
+      {today ? (
+        <>
+          <section className={styleExt.info}>
+            <p>Suas tarefas do dia de hoje: </p>
+          </section>
+        </>
+      ) : (
+        <>
+          <input
+            id={"searchText"}
+            onChange={(e) => setSearchText(e.target.value)}
+            className={styleExt.searchText}
+            placeholder={"Pesquise aqui..."}
+          />
+          <section className={styleExt.filter}>
+            <label htmlFor="monthFilter">Filtrar por mês: </label>
+            <select
+              id="monthFilter"
+              value={searchMonth}
+              onChange={handleMonthChange}
+            >
+              {months.map((month) => (
+                <option key={month.value} value={month.value}>
+                  {month.label}
+                </option>
+              ))}
+            </select>
+          </section>
+        </>
+      )}
+
       {openModal && (
         <Modal
           openModal={openModal}
@@ -89,35 +184,39 @@ export default function Table({ arrayDB, setArrayDB, GetDB, setEditTasks }) {
 
               <aside>
                 <span>Aguardando</span>
-                <button
-                  className={styleExt.BtnEdit}
-                  onClick={() => handleEdit(tarefa)}
-                >
-                  <MdEdit />
-                </button>
-
-                <button
-                  className={styleExt.BtnCheck}
-                  title="Concluir"
-                  disabled={IsSubmit}
-                  onClick={() => {
-                    handleUpdate(tarefa);
-                  }}
-                >
-                  <MdCheck />
-                </button>
-
-                <button
-                  className={styleExt.BtnExcluir}
-                  title="Excluir"
-                  disabled={IsSubmit}
-                  onClick={() => {
-                    setTarefaId(tarefa.id);
-                    handleModal();
-                  }}
-                >
-                  <MdDelete />
-                </button>
+                {today && (
+                  <>
+                    <button
+                      className={styleExt.btnEdit}
+                      title="Editar"
+                      disabled={IsSubmit}
+                      onClick={() => handleEdit(tarefa)}
+                    >
+                      <MdEdit />
+                    </button>
+                    <button
+                      className={styleExt.btnCheck}
+                      title="Concluir"
+                      disabled={IsSubmit}
+                      onClick={() => {
+                        handleUpdate(tarefa);
+                      }}
+                    >
+                      <MdCheck />
+                    </button>
+                    <button
+                      className={styleExt.btnDelete}
+                      title="Excluir"
+                      disabled={IsSubmit}
+                      onClick={() => {
+                        setTarefaId(tarefa.id);
+                        handleModal();
+                      }}
+                    >
+                      <MdDelete />
+                    </button>{" "}
+                  </>
+                )}
               </aside>
             </div>
           ))
@@ -136,26 +235,26 @@ export default function Table({ arrayDB, setArrayDB, GetDB, setEditTasks }) {
             <div key={key}>
               <aside>
                 <h3>{tarefa.tarefa} </h3>
-                <p>
-                  {tarefa.data} - {tarefa.data}
-                </p>
+                <p>{tarefa.data}</p>
               </aside>
 
               <aside>
                 <span>Finalizado</span>
 
-                <button
-                  className={styleExt.BtnExcluir}
-                  title="Excluir"
-                  disabled={IsSubmit}
-                  onClick={() => {
-                    setTarefaId(tarefa.id);
+                {today && (
+                  <button
+                    className={styleExt.btnDelete}
+                    title="Excluir"
+                    disabled={IsSubmit}
+                    onClick={() => {
+                      setTarefaId(tarefa.id);
 
-                    handleModal();
-                  }}
-                >
-                  <MdDelete />
-                </button>
+                      handleModal();
+                    }}
+                  >
+                    <MdDelete />
+                  </button>
+                )}
               </aside>
             </div>
           ))

@@ -1,5 +1,6 @@
 .main {
   padding: 30px;
+  min-height: calc(100vh - var(--heightNavBar) - 130px);
 }
 .main h1 {
   color: var(--corSecundaria);
@@ -8,7 +9,6 @@
 }
 .main p {
   text-align: center;
-  color: #ffffff;
+  color: #757373;
   margin-bottom: 15px;
-  
 }

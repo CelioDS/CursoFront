@@ -2,6 +2,8 @@
   --corPrincipal: #111246;
   --corSecundaria: #ff4a03;
   --corTerceira: #ffffff;
+  --heightNavBar: 60px;
+  --heightFooter: 60px;
 }
 * {
   margin: 0;

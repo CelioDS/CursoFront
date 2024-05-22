@@ -2,6 +2,7 @@
   display: flex;
   align-items: start;
   justify-content: center;
+  position: relative;
   flex-direction: row;
   gap: 10px;
   width: 100%;
@@ -11,10 +12,27 @@
   margin-bottom: 150px;
   background-color: var(--corTerceira);
 }
+.section .info {
+  position: absolute;
+  top: 10px;
+  color: #b4b3b3;
+}
+.section .filter {
+  position: absolute;
+  top: 10px;
+  color: #b4b3b3;
+}
+.section .searchText {
+  position: absolute !important;
+  top: 10px;
+  left: 0 !important;
+  color: #b4b3b3;
+}
+
 .section .Pendentes,
 .section .Concluidos {
   width: 390px;
-
+  margin-top: 30px;
   text-align: center;
 }
 .section .Pendentes p::first-letter,
@@ -76,14 +94,16 @@
   border: 1px solid #ccc;
   background-color: #fff;
 }
-.section .Pendentes div:hover .BtnCheck,
-.section .Pendentes div:hover .BtnExcluir,
-.section .Concluidos div:hover .BtnExcluir {
+.section .Pendentes div:hover .btnCheck,
+.section .Pendentes div:hover .btnEdit,
+.section .Pendentes div:hover .btnDelete,
+.section .Concluidos div:hover .btnDelete {
   opacity: 1;
 }
-.section .Pendentes div .BtnCheck:active,
-.section .Pendentes div .BtnExcluir:active,
-.section .Concluidos div .BtnExcluir:active {
+.section .Pendentes div .btnCheck:active,
+.section .Pendentes div .btnEdit:active,
+.section .Pendentes div .btnDelete:active,
+.section .Concluidos div .btnDelete:active {
   font-size: 12px;
 }
 .section div div aside:nth-child(1) {
@@ -115,16 +135,22 @@
   background-color: #ece9e9;
   text-decoration: line-through 1px;
 }
-.section div div aside .BtnCheck {
+.section div div aside .btnCheck {
   color: #28a745;
   border: none;
   opacity: 0;
 }
-.section div div aside .BtnExcluir {
+.section div div aside .btnDelete {
   color: #ff0000;
   border: none;
   opacity: 0;
 }
+.section div div aside .btnEdit {
+  color: #1100ff;
+  border: none;
+  opacity: 0;
+}
+
 .section div div aside button:hover {
   opacity: 0.6;
   background-color: #e7e6e6;

@@ -1,6 +1,6 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import Header from "./components/Layout/Header";
+import NavBar from "./components/Layout/NavBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Layout/Footer";
@@ -8,7 +8,7 @@ import Footer from "./components/Layout/Footer";
 function App() {
   return (
     <div className="App">
-      <Header />
+      <NavBar />
       <Outlet />
       <ToastContainer
         pauseOnHover={false}
