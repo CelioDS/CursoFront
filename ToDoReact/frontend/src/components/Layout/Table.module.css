@@ -11,18 +11,19 @@
   min-height: 50vh;
   margin-bottom: 150px;
   background-color: var(--corTerceira);
+
 }
 .section .info {
   position: absolute;
   top: 10px;
   color: #b4b3b3;
+  
 }
 .section .filter {
   position: absolute;
   top: 10px;
   color: #b4b3b3;
   right: 0;
-
 }
 .section .searchText {
   position: absolute !important;
@@ -43,6 +44,7 @@
   width: 390px;
   margin-top: 30px;
   text-align: center;
+  
 }
 .section .Pendentes p::first-letter,
 .section .Concluidos p::first-letter {

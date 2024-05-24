@@ -25,6 +25,22 @@ export default function Table({
   const [tarefaId, setTarefaId] = useState();
   const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); // Estado para controlar o valor do campo de data
   const [searchText, setSearchText] = useState();
+  const [completedTasksCount, setCompletedTasksCount] = useState(0);
+  const [pedingTasksCount, setPedingTasksCount] = useState(0);
+
+  useEffect(() => {
+    const TasksCountCompleted = arrayDB.reduce((total, task) => {
+      return task.concluido === 1 ? total + 1 : total;
+    }, 0);
+    setCompletedTasksCount(TasksCountCompleted);
+
+    const TasksCountPeding = arrayDB.reduce((total, task) => {
+      return task.concluido === 0 ? total + 1 : total;
+    }, 0);
+
+    setCompletedTasksCount(TasksCountCompleted);
+    setPedingTasksCount(TasksCountPeding);
+  }, [arrayDB]);
 
   useEffect(() => {
     const today = new Date();

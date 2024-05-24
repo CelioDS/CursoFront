@@ -1,14 +1,24 @@
 .main {
   padding: 30px;
   min-height: calc(100vh - var(--heightNavBar) - 130px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+  width: 100%;
 }
-.main h1 {
-  color: var(--corSecundaria);
+.main section {
+  padding: 15px;
+  flex: 1; /* As colunas vão ocupar o mesmo espaço */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente o conteúdo dentro das seções */
+  align-items: center; /* Centraliza verticalmente o conteúdo dentro das seções */
+  justify-content: center;
   text-align: center;
-  font-weight: normal;
+  align-items: center;
 }
-.main p {
-  text-align: center;
-  color: #757373;
-  margin-bottom: 15px;
+.main > section > img {
+  display: block;
+  width: 120%;
+  height: 100%;
 }
