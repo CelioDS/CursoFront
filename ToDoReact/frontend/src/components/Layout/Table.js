@@ -1,5 +1,5 @@
 import styleExt from "./Table.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loading from "../Item-Layout/Loading";
 import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
 import axios from "axios";
@@ -27,6 +27,11 @@ export default function Table({
   const [searchText, setSearchText] = useState();
   const [completedTasksCount, setCompletedTasksCount] = useState(0);
   const [pedingTasksCount, setPedingTasksCount] = useState(0);
+
+  const PorcentagemCompleted = useMemo(() => {
+    const totalTalks = pedingTasksCount + completedTasksCount;
+    return totalTalks > 0 ? (completedTasksCount / totalTalks) * 100 : 0;
+  }, [completedTasksCount, pedingTasksCount]);
 
   useEffect(() => {
     const TasksCountCompleted = arrayDB.reduce((total, task) => {
@@ -150,6 +155,14 @@ export default function Table({
         </>
       ) : (
         <>
+          <>
+            {completedTasksCount < 0 && (
+              <span>
+                Porcentagem de tarefas concluidas
+                {PorcentagemCompleted.toFixed(2)}%
+              </span>
+            )}
+          </>
           <Input
             id={"searchText"}
             onChange={(e) => setSearchText(e.target.value)}
