@@ -16,6 +16,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
+  flex-direction: column;
 }
 .main > section > img {
   display: block;

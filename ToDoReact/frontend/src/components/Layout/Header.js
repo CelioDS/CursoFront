@@ -1,5 +1,6 @@
 import styleExt from "./Header.module.css";
 import imagemtodo from "../img/todoimagem.webp";
+import LinkButton from "../Item-Layout/LinkButton";
 
 export default function Header() {
   return (
@@ -17,6 +18,18 @@ export default function Header() {
             Crie, edite e conclua as suas tarefas com facilidade. <br />
           </p>
           <p>colocar um frase morivacional e imagme</p>
+        </div>
+
+        <div>
+          <p>
+            <br />
+          </p>
+          <LinkButton
+            to="/todo"
+            text={"Clique aqui "}
+            extStyle={true}
+            className={styleExt.btnHeader}
+          />
         </div>
       </section>
     </main>
