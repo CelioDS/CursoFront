@@ -1,7 +1,6 @@
 :root {
-  --corPrincipal: #2c2929;
-  --corSecundaria: #eca100;
-  --corTerceira: #ffffff;
+  --cor60: #12033d;
+  --cor30: #ff7300;
   --heightNavBar: 60px;
   --heightFooter: 60px;
 }
@@ -11,9 +10,6 @@
   box-sizing: border-box;
   font-family: system-ui, sans-serif;
 }
-body {
-  background-color: var(--corPrincipal);
-}
 
 *::first-letter {
   text-transform: capitalize;
@@ -22,6 +18,7 @@ p::first-letter {
   text-transform: uppercase;
   padding-left: 15px;
 }
+
 h1::first-letter {
   text-transform: uppercase;
   padding-left: 15px;

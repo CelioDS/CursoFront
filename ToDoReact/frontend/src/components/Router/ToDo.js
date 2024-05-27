@@ -1,5 +1,5 @@
 import Container from "../Layout/Container";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import Form from "../Layout/Form";
 import Table from "../Layout/Table";
 
@@ -21,7 +21,7 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     GetDB();
   }, [setArrayDB]);
 

@@ -15,6 +15,7 @@
   align-items: center;
   text-align: center;
   width: 100%;
+  margin-top: 5px;
 }
 .main nav > a {
   display: flex;
@@ -26,6 +27,7 @@
   font-weight: bolder;
   color: var(--corSecundaria);
   height: 100%;
+  border-bottom: 1px solid var(--cor60);
 }
 .main nav ul {
   display: flex;
@@ -38,6 +40,9 @@
 }
 .main nav ul a {
   text-decoration: none;
-  color: var(--corSecundaria);
-  border-bottom: 2px solid var(--corPrincipal);
+  color: var(--cor60);
+  padding: 5px;
+}
+.main nav ul a:hover {
+  color: var(--cor30);
 }

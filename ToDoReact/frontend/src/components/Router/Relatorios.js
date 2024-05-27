@@ -47,6 +47,8 @@ export default function Relatorios() {
       <main className={styleExt.main}>
         <Table
           arrayDB={arrayDB}
+          setArrayDB={setArrayDB}
+          GetDB={GetDB}
           today={false}
           handleMonthChange={handleMonthChange}
           searchMonth={searchMonth}

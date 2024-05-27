@@ -1,5 +1,8 @@
+:root {
+  --colorText: #5e5e5e;
+}
 .footer {
-  color: #ffff;
+  color: var(--colorText);
   text-align: center;
   display: flex;
   align-items: center;
@@ -23,10 +26,14 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #fff;
+  color: var(--colorText);
   text-decoration: none;
 }
 .footer span,
 .footer svg {
-  color: var(--corSecundaria);
+  color: var(--cor60);
+}
+.footer span:hover,
+.footer svg:hover {
+  color: var(--cor30);
 }

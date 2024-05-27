@@ -1,97 +1,137 @@
-.section {
+.main {
   display: flex;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
   position: relative;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
   width: 100%;
-  border-top: 1px solid #ccc;
   padding-top: 30px;
   min-height: 50vh;
   margin-bottom: 150px;
-  background-color: var(--corTerceira);
+}
 
-}
-.section .info {
-  position: absolute;
-  top: 10px;
-  color: #b4b3b3;
-  
-}
-.section .filter {
-  position: absolute;
-  top: 10px;
-  color: #b4b3b3;
-  right: 0;
-}
-.section .searchText {
-  position: absolute !important;
-  top: 10px;
-  left: 0 !important;
-  color: #b4b3b3;
-  height: 21px;
-  padding-left: 5px;
-  outline-color: #acacac;
-}
-.section .searchText::placeholder {
+.main .searchText::placeholder {
   color: #ccc;
   padding-left: 5px;
 }
+.main p {
+  color: var(--cor60);
+}
+.main .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
 
-.section .Pendentes,
-.section .Concluidos {
+.main .grafico {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main .searchText .input {
+  padding: 5px;
+  outline: none;
+}
+
+.main .filter select {
+  padding: 5px;
+  outline: none;
+}
+
+.main .header > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+.main .header > div > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.main .areaTarefas {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  text-align: start;
+  margin: 0 auto;
+  gap: 10px;
+}
+.main .areaTarefas {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  text-align: start;
+  margin: 0 auto;
+}
+
+.main .Pendentes,
+.main .Concluidos {
   width: 390px;
   margin-top: 30px;
   text-align: center;
-  
 }
-.section .Pendentes p::first-letter,
-.section .Concluidos p::first-letter {
+.main .Pendentes p::first-letter,
+.main .Concluidos p::first-letter {
   text-transform: uppercase;
   padding-left: 0px !important;
 }
-.section .Pendentes h2,
-.section .Concluidos h2 {
-  color: #a89e9e;
+.main .Pendentes h2,
+.main .Concluidos h2 {
+  color: var(--cor60);
   font-size: 20px;
   font-weight: bolder;
   margin-bottom: 15px;
 }
-.section .Pendentes h3,
-.section .Concluidos h3 {
-  color: #363636;
+.main .Pendentes h3,
+.main .Concluidos h3 {
+  color: var(--cor60);
   font-size: 14px;
   font-weight: normal;
   word-wrap: break-word;
   word-break: break-all;
 }
-.section .Pendentes p,
-.section .Concluidos p {
+.main .Pendentes p,
+.main .Concluidos p {
   color: #ccc;
   font-size: 11px;
 }
-.section .Pendentes span:nth-child(1) {
+.main .Pendentes span:nth-child(1) {
   font-size: 11px;
   color: #806d00;
   background-color: #f0efcf;
   display: inline-block; /* Adicione display inline-block para o span */
 }
-.section .Pendentes span:nth-child(2),
-.section .Concluidos span:nth-child(2) {
+.main .Pendentes span:nth-child(2),
+.main .Concluidos span:nth-child(2) {
   text-align: center;
   font-size: 11px;
   color: #806d00;
   display: inline-block; /* Adicione display inline-block para o span */
 }
-.section .Concluidos span:nth-child(1) {
+.main .Concluidos span:nth-child(1) {
   font-size: 11px;
   color: #008000;
   background-color: #d9f0cf;
   display: inline-block; /* Adicione display inline-block para o span */
 }
-.section .Concluidos div,
-.section .Pendentes div {
+.main .Concluidos > div,
+.main .Pendentes > div {
   display: inline-flex;
   justify-content: space-between;
   gap: 10px;
@@ -99,39 +139,43 @@
   height: 70px;
   width: 98%;
 }
-.section .Pendentes div:hover,
-.section .Concluidos div:hover {
+.main .Pendentes > div:hover,
+.main .Concluidos > div:hover {
   transform: scaleX(1.02);
-  border: 1px solid #ccc;
   background-color: #fff;
+  filter: drop-shadow(3px 3px 3px #000000);
 }
-.section .Pendentes div:hover .btnCheck,
-.section .Pendentes div:hover .btnEdit,
-.section .Pendentes div:hover .btnDelete,
-.section .Concluidos div:hover .btnDelete {
+.main .Pendentes > div:hover h3,
+.main .Concluidos > div:hover h3 {
+  color: var(--cor30);
+}
+.main .Pendentes > div:hover .btnCheck,
+.main .Pendentes > div:hover .btnEdit,
+.main .Pendentes > div:hover .btnDelete,
+.main .Concluidos > div:hover .btnDelete {
   opacity: 1;
 }
-.section .Pendentes div .btnCheck:active,
-.section .Pendentes div .btnEdit:active,
-.section .Pendentes div .btnDelete:active,
-.section .Concluidos div .btnDelete:active {
+.main .Pendentes > div .btnCheck:active,
+.main .Pendentes > div .btnEdit:active,
+.main .Pendentes > div .btnDelete:active,
+.main .Concluidos > div .btnDelete:active {
   font-size: 12px;
 }
-.section div div aside:nth-child(1) {
+.main > section div aside:nth-child(1) {
   display: flex;
   flex-direction: column;
   gap: 5px;
   justify-content: center;
   align-items: start;
 }
-.section div div aside {
+.main section div aside {
   display: flex;
   flex-direction: row;
   gap: 5px;
   justify-content: center;
   align-items: center;
 }
-.section div div aside button {
+.main section div aside button {
   display: flex;
   justify-content: center;
   width: 20px;
@@ -141,39 +185,39 @@
   border-radius: 25px;
   background-color: #f8f8f8;
 }
-.section .Concluidos div aside h3 {
+.main .Concluidos div aside h3 {
   font-style: italic;
   background-color: #ece9e9;
   text-decoration: line-through 1px;
 }
-.section div div aside .btnCheck {
+.main section div aside .btnCheck {
   color: #28a745;
   border: none;
   opacity: 0;
 }
-.section div div aside .btnDelete {
+.main section div aside .btnDelete {
   color: #ff0000;
   border: none;
   opacity: 0;
 }
-.section div div aside .btnEdit {
+.main section div aside .btnEdit {
   color: #1100ff;
   border: none;
   opacity: 0;
 }
 
-.section div div aside button:hover {
+.main section div aside button:hover {
   opacity: 0.6;
   background-color: #e7e6e6;
 }
 
 @media (max-width: 900px) {
-  .section {
+  .main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-  .section div {
+  .main section {
     width: 98%;
     text-align: center;
     align-items: center;

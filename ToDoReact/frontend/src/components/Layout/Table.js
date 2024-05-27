@@ -1,5 +1,5 @@
 import styleExt from "./Table.module.css";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Loading from "../Item-Layout/Loading";
 import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
 import axios from "axios";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Modal from "../Item-Layout/Modal";
 import { format } from "date-fns";
 import Input from "../Item-Layout/Input";
+import PieChart from "../graficos/PieCharts";
 
 export default function Table({
   arrayDB,
@@ -28,12 +29,7 @@ export default function Table({
   const [completedTasksCount, setCompletedTasksCount] = useState(0);
   const [pedingTasksCount, setPedingTasksCount] = useState(0);
 
-  const PorcentagemCompleted = useMemo(() => {
-    const totalTalks = pedingTasksCount + completedTasksCount;
-    return totalTalks > 0 ? (completedTasksCount / totalTalks) * 100 : 0;
-  }, [completedTasksCount, pedingTasksCount]);
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     const TasksCountCompleted = arrayDB.reduce((total, task) => {
       return task.concluido === 1 ? total + 1 : total;
     }, 0);
@@ -146,45 +142,53 @@ export default function Table({
   }
 
   return (
-    <section className={styleExt.section}>
-      {today ? (
-        <>
-          <section className={styleExt.info}>
-            <p>Suas tarefas do dia de hoje: </p>
-          </section>
-        </>
-      ) : (
-        <>
+    <main className={styleExt.main}>
+      <section className={styleExt.header}>
+        {today ? (
           <>
-            {completedTasksCount < 0 && (
-              <span>
-                Porcentagem de tarefas concluidas
-                {PorcentagemCompleted.toFixed(2)}%
-              </span>
-            )}
+            <section className={styleExt.info}>
+              <p>Suas tarefas do dia de hoje: </p>
+            </section>
           </>
-          <Input
-            id={"searchText"}
-            onChange={(e) => setSearchText(e.target.value)}
-            className={styleExt.searchText}
-            placeholder={"Pesquise aqui..."}
-          />
-          <section className={styleExt.filter}>
-            <label htmlFor="monthFilter">Filtrar por mês: </label>
-            <select
-              id="monthFilter"
-              value={searchMonth}
-              onChange={handleMonthChange}
-            >
-              {months.map((month) => (
-                <option key={month.value} value={month.value}>
-                  {month.label}
-                </option>
-              ))}
-            </select>
-          </section>
-        </>
-      )}
+        ) : (
+          <div>
+            {arrayDB.length > 0 && (
+              <div className={styleExt.grafico}>
+                <PieChart
+                  completed={completedTasksCount}
+                  pending={pedingTasksCount}
+                />
+              </div>
+            )}
+
+            <div className={styleExt.filtros}>
+              <aside className={styleExt.searchText}>
+                <Input
+                  id={"searchText"}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder={"Pesquise aqui..."}
+                  className={styleExt.input}
+                />
+              </aside>
+
+              <aside className={styleExt.filter}>
+                <label htmlFor="monthFilter">Filtrar por mês: </label>
+                <select
+                  id="monthFilter"
+                  value={searchMonth}
+                  onChange={handleMonthChange}
+                >
+                  {months.map((month) => (
+                    <option key={month.value} value={month.value}>
+                      {month.label}
+                    </option>
+                  ))}
+                </select>
+              </aside>
+            </div>
+          </div>
+        )}
+      </section>
 
       {openModal && (
         <Modal
@@ -195,34 +199,37 @@ export default function Table({
           }}
         />
       )}
-      <div className={styleExt.Pendentes}>
-        <h2>Pendente(s)</h2>
+      <section className={styleExt.areaTarefas}>
+        <aside className={styleExt.Pendentes}>
+          <h2>Pendente(s)</h2>
 
-        {pedingTesks && pedingTesks.length === 0 ? (
-          <>
-            <span>{<Loading />}</span>
-            <p>Aguardando dados...</p>
-          </>
-        ) : (
-          pedingTesks.map((tarefa, key) => (
-            <div key={key}>
-              <aside>
-                <h3>{tarefa.tarefa} </h3>
-                <p>{tarefa.data}</p>
-              </aside>
+          {pedingTesks && pedingTesks.length === 0 ? (
+            <>
+              <span>{<Loading />}</span>
+              <p>Aguardando dados...</p>
+            </>
+          ) : (
+            pedingTesks.map((tarefa, key) => (
+              <div key={key}>
+                <aside>
+                  <h3>{tarefa.tarefa} </h3>
+                  <p>{tarefa.data}</p>
+                </aside>
 
-              <aside>
-                <span>Aguardando</span>
-                {today && (
+                <aside>
+                  <span>Aguardando</span>
                   <>
-                    <button
-                      className={styleExt.btnEdit}
-                      title="Editar"
-                      disabled={IsSubmit}
-                      onClick={() => handleEdit(tarefa)}
-                    >
-                      <MdEdit />
-                    </button>
+                    {today && (
+                      <button
+                        className={styleExt.btnEdit}
+                        title="Editar"
+                        disabled={IsSubmit}
+                        onClick={() => handleEdit(tarefa)}
+                      >
+                        <MdEdit />
+                      </button>
+                    )}
+
                     <button
                       className={styleExt.btnCheck}
                       title="Concluir"
@@ -233,62 +240,64 @@ export default function Table({
                     >
                       <MdCheck />
                     </button>
+                    {today && (
+                      <button
+                        className={styleExt.btnDelete}
+                        title="Excluir"
+                        disabled={IsSubmit}
+                        onClick={() => {
+                          setTarefaId(tarefa.id);
+                          handleModal();
+                        }}
+                      >
+                        <MdDelete />
+                      </button>
+                    )}
+                  </>
+                </aside>
+              </div>
+            ))
+          )}
+        </aside>
+        <aside className={styleExt.Concluidos}>
+          <h2>Concluido(s)</h2>
+
+          {completedTasks && completedTasks.length === 0 ? (
+            <>
+              <span>{<Loading />}</span>
+              <p>Aguardando dados...</p>
+            </>
+          ) : (
+            completedTasks.map((tarefa, key) => (
+              <div key={key}>
+                <aside>
+                  <h3>{tarefa.tarefa} </h3>
+                  <p>{tarefa.data}</p>
+                </aside>
+
+                <aside>
+                  <span>Finalizado</span>
+
+                  {today && (
                     <button
                       className={styleExt.btnDelete}
                       title="Excluir"
                       disabled={IsSubmit}
                       onClick={() => {
                         setTarefaId(tarefa.id);
+
                         handleModal();
                       }}
                     >
                       <MdDelete />
-                    </button>{" "}
-                  </>
-                )}
-              </aside>
-            </div>
-          ))
-        )}
-      </div>
-      <div className={styleExt.Concluidos}>
-        <h2>Concluido(s)</h2>
-
-        {completedTasks && completedTasks.length === 0 ? (
-          <>
-            <span>{<Loading />}</span>
-            <p>Aguardando dados...</p>
-          </>
-        ) : (
-          completedTasks.map((tarefa, key) => (
-            <div key={key}>
-              <aside>
-                <h3>{tarefa.tarefa} </h3>
-                <p>{tarefa.data}</p>
-              </aside>
-
-              <aside>
-                <span>Finalizado</span>
-
-                {today && (
-                  <button
-                    className={styleExt.btnDelete}
-                    title="Excluir"
-                    disabled={IsSubmit}
-                    onClick={() => {
-                      setTarefaId(tarefa.id);
-
-                      handleModal();
-                    }}
-                  >
-                    <MdDelete />
-                  </button>
-                )}
-              </aside>
-            </div>
-          ))
-        )}
-      </div>
-    </section>
+                    </button>
+                  )}
+                </aside>
+              </div>
+            ))
+          )}
+        </aside>
+      </section>
+    </main>
   );
 }
