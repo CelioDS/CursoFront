@@ -3,7 +3,6 @@ import styleExt from "./NavBar.module.css";
 import LinkButton from "../Item-Layout/LinkButton";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BsList, BsXLg } from "react-icons/bs";
 
 export default function NavBar() {
   const [isMobile, setIsMobile] = useState(true);
@@ -12,8 +11,9 @@ export default function NavBar() {
   useEffect(() => {}, []);
 
   useState(() => {
+    setIconMenu("ss");
     setIsMobile(true);
-  }, []);
+  }, [setIsMobile, setIconMenu]);
   return (
     <main className={styleExt.main}>
       <nav>
