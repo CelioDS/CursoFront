@@ -3,6 +3,7 @@ import Container from "../Layout/Container";
 import Header from "../Layout/Header";
 
 import "./Home.module.css";
+import {useEffect} from "react"
 
 export default function Home() {
 
