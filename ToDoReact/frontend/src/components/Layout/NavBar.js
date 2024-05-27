@@ -2,18 +2,20 @@ import styleExt from "./NavBar.module.css";
 
 import LinkButton from "../Item-Layout/LinkButton";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import CheckMobile from "../Tools/CheckMobile";
 
 export default function NavBar() {
-  const [isMobile, setIsMobile] = useState(false);
+  const checkMobile = useCallback(CheckMobile, []);
+  const isMobile = checkMobile();
   const [iconMenu, setIconMenu] = useState();
 
-  useEffect(() => {}, []);
-
-  useState(() => {
+  useEffect(() => {
     setIconMenu("ss");
-    setIsMobile(true);
-  }, [setIsMobile, setIconMenu]);
+
+    console.log(isMobile);
+  }, [isMobile]);
+
   return (
     <main className={styleExt.main}>
       <nav>
@@ -23,8 +25,9 @@ export default function NavBar() {
           extStyle={true}
           className={styleExt.logo}
         />
-        {isMobile && <button>{iconMenu}</button>}
-        <ul className={styleExt.NotMobile}>
+        {isMobile && <button className={styleExt.menu}>{iconMenu}</button>}
+
+        <ul className={styleExt.isMobile}>
           <Link>Home</Link>
           <Link to="/ToDo">ToDo</Link>
           <Link to="Relatorios">relatorios</Link>
