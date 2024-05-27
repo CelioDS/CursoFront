@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function NavBar() {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const [iconMenu, setIconMenu] = useState();
 
   useEffect(() => {}, []);

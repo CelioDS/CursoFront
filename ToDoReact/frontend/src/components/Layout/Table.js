@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Modal from "../Item-Layout/Modal";
 import { format } from "date-fns";
 import Input from "../Item-Layout/Input";
-import PieChart from "../graficos/PieCharts";
+import PieChart from "../Tools/PieCharts";
 
 export default function Table({
   arrayDB,
