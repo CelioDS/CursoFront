@@ -172,7 +172,6 @@ export default function Table({
               </aside>
 
               <aside className={styleExt.filter}>
-                <label htmlFor="monthFilter">Filtrar por mês: </label>
                 <select
                   id="monthFilter"
                   value={searchMonth}

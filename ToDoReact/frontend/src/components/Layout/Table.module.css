@@ -212,6 +212,13 @@
 }
 
 @media (max-width: 900px) {
+  .main .filtros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column !important;
+    gap: 10px;
+  }
   .main .areaTarefas {
     justify-content: center;
     align-items: center;
