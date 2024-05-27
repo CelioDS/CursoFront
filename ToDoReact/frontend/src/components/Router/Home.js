@@ -17,11 +17,7 @@ useEffect(() => {
     };
   }, []); // Array vazio indica que o efeito será executado apenas uma vez
  
-  return (
-    // Seu componente renderizado aqui
-  );
-}
-  
+
   return (
     <Container>
       <Header />
