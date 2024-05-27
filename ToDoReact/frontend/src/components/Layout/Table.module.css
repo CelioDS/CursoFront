@@ -212,7 +212,7 @@
 }
 
 @media (max-width: 900px) {
-  .main {
+  .main .areaTarefas {
     justify-content: center;
     align-items: center;
     flex-direction: column;
