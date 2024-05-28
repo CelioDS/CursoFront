@@ -7,7 +7,7 @@ export default function Title({nome}) {
  
     // Função de limpeza para desconectar o efeito ao desmontar o componente
     
-  }, []); // Array vazio indica que o efeito será executado apenas uma vez
+  }, [nome]); // Array vazio indica que o efeito será executado apenas uma vez
  
   
 }
