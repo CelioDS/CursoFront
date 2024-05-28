@@ -2,6 +2,7 @@ import Container from "../Layout/Container";
 import { useState, useLayoutEffect } from "react";
 import Form from "../Layout/Form";
 import Table from "../Layout/Table";
+import Title from "../Tools/Tile";
 
 import "./ToDo.module.css";
 import { toast } from "react-toastify";
@@ -10,6 +11,8 @@ import axios from "axios";
 export default function Home() {
   const [arrayDB, setArrayDB] = useState([]);
   const [editTasks, setEditTasks] = useState();
+
+  <Title nome="Todo"/>
 
   async function GetDB() {
     try {
