@@ -2,7 +2,7 @@ import Container from "../Layout/Container";
 import { useState, useLayoutEffect } from "react";
 import Form from "../Layout/Form";
 import Table from "../Layout/Table";
-import Title from "../Tools/Tile";
+import Title from "../Tools/Title";
 
 import "./ToDo.module.css";
 import { toast } from "react-toastify";
