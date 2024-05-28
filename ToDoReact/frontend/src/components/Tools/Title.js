@@ -1,7 +1,7 @@
 import  { useEffect } from 'react';
  
 export default function Title({nome}) {
-  useEffect(() => {
+  useEffect((nome) => {
     // Define o título da página
     document.title = {nome};
  
