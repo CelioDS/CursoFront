@@ -13,9 +13,7 @@ useEffect(() => {
     document.title = "Configuracao - fluxo de caixa";
  
     // Função de limpeza para desconectar o efeito ao desmontar o componente
-    return () => {
-      document.title = "Página anterior"; // Restaura o título original (opcional)
-    };
+    
   }, []); // Array vazio indica que o efeito será executado apenas uma vez
  
 
