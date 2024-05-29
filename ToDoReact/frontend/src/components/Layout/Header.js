@@ -17,7 +17,7 @@ export default function Header() {
         </p>
         <br />
         <LinkButton
-          to="/todo"
+          to="/Tarefas"
           text={"Clique aqui..."}
           extStyle={true}
           className={styleExt.btnHeader}

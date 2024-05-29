@@ -6,9 +6,10 @@ export default function PieChart({ completed, pending }) {
     series: [completed, pending],
     options: {
       chart: {
-        width: 300,
+        width: 260,
         type: "pie",
       },
+
       labels: ["completed", "pending"],
       colors: ["#008000", "#806d00"],
       legend: {
