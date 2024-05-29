@@ -4,20 +4,13 @@ import Form from "../Layout/Form";
 import Table from "../Layout/Table";
 import RenameTitle from "../Tools/RenameTitle";
 
-<<<<<<< HEAD:ToDoReact/frontend/src/components/Router/Tarefas.js
 import "./Tarefas.module.css";
-=======
-
-import "./ToDo.module.css";
->>>>>>> ab3ba8d33bbbaece4ee9c1a47f5bbc9bdc23c7c8:ToDoReact/frontend/src/components/Router/ToDo.js
 import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function Home() {
   const [arrayDB, setArrayDB] = useState([]);
   const [editTasks, setEditTasks] = useState();
-
-
 
   async function GetDB() {
     try {
