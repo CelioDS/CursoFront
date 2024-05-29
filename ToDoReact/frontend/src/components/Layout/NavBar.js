@@ -9,12 +9,37 @@ export default function NavBar() {
   const checkMobile = useCallback(CheckMobile, []);
   const isMobile = checkMobile();
   const [iconMenu, setIconMenu] = useState();
+  const [linkAtivo, setLinkAtivo] = useState("Home");
 
   useEffect(() => {
     setIconMenu("ss");
-
-    console.log(isMobile);
   }, [isMobile]);
+
+  useEffect(() => {
+    // Criando o MutationObserver
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (
+          mutation.type === "childList" &&
+          mutation.target === document.querySelector("title")
+        ) {
+          setLinkAtivo(mutation.target.textContent.split(" ")[0]);
+        }
+      }
+    });
+
+    // Observando mudanças no nó do título
+    observer.observe(document.querySelector("title"), {
+      subtree: true,
+      characterData: true,
+      childList: true,
+    });
+
+    // Função de limpeza para desconectar o MutationObserver ao desmontar o componente
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <main className={styleExt.main}>
@@ -28,9 +53,21 @@ export default function NavBar() {
         {isMobile && <button className={styleExt.menu}>{iconMenu}</button>}
 
         <ul className={styleExt.isMobile}>
-          <Link>Home</Link>
-          <Link to="/ToDo">ToDo</Link>
-          <Link to="Relatorios">relatorios</Link>
+          <Link style={linkAtivo === "Home" ? { color: "#ff7300" } : {}} to="/">
+            Home
+          </Link>
+          <Link
+            style={linkAtivo === "Tarefas" ? { color: "#ff7300" } : {}}
+            to="/Tarefas"
+          >
+            Tarefas
+          </Link>
+          <Link
+            style={linkAtivo === "Relatorios" ? { color: "#ff7300" } : {}}
+            to="Relatorios"
+          >
+            relatorios
+          </Link>
         </ul>
       </nav>
     </main>

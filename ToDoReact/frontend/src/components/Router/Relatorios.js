@@ -4,6 +4,7 @@ import styleExt from "./Relatorios.module.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useLayoutEffect, useState } from "react";
+import RenameTitle from "../Tools/RenameTitle";
 
 export default function Relatorios() {
   const [arrayDB, setArrayDB] = useState([]);
@@ -44,6 +45,7 @@ export default function Relatorios() {
 
   return (
     <Container>
+      <RenameTitle initialTitle={"Relatorios - ToDo"} />
       <main className={styleExt.main}>
         <Table
           arrayDB={arrayDB}

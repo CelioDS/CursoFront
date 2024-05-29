@@ -5,7 +5,7 @@ import App from "./App";
 // 1 -  config router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../src/components/Router/Home";
-import ToDo from "../src/components/Router/ToDo";
+import Tarefas from "../src/components/Router/Tarefas";
 import Relatorios from "../src/components/Router/Relatorios";
 import Error from "./components/Router/Error";
 
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/ToDo",
-        element: <ToDo />,
+        path: "/Tarefas",
+        element: <Tarefas />,
       },
       {
         path: "/Relatorios",

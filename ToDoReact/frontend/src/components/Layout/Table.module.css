@@ -104,7 +104,7 @@
   font-size: 14px;
   font-weight: normal;
   word-wrap: break-word;
-  word-break: break-all;
+  text-align: start;
 }
 .main .Pendentes p,
 .main .Concluidos p {
@@ -138,6 +138,7 @@
   padding: 15px;
   height: 70px;
   width: 98%;
+  border-bottom: 1px solid #8b87879f;
 }
 .main .Pendentes > div:hover,
 .main .Concluidos > div:hover {

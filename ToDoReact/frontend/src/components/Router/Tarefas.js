@@ -2,8 +2,9 @@ import Container from "../Layout/Container";
 import { useState, useLayoutEffect } from "react";
 import Form from "../Layout/Form";
 import Table from "../Layout/Table";
+import RenameTitle from "../Tools/RenameTitle";
 
-import "./ToDo.module.css";
+import "./Tarefas.module.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <Container>
+      <RenameTitle initialTitle={"Tarefas - ToDo"} />
       <Form GetDB={GetDB} editTasks={editTasks} setEditTasks={setEditTasks} />
       <Table
         arrayDB={arrayDB}

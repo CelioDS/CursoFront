@@ -44,7 +44,7 @@
   padding: 5px;
 }
 .main nav ul a:hover {
-  color: var(--cor30);
+  background-color: #eeeeee;
 }
 .main nav .isMobile {
   color: #000;
