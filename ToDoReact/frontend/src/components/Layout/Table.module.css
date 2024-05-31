@@ -39,11 +39,13 @@
 .main .searchText .input {
   padding: 5px;
   outline: none;
+  filter: drop-shadow(3px 3px 3px #000000);
 }
 
 .main .filter select {
   padding: 5px;
   outline: none;
+  filter: drop-shadow(3px 3px 3px #000000);
 }
 
 .main .header > div {
@@ -84,7 +86,9 @@
 .main .Concluidos {
   width: 390px;
   margin-top: 30px;
+  padding: 5px;
   text-align: center;
+  border: 1px solid var(--cor60Light);
 }
 .main .Pendentes p::first-letter,
 .main .Concluidos p::first-letter {
@@ -97,6 +101,9 @@
   font-size: 20px;
   font-weight: bolder;
   margin-bottom: 15px;
+  filter: drop-shadow(3px 3px 3px #a19f9f);
+
+  background-color: var(--cor60Light);
 }
 .main .Pendentes h3,
 .main .Concluidos h3 {
@@ -116,6 +123,7 @@
   color: #806d00;
   background-color: #f0efcf;
   display: inline-block; /* Adicione display inline-block para o span */
+  filter: drop-shadow(3px 3px 3px #a19f9f);
 }
 .main .Pendentes span:nth-child(2),
 .main .Concluidos span:nth-child(2) {
@@ -129,6 +137,7 @@
   color: #008000;
   background-color: #d9f0cf;
   display: inline-block; /* Adicione display inline-block para o span */
+  filter: drop-shadow(3px 3px 3px #a19f9f);
 }
 .main .Concluidos > div,
 .main .Pendentes > div {
@@ -138,7 +147,7 @@
   padding: 15px;
   height: 70px;
   width: 98%;
-  border-bottom: 1px solid #8b87879f;
+  margin-bottom: 5px;
 }
 .main .Pendentes > div:hover,
 .main .Concluidos > div:hover {
@@ -146,15 +155,13 @@
   background-color: #fff;
   filter: drop-shadow(3px 3px 3px #000000);
 }
-.main .Pendentes > div:hover h3,
-.main .Concluidos > div:hover h3 {
-  color: var(--cor30);
-}
+
 .main .Pendentes > div:hover .btnCheck,
 .main .Pendentes > div:hover .btnEdit,
 .main .Pendentes > div:hover .btnDelete,
 .main .Concluidos > div:hover .btnDelete {
   opacity: 1;
+  filter: drop-shadow(3px 3px 3px #a19f9f);
 }
 .main .Pendentes > div .btnCheck:active,
 .main .Pendentes > div .btnEdit:active,

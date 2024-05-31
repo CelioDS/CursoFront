@@ -21,8 +21,10 @@
   align-self: center;
   text-align: center;
   width: 100%;
-  color: #ac9797;
+  color: #000000;
   margin-bottom: 30px;
+  background-color: var(--cor60Light);
+  border-radius: 5px;
 }
 .main .sectionTitle a {
   background-color: var(--cor60);
@@ -54,6 +56,8 @@
 
 .main aside img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
 }
