@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <Container>
-      <RenameTitle initialTitle={"ToDo - Tarefas "} />
+      <RenameTitle initialTitle={"To Do - Tarefas "} />
       <Form GetDB={GetDB} editTasks={editTasks} setEditTasks={setEditTasks} />
       <Table
         arrayDB={arrayDB}
