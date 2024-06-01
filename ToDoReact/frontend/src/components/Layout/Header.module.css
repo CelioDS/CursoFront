@@ -11,9 +11,6 @@
   padding: 5px;
 }
 
-.main .sectionTitle h1 {
-  color: var(--cor30);
-}
 .main .sectionTitle {
   grid-column: 1/5;
   grid-row: 1;
@@ -23,8 +20,12 @@
   width: 100%;
   color: #000000;
   margin-bottom: 30px;
-  background-color: var(--cor60Light);
+  background-color: var(--cor10);
   border-radius: 5px;
+  filter: drop-shadow(2px 4px 6px rgb(0, 0, 0));
+}
+.main .sectionTitle h1 {
+  color: var(--cor30);
 }
 .main .sectionTitle a {
   background-color: var(--cor60);

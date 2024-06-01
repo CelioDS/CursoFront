@@ -8,7 +8,7 @@ import "./Home.module.css";
 export default function Home() {
   return (
     <Container>
-      <RenameTitle initialTitle={"Home - ToDo"} />
+      <RenameTitle initialTitle={"ToDo - Home"} />
       <Header />
     </Container>
   );

@@ -1,9 +1,11 @@
 :root {
   --cor60: #12033d;
-  --cor60Light: #d2d3fc;
   --cor30: #ff7300;
+  --cor10: #e5e5ff;
   --heightNavBar: 60px;
   --heightFooter: 60px;
+
+
 }
 * {
   margin: 0;

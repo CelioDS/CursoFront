@@ -45,7 +45,7 @@ export default function Relatorios() {
 
   return (
     <Container>
-      <RenameTitle initialTitle={"Relatorios - ToDo"} />
+      <RenameTitle initialTitle={"ToDo - Relatorios"} />
       <main className={styleExt.main}>
         <Table
           arrayDB={arrayDB}

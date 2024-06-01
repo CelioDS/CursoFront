@@ -30,6 +30,7 @@
   font-size: 24px;
   font-weight: bolder;
   height: 100%;
+  color: var(--cor60);
 }
 .main nav ul {
   display: flex;
@@ -46,9 +47,11 @@
   padding: 5px;
   position: relative;
   overflow: hidden;
+  width: 100px;
 }
 .main nav ul a:hover {
   filter: drop-shadow(3px 3px 3px #a19f9f);
+  font-size: 17px;
 }
 
 .menuMobile {
@@ -125,7 +128,7 @@ nav > ul > a:hover:before {
 
 @media (max-width: 900px) {
   .main {
-    background-color: var(--cor60Light);
+    background-color: var(--cor10);
   }
   .main .menuMobile {
     display: flex;
@@ -140,7 +143,7 @@ nav > ul > a:hover:before {
     background-color: inherit;
     overflow: hidden;
     z-index: 10000;
-    background-color: var(--cor60Light);
+    background-color: var(--cor10);
   }
   .main .menuMobile > a {
     display: flex;

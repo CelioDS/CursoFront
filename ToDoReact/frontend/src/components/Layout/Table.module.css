@@ -80,15 +80,15 @@
   align-items: start;
   text-align: start;
   margin: 0 auto;
+  border: 1px solid var(--cor10);
+  border-radius: 0 0 15px 15px;
 }
 
 .main .Pendentes,
 .main .Concluidos {
   width: 390px;
-  margin-top: 30px;
-  padding: 5px;
   text-align: center;
-  border: 1px solid var(--cor60Light);
+  padding-bottom: 30px;
 }
 .main .Pendentes p::first-letter,
 .main .Concluidos p::first-letter {
@@ -97,13 +97,13 @@
 }
 .main .Pendentes h2,
 .main .Concluidos h2 {
-  color: var(--cor60);
+  color: var(--cor10);
   font-size: 20px;
   font-weight: bolder;
   margin-bottom: 15px;
   filter: drop-shadow(3px 3px 3px #a19f9f);
 
-  background-color: var(--cor60Light);
+  background-color: var(--cor60);
 }
 .main .Pendentes h3,
 .main .Concluidos h3 {
@@ -119,20 +119,18 @@
   font-size: 11px;
 }
 .main .Pendentes span:nth-child(1) {
+  padding: 0 5px;
+  text-transform: uppercase;
   font-size: 11px;
   color: #806d00;
   background-color: #f0efcf;
   display: inline-block; /* Adicione display inline-block para o span */
   filter: drop-shadow(3px 3px 3px #a19f9f);
 }
-.main .Pendentes span:nth-child(2),
-.main .Concluidos span:nth-child(2) {
-  text-align: center;
-  font-size: 11px;
-  color: #806d00;
-  display: inline-block; /* Adicione display inline-block para o span */
-}
+
 .main .Concluidos span:nth-child(1) {
+  padding: 0 5px;
+  text-transform: uppercase;
   font-size: 11px;
   color: #008000;
   background-color: #d9f0cf;
@@ -147,13 +145,17 @@
   padding: 15px;
   height: 70px;
   width: 98%;
-  margin-bottom: 5px;
 }
 .main .Pendentes > div:hover,
 .main .Concluidos > div:hover {
-  transform: scaleX(1.02);
+  transform: scaleX(1.05);
   background-color: #fff;
   filter: drop-shadow(3px 3px 3px #000000);
+  border: 1px solid #ccc;
+}
+.main .Pendentes > div:hover h3,
+.main .Concluidos > div:hover h3 {
+  color: var(--cor30);
 }
 
 .main .Pendentes > div:hover .btnCheck,
@@ -195,7 +197,7 @@
 }
 .main .Concluidos div aside h3 {
   font-style: italic;
-  background-color: #ece9e9;
+
   text-decoration: line-through 1px;
 }
 .main section div aside .btnCheck {

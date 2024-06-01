@@ -277,7 +277,7 @@ export default function Table({
                 <aside>
                   <span>Finalizado</span>
 
-                  {today && (
+                 
                     <button
                       className={styleExt.btnDelete}
                       title="Excluir"
@@ -290,7 +290,7 @@ export default function Table({
                     >
                       <MdDelete />
                     </button>
-                  )}
+                 
                 </aside>
               </div>
             ))
