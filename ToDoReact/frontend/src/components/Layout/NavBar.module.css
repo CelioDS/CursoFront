@@ -65,25 +65,24 @@ nav > ul > a:hover:before {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 100%;
-  width: 100%;
+  left: -100%;
+  width: 50%;
   height: 5%;
-  background-color: var(--cor60);
-  animation: hoverButton 1s linear infinite;
+  animation: hoverButton 2s linear infinite;
   z-index: -1;
-  opacity: 0;
 }
 
 @keyframes hoverButton {
   from {
-    left: -100%;
+    left: -150%;
+    background-color: var(--cor60);
   }
   50% {
     opacity: 1;
   }
   to {
-    left: 100%;
-    opacity: 0;
+    left: 150%;
+    background-color: var(--cor30);
   }
 }
 .MenuBtn {
