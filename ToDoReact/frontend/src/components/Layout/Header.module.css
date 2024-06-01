@@ -25,7 +25,10 @@
   filter: drop-shadow(2px 4px 6px rgb(0, 0, 0));
 }
 .main .sectionTitle h1 {
-  color: var(--cor30);
+  color: var(--cor60);
+}
+.main .sectionTitle p {
+  color: var(--cor60);
 }
 .main .sectionTitle a {
   background-color: var(--cor60);
