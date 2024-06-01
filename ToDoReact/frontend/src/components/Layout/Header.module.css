@@ -18,11 +18,7 @@
   align-self: center;
   text-align: center;
   width: 100%;
-  color: #000000;
   margin-bottom: 30px;
-  background-color: var(--cor10);
-  border-radius: 5px;
-  filter: drop-shadow(2px 4px 6px rgb(0, 0, 0));
 }
 .main .sectionTitle h1 {
   color: var(--cor60);
@@ -30,18 +26,20 @@
 .main .sectionTitle p {
   color: var(--cor60);
 }
+
 .main .sectionTitle a {
   background-color: var(--cor60);
-  color: #ffffff;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-.main .sectionTitle a:hover {
   color: var(--cor30);
   padding: 8px 15px;
   border-radius: 5px;
-
+  text-decoration: none;
+  transition: all 1s;
+}
+.main .sectionTitle a:hover {
+  background-image: linear-gradient(0deg, var(--cor30), var(--cor60));
+  color: #ffffff;
+  padding: 8px 15px;
+  border-radius: 5px;
   text-decoration: none;
 }
 .main .sectionImg {

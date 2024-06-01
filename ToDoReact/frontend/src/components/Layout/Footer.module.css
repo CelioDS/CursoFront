@@ -32,6 +32,7 @@
 .footer span,
 .footer svg {
   color: var(--cor60);
+  transition: all 0.5s;
 }
 .footer span:hover,
 .footer svg:hover {

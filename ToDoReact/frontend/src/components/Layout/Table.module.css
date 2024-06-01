@@ -145,6 +145,11 @@
   padding: 15px;
   height: 70px;
   width: 98%;
+  transition: all 0.1s;
+  background-color: #fff;
+
+  backface-visibility: hidden;
+  transform-origin: center;
 }
 .main .Pendentes > div:hover,
 .main .Concluidos > div:hover {

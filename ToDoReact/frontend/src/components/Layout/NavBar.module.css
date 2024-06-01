@@ -47,10 +47,10 @@
   padding: 5px;
   position: relative;
   overflow: hidden;
+  transition: all 0.1s;
   width: 100px;
 }
 .main nav ul a:hover {
-  filter: drop-shadow(3px 3px 3px #a19f9f);
   font-size: 17px;
 }
 
@@ -68,7 +68,7 @@ nav > ul > a:hover:before {
   left: -100%;
   width: 50%;
   height: 5%;
-  animation: hoverButton 2s linear infinite;
+  animation: hoverButton 0.7s linear infinite;
   z-index: -1;
 }
 
