@@ -51,7 +51,7 @@ export default function Header() {
         <img src={imagemtodo} alt="imagem todo" />
       </aside>
       <aside className={styleExt.sectionTexto}>
-        <span>{content}</span>
+        <span>{content }</span>
         <br />
         <small>"{author}"</small>
         <br />

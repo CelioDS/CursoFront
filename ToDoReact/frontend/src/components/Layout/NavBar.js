@@ -60,7 +60,8 @@ export default function NavBar() {
           mutation.type === "childList" &&
           mutation.target === document.querySelector("title")
         ) {
-          setLinkAtivo(mutation.target.textContent.split(" ")[2]);
+          setLinkAtivo(mutation.target.textContent.split(" ")[3]);
+          console.log(mutation.target.textContent.split(" ")[3]);
         }
       }
     });
