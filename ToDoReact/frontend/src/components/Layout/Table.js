@@ -1,33 +1,35 @@
-import styleExt from "./Table.module.css";
-import { useEffect, useLayoutEffect, useState } from "react";
-import Loading from "../Item-Layout/Loading";
-import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
 import axios from "axios";
-import { toast } from "react-toastify";
-import Modal from "../Item-Layout/Modal";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
+import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
+
+import { useEffect, useLayoutEffect, useState } from "react";
+
+import Modal from "../Item-Layout/Modal";
 import Input from "../Item-Layout/Input";
+import styleExt from "./Table.module.css";
 import PieChart from "../Tools/PieCharts";
+import Loading from "../Item-Layout/Loading";
 
 export default function Table({
+  today,
+  GetDB,
+  months,
   arrayDB,
   setArrayDB,
-  GetDB,
-  setEditTasks,
-  today,
-  months,
-  handleMonthChange,
   searchMonth,
+  setEditTasks,
+  handleMonthChange,
 }) {
-  const [completedTasks, setCompletedTasks] = useState([]);
-  const [pedingTesks, setPedingTesks] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [IsSubmit, setIsSubmit] = useState(false);
   const [tarefaId, setTarefaId] = useState();
-  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); // Estado para controlar o valor do campo de data
   const [searchText, setSearchText] = useState();
-  const [completedTasksCount, setCompletedTasksCount] = useState(0);
+  const [IsSubmit, setIsSubmit] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [pedingTesks, setPedingTesks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
   const [pedingTasksCount, setPedingTasksCount] = useState(0);
+  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); 
+  const [completedTasksCount, setCompletedTasksCount] = useState(0);
 
   useLayoutEffect(() => {
     const TasksCountCompleted = arrayDB.reduce((total, task) => {
@@ -45,7 +47,6 @@ export default function Table({
 
   useEffect(() => {
     const today = new Date();
-
     setCurrentDate(format(today, "dd-MM-yyyy"));
   }, []);
 
@@ -277,20 +278,18 @@ export default function Table({
                 <aside>
                   <span>Finalizado</span>
 
-                 
-                    <button
-                      className={styleExt.btnDelete}
-                      title="Excluir"
-                      disabled={IsSubmit}
-                      onClick={() => {
-                        setTarefaId(tarefa.id);
+                  <button
+                    className={styleExt.btnDelete}
+                    title="Excluir"
+                    disabled={IsSubmit}
+                    onClick={() => {
+                      setTarefaId(tarefa.id);
 
-                        handleModal();
-                      }}
-                    >
-                      <MdDelete />
-                    </button>
-                 
+                      handleModal();
+                    }}
+                  >
+                    <MdDelete />
+                  </button>
                 </aside>
               </div>
             ))

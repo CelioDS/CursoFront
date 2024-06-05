@@ -3,9 +3,9 @@ import styleExt from "./Input.module.css";
 export default function Input({
   type,
   name,
-  placeholder,
   onChange,
   className,
+  placeholder,
 }) {
   return (
     <input

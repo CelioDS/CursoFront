@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react";
+
 import styleExt from "./Header.module.css";
 import imagemtodo from "../img/todoimagem.webp";
 import LinkButton from "../Item-Layout/LinkButton";
-import { useEffect, useState } from "react";
 
 export default function Header() {
-  const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     async function getMotivationalQuote() {

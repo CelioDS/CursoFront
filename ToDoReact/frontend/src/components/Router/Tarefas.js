@@ -1,12 +1,12 @@
-import Container from "../Layout/Container";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { useState, useLayoutEffect } from "react";
-import Form from "../Layout/Form";
-import Table from "../Layout/Table";
-import RenameTitle from "../Tools/RenameTitle";
 
 import "./Tarefas.module.css";
-import { toast } from "react-toastify";
-import axios from "axios";
+import Form from "../Layout/Form";
+import Table from "../Layout/Table";
+import Container from "../Layout/Container";
+import RenameTitle from "../Tools/RenameTitle";
 
 export default function Home() {
   const [arrayDB, setArrayDB] = useState([]);

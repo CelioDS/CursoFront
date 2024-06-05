@@ -1,24 +1,25 @@
-import styleExt from "./NavBar.module.css";
-
-import LinkButton from "../Item-Layout/LinkButton";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import CheckMobile from "../Tools/CheckMobile";
 import { BsList, BsXLg } from "react-icons/bs";
+
+import { useEffect, useState, useCallback } from "react";
+
+import styleExt from "./NavBar.module.css";
+import CheckMobile from "../Tools/CheckMobile";
+import LinkButton from "../Item-Layout/LinkButton";
 
 export default function NavBar() {
   const checkMobile = useCallback(CheckMobile, []);
   const isMobile = checkMobile();
 
+  const sizeBtn = 36;
+  const colorBtn = "white";
+  
   const [iconMenu, setIconMenu] = useState();
-
   const [menuUp, setMenuUp] = useState(false);
   const [menuDown, setMenuDown] = useState(null);
   const [MenuOpen, setMenuOpen] = useState(false);
   const [linkAtivo, setLinkAtivo] = useState("Home");
 
-  const sizeBtn = 36;
-  const colorBtn = "white";
 
   function openMenu(linkclick) {
     // Inverte o valor de MenuOpen
@@ -61,7 +62,6 @@ export default function NavBar() {
           mutation.target === document.querySelector("title")
         ) {
           setLinkAtivo(mutation.target.textContent.split(" ")[3]);
-          console.log(mutation.target.textContent.split(" ")[3]);
         }
       }
     });

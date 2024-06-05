@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
 import axios from "axios";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
+
+import { useEffect, useRef, useState } from "react";
 
 import styleExt from "./Form.module.css";
-
-import Button from "../Item-Layout/Button";
 import Input from "../Item-Layout/Input";
+import Button from "../Item-Layout/Button";
 
 export default function Form({ GetDB, editTasks, setEditTasks }) {
   const ref = useRef();
   const DadosForm = ref.current;
-  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); // Estado para controlar o valor do campo de data
+  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); 
   const [IsSubmit, setIsSubmit] = useState(false);
 
   useEffect(() => {

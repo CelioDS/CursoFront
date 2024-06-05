@@ -1,9 +1,11 @@
-import Container from "../Layout/Container";
-import Table from "../Layout/Table";
-import styleExt from "./Relatorios.module.css";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 import { useLayoutEffect, useState } from "react";
+
+import Table from "../Layout/Table";
+import Container from "../Layout/Container";
+import styleExt from "./Relatorios.module.css";
 import RenameTitle from "../Tools/RenameTitle";
 
 export default function Relatorios() {

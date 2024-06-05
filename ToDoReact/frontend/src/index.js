@@ -1,13 +1,13 @@
+import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // 1 -  config router
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from "./components/Router/Error";
 import Home from "../src/components/Router/Home";
 import Tarefas from "../src/components/Router/Tarefas";
 import Relatorios from "../src/components/Router/Relatorios";
-import Error from "./components/Router/Error";
 
 const router = createBrowserRouter([
   {

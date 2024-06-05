@@ -1,5 +1,5 @@
-import ApexChart from "react-apexcharts";
 import PropTypes from "prop-types";
+import ApexChart from "react-apexcharts";
 
 export default function PieChart({ completed, pending }) {
   const state = {
