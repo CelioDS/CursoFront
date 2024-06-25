@@ -5,10 +5,12 @@ import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
 
 import { useEffect, useLayoutEffect, useState } from "react";
 
+import Select from "../Tools/Select";
 import Modal from "../Item-Layout/Modal";
 import Input from "../Item-Layout/Input";
 import styleExt from "./Table.module.css";
 import PieChart from "../Tools/PieCharts";
+import Paginação from "../Tools/Paginação";
 import Loading from "../Item-Layout/Loading";
 
 export default function Table({
@@ -28,8 +30,15 @@ export default function Table({
   const [pedingTesks, setPedingTesks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [pedingTasksCount, setPedingTasksCount] = useState(0);
-  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); 
+  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy");
   const [completedTasksCount, setCompletedTasksCount] = useState(0);
+
+  const [itensPage, setItenspage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
+  const pages = Math.ceil(arrayDB.length / itensPage);
+  const startIndex = currentPage * itensPage;
+  const endIndex = startIndex + itensPage;
+  const currentItens = arrayDB.slice(startIndex, endIndex);
 
   useLayoutEffect(() => {
     const TasksCountCompleted = arrayDB.reduce((total, task) => {
@@ -73,7 +82,7 @@ export default function Table({
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
       } else {
-        completedTasksFilter = arrayDB.filter(
+        completedTasksFilter = currentItens.filter(
           ({ concluido, data }) => concluido === 1 && checkMonth(data)
         );
       }
@@ -92,13 +101,13 @@ export default function Table({
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
       } else {
-        pedingTasksFilter = arrayDB.filter(
+        pedingTasksFilter = currentItens.filter(
           ({ concluido, data }) => concluido === 0 && checkMonth(data)
         );
       }
       setPedingTesks(pedingTasksFilter);
     }
-  }, [arrayDB, currentDate, today, searchMonth, searchText]);
+  }, [arrayDB, currentDate, today, searchMonth, searchText, currentItens]);
 
   async function handleExcluir(id) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
@@ -141,6 +150,8 @@ export default function Table({
     // Inverte o valor
     setIsSubmit((prevState) => !prevState);
   }
+
+  useEffect(() => setCurrentPage(0), [itensPage]);
 
   return (
     <main className={styleExt.main}>
@@ -199,6 +210,21 @@ export default function Table({
           }}
         />
       )}
+      {!today && (
+        <div div className={styleExt.paginacao}>
+          <Select setItenspage={setItenspage} itensPage={itensPage} />
+          <div>
+            <Paginação
+              pages={pages}
+              currentPage={currentPage}
+              itensPage={itensPage}
+              setCurrentPage={setCurrentPage}
+              setItenspage={setItenspage}
+            />
+          </div>
+        </div>
+      )}
+
       <section className={styleExt.areaTarefas}>
         <aside className={styleExt.Pendentes}>
           <h2>Pendente(s)</h2>
@@ -296,6 +322,19 @@ export default function Table({
           )}
         </aside>
       </section>
+      {!today && (
+        <div div className={styleExt.paginacao}>
+          <div>
+            <Paginação
+              pages={pages}
+              currentPage={currentPage}
+              itensPage={itensPage}
+              setCurrentPage={setCurrentPage}
+              setItenspage={setItenspage}
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
