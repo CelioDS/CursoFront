@@ -62,7 +62,7 @@ export default function Table({
   useEffect(() => {
     function checkMonth(data) {
       if (!searchMonth) return true;
-      const partMonth = data.split("-");
+      const partMonth = data.split("-") && data.split("/");
       const month = partMonth[1];
 
       return month === searchMonth;
