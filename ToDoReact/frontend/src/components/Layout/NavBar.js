@@ -61,6 +61,7 @@ export default function NavBar() {
           mutation.type === "childList" &&
           mutation.target === document.querySelector("title")
         ) {
+          console.log("99")
           setLinkAtivo(mutation.target.textContent.split(" ")[3]);
         }
       }
