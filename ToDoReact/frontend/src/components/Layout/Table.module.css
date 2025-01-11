@@ -186,6 +186,7 @@
 .main .Pendentes > div:hover .btnCheck,
 .main .Pendentes > div:hover .btnEdit,
 .main .Pendentes > div:hover .btnDelete,
+.main .Pendentes > div:hover .btnFixar,
 .main .Concluidos > div:hover .btnDelete {
   opacity: 1;
   filter: drop-shadow(3px 3px 3px #a19f9f);
@@ -193,7 +194,8 @@
 .main .Pendentes > div .btnCheck:active,
 .main .Pendentes > div .btnEdit:active,
 .main .Pendentes > div .btnDelete:active,
-.main .Concluidos > div .btnDelete:active {
+.main .Concluidos > div .btnDelete:active,
+.main .Pendentes > div .btnFixar:active {
   font-size: 12px;
 }
 .main > section div aside:nth-child(1) {
@@ -232,6 +234,11 @@
 }
 .main section div aside .btnDelete {
   color: #ff0000;
+  border: none;
+  opacity: 0;
+}
+.main section div aside .btnFixar {
+  color: #696767;
   border: none;
   opacity: 0;
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { MdDelete, MdCheck, MdEdit } from "react-icons/md";
+import { BsBookmarkCheckFill, BsBookmarkCheck } from "react-icons/bs";
 
 import { useEffect, useLayoutEffect, useState } from "react";
 
@@ -69,7 +70,6 @@ export default function Table({
     }
 
     if (Array.isArray(arrayDB) && arrayDB.length > 0) {
-      
       let completedTasksFilter = [];
       let pedingTasksFilter = [];
       if (today) {
@@ -147,6 +147,25 @@ export default function Table({
         concluido: true,
         data: tarefa.data,
         fixo: false,
+      })
+      .then(({ data }) => toast.success(data))
+      .catch(({ data }) => toast.error(data));
+
+    GetDB();
+
+    // Inverte o valor
+    setIsSubmit((prevState) => !prevState);
+  }
+
+  async function HandleFixar(tarefa) {
+    if (IsSubmit) return;
+    setIsSubmit((prevState) => !prevState);
+    await axios
+      .put(process.env.REACT_APP_DB_API + tarefa.id, {
+        tarefa: tarefa.tarefa,
+        concluido: tarefa.concluido,
+        data: tarefa.data,
+        fixo: !tarefa.fixo,
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));
@@ -271,6 +290,20 @@ export default function Table({
                       }}
                     >
                       <MdCheck />
+                    </button>
+                    <button
+                      className={styleExt.btnFixar}
+                      onClick={() => {
+                        HandleFixar(tarefa);
+                      }}
+                      title={tarefa.fixo === 0 ? "Fixar" : "desafixar"}
+                      disabled={IsSubmit}
+                    >
+                      {tarefa.fixo === 1 ? (
+                        <BsBookmarkCheckFill />
+                      ) : (
+                        <BsBookmarkCheck />
+                      )}
                     </button>
                     {today && (
                       <button
