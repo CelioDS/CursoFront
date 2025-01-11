@@ -11,7 +11,7 @@ import Button from "../Item-Layout/Button";
 export default function Form({ GetDB, editTasks, setEditTasks }) {
   const ref = useRef();
   const DadosForm = ref.current;
-  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy");
+  const [currentDate, setCurrentDate] = useState("dd-MM-yyyy"); 
   const [IsSubmit, setIsSubmit] = useState(false);
 
   useEffect(() => {
@@ -25,6 +25,7 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
 
     if (editTasks) {
       DadosForm.tarefa.value = editTasks.tarefa;
+      console.log();
     }
   }, [editTasks]);
 
@@ -43,7 +44,6 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
           tarefa: DadosForm.tarefa.value,
           concluido: editTasks.concluido,
           data: editTasks.data,
-          fixo : editTasks.fixo
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
@@ -55,7 +55,6 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
           tarefa: DadosForm.tarefa.value,
           data: currentDate,
           concluido: false,
-          fixo: false
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));

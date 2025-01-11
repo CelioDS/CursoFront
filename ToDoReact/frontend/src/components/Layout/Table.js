@@ -91,9 +91,7 @@ export default function Table({
       let pedingTasksFilter = [];
       if (today) {
         pedingTasksFilter = arrayDB.filter(
-          ({ concluido, data, fixo }) =>
-            (concluido === 0 && data === currentDate) || fixo === 1
-          
+          ({ concluido, data }) => concluido === 0 && data === currentDate
         );
       } else if (searchText) {
         pedingTasksFilter = arrayDB.filter(
@@ -143,7 +141,6 @@ export default function Table({
         tarefa: tarefa.tarefa,
         concluido: true,
         data: tarefa.data,
-        fixo: false,
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));
