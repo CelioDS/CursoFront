@@ -142,7 +142,7 @@ export default function Table({
         tarefa: tarefa.tarefa,
         concluido: true,
         data: tarefa.data,
-        fixo: 0
+        fixo: 0,
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));
