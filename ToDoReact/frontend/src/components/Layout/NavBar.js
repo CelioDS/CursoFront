@@ -13,13 +13,12 @@ export default function NavBar() {
 
   const sizeBtn = 36;
   const colorBtn = "white";
-  
+
   const [iconMenu, setIconMenu] = useState();
   const [menuUp, setMenuUp] = useState(false);
   const [menuDown, setMenuDown] = useState(null);
   const [MenuOpen, setMenuOpen] = useState(false);
   const [linkAtivo, setLinkAtivo] = useState("Home");
-
 
   function openMenu(linkclick) {
     // Inverte o valor de MenuOpen
@@ -61,7 +60,6 @@ export default function NavBar() {
           mutation.type === "childList" &&
           mutation.target === document.querySelector("title")
         ) {
-          console.log("99")
           setLinkAtivo(mutation.target.textContent.split(" ")[3]);
         }
       }
