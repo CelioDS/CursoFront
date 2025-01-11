@@ -12,35 +12,35 @@ export const getDB = (_, res) => {
 
 export const setDB = (req, res) => {
   const query =
-    "INSERT INTO todoReact (`tarefa`, `concluido`,`data`,`fixo`) VALUES(?)";
+    "INSERT INTO todoReact (`tarefa`, `concluido`, `data`, `prioridade`) VALUES(?)";
 
   const values = [
     req.body.tarefa,
     req.body.concluido,
     req.body.data,
-    req.body.fixo,
+    req.body.prioridade, // Adicionando a prioridade
   ];
   db.query(query, [values], (err) => {
     if (err) return res.json(err);
-    return res.status(200).json("Tarefa adcionada...");
+    return res.status(200).json("Tarefa adicionada...");
   });
 };
 
 export const updateDB = (req, res) => {
   const query =
-    "UPDATE todoReact SET `tarefa` = ?, `concluido` = ? , `data` = ? , `fixo` = ? WHERE `id` = ? ";
+    "UPDATE todoReact SET `tarefa` = ?, `concluido` = ?, `data` = ?, `prioridade` = ? WHERE `id` = ?";
 
   const values = [
     req.body.tarefa,
     req.body.concluido,
     req.body.data,
-    req.body.fixo,
+    req.body.prioridade, // Adicionando a prioridade
   ];
 
   db.query(query, [...values, req.params.id], (err) => {
     if (err) return res.json(err);
 
-    return res.status(200).json("Tarefa atualizada....");
+    return res.status(200).json("Tarefa atualizada...");
   });
 };
 
