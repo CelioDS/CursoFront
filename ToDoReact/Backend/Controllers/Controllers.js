@@ -14,7 +14,7 @@ export const setDB = (req, res) => {
   const query =
     "INSERT INTO todoReact (`tarefa`, `concluido`,`data`,`fixo`) VALUES(?)";
 
-  const values = [req.body.tarefa, req.body.concluido, req.body.data];
+  const values = [req.body.tarefa, req.body.concluido, req.body.data, req.body.fixo];
   db.query(query, [values], (err) => {
     if (err) return res.json(err);
     return res.status(200).json("Tarefa adcionada...");
@@ -25,7 +25,7 @@ export const updateDB = (req, res) => {
   const query =
     "UPDATE todoReact SET `tarefa` = ?, `concluido` = ? , `data` = ? , `fixo` = ?  WHERE `id` = ? ";
 
-  const values = [req.body.tarefa, req.body.concluido, req.body.data];
+  const values = [req.body.tarefa, req.body.concluido, req.body.data, req.body.fixo];
 
   db.query(query, [...values, req.params.id], (err) => {
     if (err) return res.json(err);
