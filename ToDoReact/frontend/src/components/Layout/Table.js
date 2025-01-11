@@ -69,10 +69,16 @@ export default function Table({
     }
 
     if (Array.isArray(arrayDB) && arrayDB.length > 0) {
+      
       let completedTasksFilter = [];
+      let pedingTasksFilter = [];
       if (today) {
         completedTasksFilter = arrayDB.filter(
           ({ concluido, data }) => concluido === 1 && data === currentDate
+        );
+        pedingTasksFilter = arrayDB.filter(
+          ({ concluido, data, fixo }) =>
+            (concluido === 0 && data === currentDate) || fixo === 1
         );
       } else if (searchText) {
         completedTasksFilter = arrayDB.filter(
@@ -81,19 +87,6 @@ export default function Table({
             (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
-      } else {
-        completedTasksFilter = currentItens.filter(
-          ({ concluido, data }) => concluido === 1 && checkMonth(data)
-        );
-      }
-      setCompletedTasks(completedTasksFilter);
-
-      let pedingTasksFilter = [];
-      if (today) {
-        pedingTasksFilter = arrayDB.filter(
-          ({ concluido, data, fixo }) => (concluido === 0 && data === currentDate) || (fixo === 1)
-        );
-      } else if (searchText) {
         pedingTasksFilter = arrayDB.filter(
           ({ concluido, tarefa, data }) =>
             concluido === 0 &&
@@ -101,13 +94,25 @@ export default function Table({
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
       } else {
+        completedTasksFilter = currentItens.filter(
+          ({ concluido, data }) => concluido === 1 && checkMonth(data)
+        );
         pedingTasksFilter = currentItens.filter(
           ({ concluido, data }) => concluido === 0 && checkMonth(data)
         );
       }
+      setCompletedTasks(completedTasksFilter);
       setPedingTesks(pedingTasksFilter);
     }
-  }, [arrayDB, currentDate, today, searchMonth, searchText, currentItens]);
+  }, [
+    setArrayDB,
+    arrayDB,
+    searchMonth,
+    today,
+    searchText,
+    currentDate,
+    currentItens,
+  ]);
 
   async function handleExcluir(id) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
@@ -141,7 +146,7 @@ export default function Table({
         tarefa: tarefa.tarefa,
         concluido: true,
         data: tarefa.data,
-        fixo: false
+        fixo: false,
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));
