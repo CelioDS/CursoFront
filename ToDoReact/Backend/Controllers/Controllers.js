@@ -12,13 +12,13 @@ export const getDB = (_, res) => {
 
 export const setDB = (req, res) => {
   const query =
-    "INSERT INTO todoReact (`tarefa`, `concluido`, `data`, `prioridade`) VALUES(?)";
+    "INSERT INTO todoReact (`tarefa`, `concluido`, `prioridade`, `data`) VALUES(?)";
 
   const values = [
     req.body.tarefa,
     req.body.concluido,
-    req.body.data,
     req.body.prioridade, // Adicionando a prioridade
+    req.body.data,
   ];
   db.query(query, [values], (err) => {
     if (err) return res.json(err);
@@ -28,13 +28,13 @@ export const setDB = (req, res) => {
 
 export const updateDB = (req, res) => {
   const query =
-    "UPDATE todoReact SET `tarefa` = ?, `concluido` = ?, `data` = ?, `prioridade` = ? WHERE `id` = ?";
+    "UPDATE todoReact SET `tarefa` = ?, `concluido` = ?, `prioridade` = ?, `data` = ? WHERE `id` = ?";
 
   const values = [
     req.body.tarefa,
     req.body.concluido,
-    req.body.data,
     req.body.prioridade, // Adicionando a prioridade
+    req.body.data,
   ];
 
   db.query(query, [...values, req.params.id], (err) => {
