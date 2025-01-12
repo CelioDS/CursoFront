@@ -69,7 +69,7 @@ export default function Table({
       return month === searchMonth;
     }
 
-    if ( Array.isArray(arrayDB) && arrayDB.length > 0) {
+    if (Array.isArray(arrayDB) && arrayDB.length > 0) {
       let completedTasksFilter = [];
       let pedingTasksFilter = [];
       if (today) {
@@ -131,6 +131,9 @@ export default function Table({
 
   async function handleUpdate(tarefa) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
+    console.log(process.env.REACT_APP_DB_API);
+
+    console.log(process.env.REACT_APP_DB_API + tarefa.id);
     // Inverte o valor
     setIsSubmit((prevState) => !prevState);
     await axios
