@@ -16,7 +16,7 @@ export default function Home() {
     try {
       const res = await axios.get(process.env.REACT_APP_DB_API);
 
-      setArrayDB(res);
+      setArrayDB(res.data);
     } catch (error) {
       toast.error(error);
     }
