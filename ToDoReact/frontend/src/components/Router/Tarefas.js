@@ -16,19 +16,7 @@ export default function Home() {
     try {
       const res = await axios.get(process.env.REACT_APP_DB_API);
 
-      setArrayDB(
-        arrayDB.length === 1
-          ? res
-          : [
-              {
-                id: 1,
-                tarefa: "tarefa",
-                concluido: false,
-                data: "2025-01-11", // Data atual no momento da execução
-                fixo: false,
-              },
-            ]
-      );
+      setArrayDB(res);
     } catch (error) {
       toast.error(error);
     }
