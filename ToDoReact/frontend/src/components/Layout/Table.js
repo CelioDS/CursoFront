@@ -69,7 +69,7 @@ export default function Table({
       return month === searchMonth;
     }
 
-    if (Array.isArray(arrayDB) && arrayDB.length > 0) {
+    if ( Array.isArray(arrayDB) && arrayDB.length > 0) {
       let completedTasksFilter = [];
       let pedingTasksFilter = [];
       if (today) {
@@ -104,15 +104,7 @@ export default function Table({
       setCompletedTasks(completedTasksFilter);
       setPedingTesks(pedingTasksFilter);
     }
-  }, [
-    setArrayDB,
-    arrayDB,
-    searchMonth,
-    today,
-    searchText,
-    currentDate,
-    currentItens,
-  ]);
+  }, [arrayDB, currentDate, currentItens, searchMonth, searchText, today]);
 
   async function handleExcluir(id) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
