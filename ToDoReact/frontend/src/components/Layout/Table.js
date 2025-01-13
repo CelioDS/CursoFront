@@ -33,6 +33,7 @@ export default function Table({
   const [pedingTasksCount, setPedingTasksCount] = useState(0);
   const [currentDate, setCurrentDate] = useState("dd-MM-yyyy");
   const [completedTasksCount, setCompletedTasksCount] = useState(0);
+  const [handleNumberEdit, setHandleNumberEdit] = useState(1);
 
   const [itensPage, setItenspage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
@@ -53,6 +54,9 @@ export default function Table({
 
     setCompletedTasksCount(TasksCountCompleted);
     setPedingTasksCount(TasksCountPeding);
+    
+    handleFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrayDB]);
 
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function Table({
     setCurrentDate(format(today, "dd-MM-yyyy"));
   }, []);
 
-  useEffect(() => {
+  function handleFilter() {
     function checkMonth(data) {
       if (!searchMonth) return true;
       const partMonth = data.split("-");
@@ -71,12 +75,13 @@ export default function Table({
 
     if (Array.isArray(arrayDB) && arrayDB.length > 0) {
       let completedTasksFilter = [];
-      let pedingTasksFilter = [];
+      let pendingTasksFilter = [];
+
       if (today) {
         completedTasksFilter = arrayDB.filter(
           ({ concluido, data }) => concluido === 1 && data === currentDate
         );
-        pedingTasksFilter = arrayDB.filter(
+        pendingTasksFilter = arrayDB.filter(
           ({ concluido, data, fixo }) =>
             (concluido === 0 && data === currentDate) || fixo === 1
         );
@@ -87,7 +92,7 @@ export default function Table({
             (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
-        pedingTasksFilter = arrayDB.filter(
+        pendingTasksFilter = arrayDB.filter(
           ({ concluido, tarefa, data }) =>
             concluido === 0 &&
             (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -97,14 +102,15 @@ export default function Table({
         completedTasksFilter = currentItens.filter(
           ({ concluido, data }) => concluido === 1 && checkMonth(data)
         );
-        pedingTasksFilter = currentItens.filter(
+        pendingTasksFilter = currentItens.filter(
           ({ concluido, data }) => concluido === 0 && checkMonth(data)
         );
       }
+
       setCompletedTasks(completedTasksFilter);
-      setPedingTesks(pedingTasksFilter);
+      setPedingTesks(pendingTasksFilter);
     }
-  }, [arrayDB, currentDate, currentItens, searchMonth, searchText, today]);
+  }
 
   async function handleExcluir(id) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
@@ -126,14 +132,13 @@ export default function Table({
     setOpenModal((prevState) => !prevState);
   }
   function handleEdit(tarefa) {
-    setEditTasks(tarefa);
+    if (handleNumberEdit % 2 === 0) setEditTasks("cancelado");
+    else setEditTasks(tarefa);
   }
 
   async function handleUpdate(tarefa) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
-    console.log(process.env.REACT_APP_DB_API);
 
-    console.log(process.env.REACT_APP_DB_API + tarefa.id);
     // Inverte o valor
     setIsSubmit((prevState) => !prevState);
     await axios
@@ -268,9 +273,14 @@ export default function Table({
                     {today && (
                       <button
                         className={styleExt.btnEdit}
-                        title="Editar"
+                        title={
+                          handleNumberEdit % 2 === 0 ? "Cancelar" : "Editar"
+                        }
                         disabled={IsSubmit}
-                        onClick={() => handleEdit(tarefa)}
+                        onClick={() => {
+                          handleEdit(tarefa);
+                          setHandleNumberEdit((prevState) => prevState + 1);
+                        }}
                       >
                         <MdEdit />
                       </button>
