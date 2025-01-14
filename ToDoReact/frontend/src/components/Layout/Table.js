@@ -34,6 +34,7 @@ export default function Table({
   const [currentDate, setCurrentDate] = useState("dd-MM-yyyy");
   const [completedTasksCount, setCompletedTasksCount] = useState(0);
   const [handleNumberEdit, setHandleNumberEdit] = useState(1);
+  const [idFirst, setIdFirst] = useState();
 
   const [itensPage, setItenspage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
@@ -54,7 +55,7 @@ export default function Table({
 
     setCompletedTasksCount(TasksCountCompleted);
     setPedingTasksCount(TasksCountPeding);
-    
+
     handleFilter();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrayDB]);
@@ -131,9 +132,25 @@ export default function Table({
   function handleModal() {
     setOpenModal((prevState) => !prevState);
   }
+
   function handleEdit(tarefa) {
-    if (handleNumberEdit % 2 === 0) setEditTasks("cancelado");
-    else setEditTasks(tarefa);
+    // verificar se o id esta vazio e insere o primeiro id
+    if (!idFirst) {
+      setIdFirst(tarefa.id);
+    }
+
+    if (idFirst === tarefa.id) {
+      // verifica se o id recebeu 2 click e cancela a edição
+      if (handleNumberEdit % 2 === 0) setEditTasks("cancelado");
+      else {
+        setEditTasks(tarefa);
+      }
+    } else {
+      // se nenhuma condição é antiginda, nova tarefa, novo id e nova cotagem inicia
+      setEditTasks(tarefa);
+      setIdFirst(tarefa.id);
+      setHandleNumberEdit(1);
+    }
   }
 
   async function handleUpdate(tarefa) {
@@ -274,12 +291,17 @@ export default function Table({
                       <button
                         className={styleExt.btnEdit}
                         title={
-                          handleNumberEdit % 2 === 0 ? "Cancelar" : "Editar"
+                          handleNumberEdit % 2 === 0 && tarefa.id === idFirst
+                            ? "Cancelar"
+                            : "Editar"
                         }
                         disabled={IsSubmit}
                         onClick={() => {
                           handleEdit(tarefa);
-                          setHandleNumberEdit((prevState) => prevState + 1);
+                          setHandleNumberEdit(
+                            (prevState) => prevState + 1,
+                            tarefa.id
+                          );
                         }}
                       >
                         <MdEdit />
