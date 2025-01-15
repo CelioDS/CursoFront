@@ -80,31 +80,37 @@ export default function Table({
 
       if (today) {
         completedTasksFilter = arrayDB.filter(
-          ({ concluido, data }) => concluido === 1 && data === currentDate
+          ({ concluido, data, ocultar }) =>
+            concluido === 1 && data === currentDate && ocultar === 0
         );
         pendingTasksFilter = arrayDB.filter(
-          ({ concluido, data, fixo }) =>
-            (concluido === 0 && data === currentDate) || fixo === 1
+          ({ concluido, data, fixo, ocultar }) =>
+            (concluido === 0 && data === currentDate && ocultar === 0) ||
+            fixo === 1
         );
       } else if (searchText) {
         completedTasksFilter = arrayDB.filter(
-          ({ concluido, tarefa, data }) =>
+          ({ concluido, tarefa, data, ocultar }) =>
             concluido === 1 &&
+            ocultar === 0 &&
             (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
         pendingTasksFilter = arrayDB.filter(
-          ({ concluido, tarefa, data }) =>
+          ({ concluido, tarefa, data, ocultar }) =>
             concluido === 0 &&
+            ocultar === 0 &&
             (tarefa.toLowerCase().includes(searchText.toLowerCase()) ||
               data.toLowerCase().includes(searchText.toLowerCase()))
         );
       } else {
         completedTasksFilter = currentItens.filter(
-          ({ concluido, data }) => concluido === 1 && checkMonth(data)
+          ({ concluido, data, ocultar }) =>
+            concluido === 1 && checkMonth(data) && ocultar === 0
         );
         pendingTasksFilter = currentItens.filter(
-          ({ concluido, data }) => concluido === 0 && checkMonth(data)
+          ({ concluido, data, ocultar }) =>
+            concluido === 0 && checkMonth(data) && ocultar === 0
         );
       }
 
@@ -116,6 +122,8 @@ export default function Table({
   async function handleExcluir(id) {
     if (IsSubmit) return; // Impede o envio duplicado enquanto a requisição anterior ainda não foi concluída
     setIsSubmit(true);
+
+    /* teste ocultar inves de excluir
     await axios
       .delete(process.env.REACT_APP_DB_API + id)
       .then(({ data }) => {
@@ -124,6 +132,22 @@ export default function Table({
         toast.success(data);
       })
       .catch(({ data }) => toast.error(data));
+  
+    */
+
+    const newDB = arrayDB.filter((tarefa) => tarefa.id === id);
+
+    await axios
+      .put(process.env.REACT_APP_DB_API + newDB[0].id, {
+        tarefa: newDB[0].tarefa,
+        concluido: newDB[0].concluido,
+        data: newDB[0].data,
+        fixo: 0,
+        ocultar: 1,
+      })
+      .then(({ data }) => toast.success(data))
+      .catch(({ data }) => toast.error(data));
+
     GetDB();
 
     setIsSubmit((prevState) => !prevState);
@@ -164,6 +188,7 @@ export default function Table({
         concluido: true,
         data: tarefa.data,
         fixo: false,
+        ocultar: 0,
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));
@@ -183,6 +208,7 @@ export default function Table({
         concluido: tarefa.concluido,
         data: tarefa.data,
         fixo: !tarefa.fixo,
+        ocultar: 0,
       })
       .then(({ data }) => toast.success(data))
       .catch(({ data }) => toast.error(data));

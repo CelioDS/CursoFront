@@ -48,6 +48,7 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
           concluido: editTasks.concluido,
           data: editTasks.data,
           fixo: editTasks.fixo,
+          ocultar: editTasks.ocultar,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
@@ -60,6 +61,7 @@ export default function Form({ GetDB, editTasks, setEditTasks }) {
           data: currentDate,
           concluido: false,
           fixo: false,
+          ocultar: 0,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
