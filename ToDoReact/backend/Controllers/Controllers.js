@@ -29,7 +29,7 @@ export const setDB = (req, res) => {
 
 export const updateDB = (req, res) => {
   const query =
-    "UPDATE todoReact SET `tarefa` = ?, `concluido` = ? , `data` = ?, `fixo`, `ocultar` = ?  WHERE `id` = ? ";
+    "UPDATE todoReact SET `tarefa` = ?, `concluido` = ? , `data` = ?, `fixo` = ?, `ocultar` = ?  WHERE `id` = ? ";
 
   const values = [
     req.body.tarefa,
