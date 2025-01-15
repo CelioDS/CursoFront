@@ -134,7 +134,6 @@ export default function Table({
       .catch(({ data }) => toast.error(data));
   
     */
-
     const newDB = arrayDB.filter((tarefa) => tarefa.id === id);
 
     await axios
