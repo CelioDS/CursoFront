@@ -9,6 +9,7 @@
 # testing
 /coverage
 
+
 # production
 /build
 
@@ -25,4 +26,6 @@ yarn-error.log*
 
 #env
 .env
+/.env
+/env
 .env.development
