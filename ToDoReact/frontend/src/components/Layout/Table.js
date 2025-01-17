@@ -278,7 +278,7 @@ export default function Table({
         />
       )}
       {!today && (
-        <div div className={styleExt.paginacao}>
+        <div className={styleExt.paginacao}>
           <Select setItenspage={setItenspage} itensPage={itensPage} />
           <div>
             <Paginação
@@ -414,7 +414,7 @@ export default function Table({
         </aside>
       </section>
       {!today && (
-        <div div className={styleExt.paginacao}>
+        <div className={styleExt.paginacao}>
           <div>
             <Paginação
               pages={pages}
