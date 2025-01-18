@@ -1,4 +1,4 @@
-export default function Select({ setItenspage, itensPage, functionUPDATE }) {
+export default function Select({ setItenspage, itensPage,  }) {
   return (
     <div>
       <label htmlFor="select">Tarefas por pagina : </label>
@@ -8,11 +8,7 @@ export default function Select({ setItenspage, itensPage, functionUPDATE }) {
         value={itensPage}
         title="Quantidade"
         onChange={(e) => {
-          functionUPDATE();
           setItenspage(Number(e.target.value));
-        }}
-        onClick={() => {
-          functionUPDATE();
         }}
       >
         <option value={10}>10</option>

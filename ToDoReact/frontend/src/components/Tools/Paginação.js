@@ -1,9 +1,4 @@
-export default function Paginação({
-  pages,
-  currentPage,
-  setCurrentPage,
-  functionUPDATE,
-}) {
+export default function Paginação({ pages, currentPage, setCurrentPage }) {
   return Array.from(Array(pages), (item, index) => {
     return (
       <button
@@ -16,10 +11,6 @@ export default function Paginação({
         value={index}
         onClick={(e) => {
           setCurrentPage(Number(e.target.value));
-          functionUPDATE();
-        }}
-        onChange={() => {
-          functionUPDATE();
         }}
       >
         {index + 1}

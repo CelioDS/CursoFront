@@ -55,15 +55,16 @@ export default function Table({
 
     setCompletedTasksCount(TasksCountCompleted);
     setPedingTasksCount(TasksCountPeding);
-
-    handleFilter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrayDB]);
 
   useEffect(() => {
     const today = new Date();
     setCurrentDate(format(today, "dd-MM-yyyy"));
   }, []);
+
+  useEffect(() => {
+    handleFilter();
+  });
 
   function handleFilter() {
     function checkMonth(data) {
@@ -245,7 +246,6 @@ export default function Table({
                 <Input
                   id={"searchText"}
                   onChange={(e) => {
-                    handleFilter();
                     setSearchText(e.target.value);
                   }}
                   placeholder={"Pesquise aqui..."}
@@ -258,9 +258,6 @@ export default function Table({
                   id="monthFilter"
                   value={searchMonth}
                   onChange={handleMonthChange}
-                  onClick={() => {
-                    handleFilter();
-                  }}
                 >
                   {months.map((month) => (
                     <option key={month.value} value={month.value}>
@@ -285,13 +282,7 @@ export default function Table({
       )}
       {!today && (
         <div className={styleExt.paginacao}>
-          <Select
-            setItenspage={setItenspage}
-            itensPage={itensPage}
-            functionUPDATE={() => {
-              handleFilter();
-            }}
-          />
+          <Select setItenspage={setItenspage} itensPage={itensPage} />
           <div>
             <Paginação
               pages={pages}
@@ -299,9 +290,6 @@ export default function Table({
               itensPage={itensPage}
               setCurrentPage={setCurrentPage}
               setItenspage={setItenspage}
-              functionUPDATE={() => {
-                handleFilter();
-              }}
             />
           </div>
         </div>
@@ -437,9 +425,6 @@ export default function Table({
               itensPage={itensPage}
               setCurrentPage={setCurrentPage}
               setItenspage={setItenspage}
-              functionUPDATE={() => {
-                handleFilter();
-              }}
             />
           </div>
         </div>
