@@ -36,7 +36,7 @@ export default function Table({
   const [handleNumberEdit, setHandleNumberEdit] = useState(1);
   const [idFirst, setIdFirst] = useState();
 
-  const [itensPage, setItenspage] = useState(10);
+  const [itensPage, setItenspage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = Math.ceil(arrayDB.length / itensPage);
   const startIndex = currentPage * itensPage;
@@ -255,6 +255,9 @@ export default function Table({
                   id="monthFilter"
                   value={searchMonth}
                   onChange={handleMonthChange}
+                  onClick={() => {
+                    handleFilter();
+                  }}
                 >
                   {months.map((month) => (
                     <option key={month.value} value={month.value}>
@@ -279,7 +282,13 @@ export default function Table({
       )}
       {!today && (
         <div className={styleExt.paginacao}>
-          <Select setItenspage={setItenspage} itensPage={itensPage} />
+          <Select
+            setItenspage={setItenspage}
+            itensPage={itensPage}
+            functionUPDATE={() => {
+              handleFilter();
+            }}
+          />
           <div>
             <Paginação
               pages={pages}
@@ -287,6 +296,9 @@ export default function Table({
               itensPage={itensPage}
               setCurrentPage={setCurrentPage}
               setItenspage={setItenspage}
+              functionUPDATE={() => {
+                handleFilter();
+              }}
             />
           </div>
         </div>
@@ -422,6 +434,9 @@ export default function Table({
               itensPage={itensPage}
               setCurrentPage={setCurrentPage}
               setItenspage={setItenspage}
+              functionUPDATE={() => {
+                handleFilter();
+              }}
             />
           </div>
         </div>
