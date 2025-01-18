@@ -244,7 +244,10 @@ export default function Table({
               <aside className={styleExt.searchText}>
                 <Input
                   id={"searchText"}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={(e) => {
+                    handleFilter();
+                    setSearchText(e.target.value);
+                  }}
                   placeholder={"Pesquise aqui..."}
                   className={styleExt.input}
                 />
